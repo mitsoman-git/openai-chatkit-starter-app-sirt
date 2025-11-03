@@ -7,13 +7,8 @@ export const CREATE_SESSION_ENDPOINT = "/api/create-session";
 
 export const STARTER_PROMPTS: StartScreenPrompt[] = [
   {
-    label: "What can you do?",
+    label: "What can you do for me?",
     prompt: "What can you do?",
-    icon: "circle-question",
-  },
-   {
-    label: "Show me the menu",
-    prompt: "What dishes are on your menu?",
     icon: "circle-question",
   },
 ];
