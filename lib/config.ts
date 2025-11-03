@@ -5,22 +5,22 @@ export const WORKFLOW_ID =
 
 export const CREATE_SESSION_ENDPOINT = "/api/create-session";
 
-// 👇 Update this section
+// ✅ Fixed icons: all from ChatKit’s supported icon list
 export const STARTER_PROMPTS: StartScreenPrompt[] = [
   {
     label: "Show me the menu",
     prompt: "What dishes are on your menu?",
-    icon: "utensils-crossed",
+    icon: "book-open", // menu/book icon
   },
   {
     label: "Book a table",
     prompt: "I’d like to make a reservation.",
-    icon: "calendar-days",
+    icon: "calendar", // valid calendar icon
   },
   {
     label: "Opening hours",
     prompt: "When are you open?",
-    icon: "clock",
+    icon: "clock", // also valid
   },
   {
     label: "Location & contact",
@@ -29,19 +29,21 @@ export const STARTER_PROMPTS: StartScreenPrompt[] = [
   },
   {
     label: "Sirtaki Meze",
-    prompt: "I like to pre-order the Meze",
-    icon: "sparkles",
+    prompt: "I’d like to pre-order the Meze.",
+    icon: "star", // sparkle-like alternative
   },
   {
     label: "Allergies or dietary options",
     prompt: "Do you have vegan, gluten-free, or nut-free dishes?",
-    icon: "heart-pulse",
+    icon: "heart", // use "heart" or "lifesaver" (both valid)
   },
 ];
 
-export const PLACEHOLDER_INPUT = "Ask about reservations, menu, or more…";
+export const PLACEHOLDER_INPUT =
+  "Ask about reservations, menu, or more…";
 
-export const GREETING = "👋 Welcome to Sirtaki — your Greek dining assistant!";
+export const GREETING =
+  "👋 Welcome to Sirtaki — your Greek dining assistant!";
 
 export const getThemeConfig = (theme: ColorScheme): ThemeOption => ({
   color: {
