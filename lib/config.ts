@@ -25,18 +25,14 @@ export const STARTER_PROMPTS: StartScreenPrompt[] = [
   {
     label: "Location & contact",
     prompt: "Where is the restaurant and how can I contact you?",
-    icon: "circle-question",
+    icon: "map-pin",
   },
   {
     label: "Sirtaki Meze",
     prompt: "I’d like to pre-order the Meze.",
-    icon: "circle-question", // sparkle-like alternative
+    icon: "star", // sparkle-like alternative
   },
-  {
-    label: "Allergies or dietary options",
-    prompt: "Do you have vegan, gluten-free, or nut-free dishes?",
-    icon: "circle-question", // use "heart" or "lifesaver" (both valid)
-  },
+  
 ];
 
 export const PLACEHOLDER_INPUT =
