@@ -10,32 +10,32 @@ export const STARTER_PROMPTS: StartScreenPrompt[] = [
   {
     label: "Show me the menu",
     prompt: "What dishes are on your menu?",
-    icon: "book-open", // menu/book icon
+    icon: "circle-question", // menu/book icon
   },
   {
     label: "Book a table",
     prompt: "I’d like to make a reservation.",
-    icon: "calendar", // valid calendar icon
+    icon: "circle-question", // valid calendar icon
   },
   {
     label: "Opening hours",
     prompt: "When are you open?",
-    icon: "clock", // also valid
+    icon: "circle-question", // also valid
   },
   {
     label: "Location & contact",
     prompt: "Where is the restaurant and how can I contact you?",
-    icon: "map-pin",
+    icon: "circle-question",
   },
   {
     label: "Sirtaki Meze",
     prompt: "I’d like to pre-order the Meze.",
-    icon: "star", // sparkle-like alternative
+    icon: "circle-question", // sparkle-like alternative
   },
   {
     label: "Allergies or dietary options",
     prompt: "Do you have vegan, gluten-free, or nut-free dishes?",
-    icon: "heart", // use "heart" or "lifesaver" (both valid)
+    icon: "circle-question", // use "heart" or "lifesaver" (both valid)
   },
 ];
 
