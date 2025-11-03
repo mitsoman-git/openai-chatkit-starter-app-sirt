@@ -43,7 +43,7 @@ export const PLACEHOLDER_INPUT =
   "Ask about reservations, menu, or more…";
 
 export const GREETING =
-  "👋 Welcome to Sirtaki — your Greek dining assistant!";
+  "Welcome to Sirtaki — your Greek dining assistant!";
 
 export const getThemeConfig = (theme: ColorScheme): ThemeOption => ({
   color: {
