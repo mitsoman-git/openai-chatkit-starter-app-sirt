@@ -275,7 +275,7 @@ export function ChatKitPanel({
       placeholder: PLACEHOLDER_INPUT,
       attachments: {
         // Enable attachments
-        enabled: true,
+        enabled: false,
       },
     },
     threadItemActions: {
