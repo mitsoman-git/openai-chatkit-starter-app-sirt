@@ -13,7 +13,7 @@ export const STARTER_PROMPTS: StartScreenPrompt[] = [
   },
 ];
 
-export const PLACEHOLDER_INPUT = "Ask anything...";
+export const PLACEHOLDER_INPUT = "Ask anything about Sirtaki...";
 
 export const GREETING = "👋 Sirtaki Here! How can I help you today?";
 
