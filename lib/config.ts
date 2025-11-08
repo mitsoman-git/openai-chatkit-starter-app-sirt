@@ -27,8 +27,8 @@ export const STARTER_PROMPTS: StartScreenPrompt[] = [
     icon: "sparkle",
   },
   {
-    label: "What wines you have?",
-    prompt: "show me all wines you have in your wine list",
+    label: "Can you recommend a wine?",
+    prompt: "I’d like a wine recommendation with my meal",
     icon: "sparkle-double",
   },
 ];
