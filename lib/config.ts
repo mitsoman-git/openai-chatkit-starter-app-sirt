@@ -14,17 +14,17 @@ export const STARTER_PROMPTS: StartScreenPrompt[] = [
   {
     label: "Tell me about a dish",
     prompt: "i like to ask for a dish you have",
-    icon: "circle-question",
+    icon: "sparkle",
   },
    {
     label: "How can i reserve?",
     prompt: "reserve table",
-    icon: "circle-question",
+    icon: "notebook-pencil",
   },
   {
     label: "How can i get there?",
     prompt: "where is sirtaki tavern?",
-    icon: "circle-question",
+    icon: "map-pin",
   },
 ];
 
