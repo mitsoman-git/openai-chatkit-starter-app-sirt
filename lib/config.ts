@@ -11,10 +11,20 @@ export const STARTER_PROMPTS: StartScreenPrompt[] = [
     prompt: "What can you do?",
     icon: "circle-question",
   },
+  {
+    label: "Tell me about a dish",
+    prompt: "i like to ask for a dish you have",
+    icon: "book-open",
+  },
    {
-    label: "How can i book?",
-    prompt: "reserve table?",
-    icon: "circle-question",
+    label: "How can i reserve?",
+    prompt: "reserve table",
+    icon: "calendar-check",
+  },
+  {
+    label: "How can i get there?",
+    prompt: "where is sirtaki tavern?",
+    icon: "location-dot",
   },
 ];
 
