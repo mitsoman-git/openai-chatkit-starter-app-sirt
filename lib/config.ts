@@ -22,7 +22,7 @@ export const STARTER_PROMPTS: StartScreenPrompt[] = [
     icon: "map-pin",
   },
   {
-    label: "Tell me about a dish",
+    label: "Tell me more about a dish",
     prompt: "i like to ask for a dish you have",
     icon: "sparkle",
   },
