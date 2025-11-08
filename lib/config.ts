@@ -13,7 +13,7 @@ export const STARTER_PROMPTS: StartScreenPrompt[] = [
   },
    {
     label: "How can I reserve?",
-    prompt: "reserve table",
+    prompt: "I would like to reserve a table",
     icon: "notebook-pencil",
   },
   {
