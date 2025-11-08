@@ -11,11 +11,16 @@ export const STARTER_PROMPTS: StartScreenPrompt[] = [
     prompt: "What can you do?",
     icon: "circle-question",
   },
+   {
+    label: "How can i book?",
+    prompt: "reserve table?",
+    icon: "circle-question",
+  },
 ];
 
 export const PLACEHOLDER_INPUT = "Ask anything about Sirtaki...";
 
-export const GREETING = "👋 Sirtaki Here! How can I help you today?";
+export const GREETING = "👋 Hi! How can I help you today?";
 
 export const getThemeConfig = (theme: ColorScheme): ThemeOption => ({
   color: {
