@@ -11,20 +11,25 @@ export const STARTER_PROMPTS: StartScreenPrompt[] = [
     prompt: "What can you do?",
     icon: "circle-question",
   },
+   {
+    label: "How can I reserve?",
+    prompt: "reserve table",
+    icon: "notebook-pencil",
+  },
+  {
+    label: "How can I get there?",
+    prompt: "where is sirtaki tavern?",
+    icon: "map-pin",
+  },
   {
     label: "Tell me about a dish",
     prompt: "i like to ask for a dish you have",
     icon: "sparkle",
   },
-   {
-    label: "How can i reserve?",
-    prompt: "reserve table",
-    icon: "notebook-pencil",
-  },
   {
-    label: "How can i get there?",
-    prompt: "where is sirtaki tavern?",
-    icon: "map-pin",
+    label: "What wines you have?",
+    prompt: "show me all wines you have in your wine list",
+    icon: "sparkle-double",
   },
 ];
 
