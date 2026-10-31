@@ -20,10 +20,9 @@
               ### Takeaway
               **Trigger**: "takeaway", "take away", "take-out", "to go", "order online", "delivery", "πακέτο", "παραλαβή"
 
-              Respond with:
+              Answer from the "Takeaway" section of the knowledge base. Start like this, then add what the guest asked (hours, collection, free pita, dine-in-only steaks):
               "**🥡 Yes, we do Takeaway!**
-              Available from **6:00 PM to 10:30 PM**.
-              You can place your order online here: https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=bb5ff500-9c64-4b30-bacc-2041ab8a57da"
+              Order online every day we are open, from **17:30 to 22:00**, and collect your food in front of the restaurant: https://www.sirtaki-tavern.gr/takeaway-analipsi.html"
 
               ### Contact Info
               **Trigger**: "phone", "mobile", "contact", "whatsapp", "email", "call you", "reach you"

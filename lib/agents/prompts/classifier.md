@@ -4,7 +4,7 @@ Classify the user's intent into exactly one of the following categories:
 
 - meze → ONLY when the user explicitly asks about the "Sirtaki Meze" platter, pre-ordering Meze, or says the word "Meze" specifically. Examples: "tell me about Meze", "how to order Meze", "what is Meze", "I want Meze"
 - reserve → when the user wants to reserve, change, or cancel a table reservation, OR makes a special/custom request tied to an existing reservation (a surprise, a birthday/honeymoon/anniversary note, special seating, decorations, an off-menu accommodation). Examples: "I want to book a table", "reserve for 2", "do you have a table tonight?", "I need to change my reservation time", "can I cancel my booking?", "I want to postpone my reservation", "I'd like a table for 25 people" (large groups still count as reserve — the reservation workflow handles the group-size branching internally), "I have a reservation for tonight, can you have a bottle of wine ready at the table as a surprise?" (mentions an existing reservation + a request needing staff action → reserve)
-- get_information → when the user asks about ANY food, dishes, starters, mains, salads, desserts, drinks, wines, prices, menu, location, directions, staff/team, opening hours, heaters, general event/wedding questions (without a specific booking attempt), or general information. This includes ALL food-related questions that are NOT specifically about the Meze platter. Examples: "what appetizers do you have", "do you have vegetarian food", "how much is moussaka", "what wines do you serve", "where is the restaurant", "who works there", "are you open on Sundays", "do you host weddings"
+- get_information → when the user asks about ANY food, dishes, starters, mains, salads, desserts, drinks, wines, prices, menu, location, directions, staff/team, opening hours, heaters, general event/wedding questions (without a specific booking attempt), the specials (Black Angus cuts, Greek specialties, Kleftiko, Moussaka and so on), cocktails, beer and spirits, takeaway and online ordering, the story and family behind Sirtaki, the area around Analipsi (what to do, beaches, day trips), what to order or eat, or general information. This includes ALL food-related questions that are NOT specifically about the Meze platter. Examples: "what appetizers do you have", "do you have vegetarian food", "how much is moussaka", "what wines do you serve", "where is the restaurant", "who works there", "are you open on Sundays", "do you host weddings", "what are your specials", "tell me about the Black Angus steaks", "how long is Kleftiko cooked", "do you have cocktails", "how much is a beer", "can I order takeaway", "until what time is takeaway", "who started Sirtaki", "why is it called Sirtaki", "what is there to do in Analipsi", "what do you recommend", "what should I eat"
 - greeting → ONLY when the message is a greeting, thanks, or farewell with no other request attached, like "hi", "hello", "good morning", "kalimera", "hey", "thanks", "thank you", "efharisto", "ευχαριστώ", "ok thanks", "bye", "goodbye", or similar
 
 CRITICAL RULES:
@@ -27,6 +27,13 @@ Examples of CORRECT classification:
 - "how much is moussaka?" → get_information
 - "what wines do you have?" → get_information
 - "who works at the restaurant?" → get_information
+- "what are your specials?" → get_information
+- "tell me about your Black Angus steaks" → get_information (a steak is food, not Meze)
+- "do you have Aperol spritz?" → get_information (drinks)
+- "can I order takeaway?" → get_information (takeaway is ordered online by the guest, it is not a table reservation)
+- "who started Sirtaki and since when?" → get_information
+- "what is there to do in Analipsi in the evening?" → get_information
+- "what should I eat?" → get_information
 - "I need to change my reservation to 9pm" → reserve
 - "can I cancel my table for tomorrow?" → reserve
 - "Hi, is there a table for 4 tonight?" → reserve (request wins over greeting)
@@ -39,6 +46,8 @@ Examples of WRONG classification (NEVER do this):
 - "what starters" → NOT meze (this is get_information)
 - "I need to change my reservation" → NOT get_information (this is reserve)
 - "Hi, do you have vegetarian food?" → NOT greeting (this is get_information)
+- "can I order takeaway?" → NOT reserve (this is get_information)
+- "tell me about the Kleftiko" → NOT meze (this is get_information)
 
 OUTPUT FORMAT:
 Output ONLY the raw category name, with no quotes, no punctuation, and no extra text. Valid outputs are exactly: meze, reserve, get_information, greeting

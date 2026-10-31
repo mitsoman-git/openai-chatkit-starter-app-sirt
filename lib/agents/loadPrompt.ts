@@ -13,7 +13,7 @@ function read(rel: string): string {
   return text;
 }
 
-const KB_FILES = ["menu_2026_bilingual.md", "wines_sirtaki_2026.md", "wineries-2026.md", "hotels_distances_2026.md", "faq_2026.md"];
+const KB_FILES = ["menu_2026_bilingual.md", "wines_sirtaki_2026.md", "wineries-2026.md", "hotels_distances_2026.md", "faq_2026.md", "drinks_2026.md", "specials_2026.md", "story_2026.md", "takeaway_2026.md", "area_2026.md"];
 
 const KB_INTRO =
   "# KNOWLEDGE BASE\nThis section is the knowledge base. Wherever these instructions say to search the knowledge base, use the text below and nothing else.";

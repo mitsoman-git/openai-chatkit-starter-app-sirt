@@ -116,3 +116,38 @@ describe("website FAQ", () => {
     expect(loadPrompt("reserve")).not.toContain("# Website FAQ");
   });
 });
+
+describe("site knowledge: drinks, specials, story, takeaway, area", () => {
+  it("are in the assistant knowledge base", () => {
+    for (const category of ["get_information", "greeting"] as const) {
+      const p = loadPrompt(category);
+      expect(p).toContain("# Drinks, cocktails and spirits");
+      expect(p).toContain("Aperol Spritz, 9");
+      expect(p).toContain("# Specials at Sirtaki");
+      expect(p).toContain("https://www.sirtaki-tavern.gr/specials/greek/kleftiko.html");
+      expect(p).toContain("# Our story: the family, the name, since 1993");
+      expect(p).toContain("# Takeaway");
+      expect(p).toContain("17:30 to 22:00");
+      expect(p).toContain("# The area: Analipsi village");
+      expect(p).toContain("WHICH KNOWLEDGE BASE SECTION ANSWERS WHAT");
+    }
+  });
+
+  it("no longer tells guests the old takeaway hours or the old ordering link", () => {
+    const p = loadPrompt("get_information");
+    expect(p).not.toContain("6:00 PM to 10:30 PM");
+    expect(p).not.toContain("foodbooking.com");
+  });
+
+  it("are not added to the meze or reservation prompts", () => {
+    expect(loadPrompt("meze")).not.toContain("# Drinks, cocktails and spirits");
+    expect(loadPrompt("reserve")).not.toContain("# Specials at Sirtaki");
+  });
+
+  it("the classifier sends them to get_information", () => {
+    const c = loadClassifierPrompt();
+    for (const phrase of ["what are your specials", "do you have cocktails", "can I order takeaway", "why is it called Sirtaki", "what is there to do in Analipsi"]) {
+      expect(c).toContain(phrase);
+    }
+  });
+});
