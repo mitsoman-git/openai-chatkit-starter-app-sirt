@@ -1,6 +1,6 @@
 # Sirtaki Chat Backend — Replace Agent Builder Dependency
 
-**Status:** DRAFT — sections 1-2 walked through live and confirmed; sections 3-7 drafted from decisions already made in conversation, not yet walked through section-by-section. Review before approving.
+**Status:** REVISED 2026-10-31 after exporting the live workflow (`docs/agent-builder-export.md`). Section 10 lists what changed versus the 2026-07-29 draft and overrides any older line it contradicts.
 
 ## 1. Why
 
@@ -91,3 +91,19 @@ Given the size of this project (one small team, one owner reviewing), full autom
 - Copy the 6 prompt files from the Mac "Knowledge Base" folder into `lib/agents/` in this repo (need the menu KB, wineries, and wines files too, for the `get_information` bundle).
 - Confirm exact wording/branding for the `/admin` page and its shared-secret env var name.
 - Decide the widget's visual styling details (colors, avatar, etc.) — can follow the existing app's dark/light theme conventions already in place.
+
+## 10. Revisions after the Agent Builder export (2026-10-31)
+
+The export in `docs/agent-builder-export.md` is the source of truth for current behavior. Findings and decisions:
+
+1. **Graph.** Start → Guardrails → Classify Agent → If/else → Meze Agent / Reservation Agent / Sirtaki Assistant (for both `get_information` and `greeting`). Guardrail fail → static fallback reply. Else → classifier result (never reached: the schema enum has 4 values).
+2. **Model.** Today every node runs `gpt-4o-mini` (temperature 1, top P 1, max 2048 tokens; fallback 10000). Model id is read from env `OPENAI_MODEL`; default is the owner's chosen GPT-5.4 mini id. The implementation must not send `temperature`/`top_p` (not accepted by the GPT-5 family). The exact model id is verified against `GET /v1/models` before the first deploy.
+3. **File search is dropped.** The vector store held only `menu_2026_bilingual.md` (23 KB), `wineries-2026.md` (20 KB), `wines_sirtaki_2026.md` (15 KB); only the Sirtaki Assistant node had the File search tool. These three files (copied from `AI Agent/Knowledge Base/menu 2026/`) are appended inline under a `# KNOWLEDGE BASE` heading in the Sirtaki Assistant system prompt. Meze and Reservation agents never had the tool and get no KB. Prompts that say "search the knowledge base" are kept verbatim; the KB heading carries one sentence saying the knowledge base is the section below.
+4. **Six extra assistant messages.** In the `get_information` and `greeting` branches the workflow inserts six assistant-role messages (Location & Directions, Family Staff, Hours & Contact, Menu, Sommelier, Event Planning) before the run. They are moved into the Sirtaki Assistant system prompt, in the same order, each under its original `Extra assistant message N` title. This is a deliberate, small behavior change (system instead of assistant role); the routing/answers check in section 8 covers it.
+5. **Guardrails are kept, lighter.** (a) PII: block messages containing a Luhn-valid 13-19 digit card number (the only configured entity relevant to guests; US bank/passport/SSN entities are dropped). (b) Jailbreak: one small `gpt-4.1-mini`-class call run in parallel with the classifier, returning `{jailbreak: boolean, confidence: number}`; fail when `jailbreak` is true and `confidence >= 0.7`. On failure the reply is the static fallback text from the export's fallback agent examples (no model call). If the jailbreak call itself errors, the message is allowed through.
+6. **Calls per message.** Classifier + jailbreak check in parallel, then one response call. Still two sequential steps.
+7. **Logging.** One table `messages(id, session_id, role, text, category, created_at)`; `/admin` groups by `session_id`. Replaces the `conversations`/`messages` pair.
+8. **Admin auth.** HTTP Basic auth in `middleware.ts` for `/admin`, password from env `ADMIN_PASSWORD`.
+9. **Testing.** Section 8 is replaced: Vitest (dev dependency) for the pure logic with an injected `fetch`, plus an opt-in live routing check (`LIVE=1`) that runs the classifier examples from the prompt against the real model.
+10. **Request limits.** `/api/chat` accepts a message of at most 1000 characters and the last 20 history turns; anything else is rejected with 400 or truncated as stated in the plan.
+11. **Stale facts noticed in the prompts (not fixed here).** The hours block mentions "Sunday Open Exception 27 September 2026" and the Meze/Reservation prompts hardcode the year 2026. They are copied verbatim; the owner updates them in `lib/agents/prompts/` afterwards.
