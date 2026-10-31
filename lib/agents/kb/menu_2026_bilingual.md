@@ -12,6 +12,7 @@
 | Item | Price | Description | Dietary |
 |------|-------|-------------|---------|
 | Bread-Pita & free Dips / Ψωμί & πίτα με δωρεάν ντιπ | 3€ | Village bread with garlic-olive oil & pita flat bread and free dips / Χωριάτικο ψωμί με σκόρδο-λάδι & πίτα, με δωρεάν ντιπ | VG |
+| Pita Bread with Dips / Πίτα με ντιπ | 3€ | Warm pita bread brushed with garlic olive oil, served with our selection of dips / Ζεστή πίτα με σκορδάτο ελαιόλαδο, με τα ντιπ μας | VG |
 | Garlic Pita bread with cheese / Πίτα σκόρδου με τυρί | 8€ | Garlic pita bread with cheese in the oven / Πίτα σκόρδου με τυρί στο φούρνο | VG |
 | Tzatziki / Τζατζίκι | 6€ | Homemade from Greek yogurt, cucumber, garlic, olive oil / Σπιτικό με ελληνικό γιαούρτι, αγγούρι, σκόρδο, ελαιόλαδο | VG, GF |
 | Tyrokafteri / Τυροκαυτερή | 6€ | Spicy feta dip with chili / Καυτερή φέτα με πιπεριά τσίλι | VG, GF |
@@ -32,7 +33,6 @@
 | Grilled Mushrooms / Ψητά μανιτάρια | 8€ | Grilled fresh mushrooms with balsamic and oregano / Ψητά φρέσκα μανιτάρια με βαλσάμικο και ρίγανη | VG, GF |
 | Grilled Vegetables / Ψητά λαχανικά | 8.5€ | Fresh grilled vegetables with olive oil, balsamic, oregano / Φρέσκα ψητά λαχανικά με λάδι, βαλσάμικο, ρίγανη | VG, GF |
 | Dakos / Ντάκος | 8€ | Cretan rusk with fresh tomato, olive oil and feta / Κρητικό παξιμάδι με φρέσκια ντομάτα, λάδι και φέτα | VG |
-| Grilled Octopus / Ψητό χταπόδι | 17€ | Grilled octopus with fava and olive-vinegar sauce / Ψητό χταπόδι με φάβα και σάλτσα λαδιού-ξυδιού | GF |
 | Fried Zucchini / Τηγανητά κολοκυθάκια | 10€ | Crispy fried zucchini in olive oil / Τραγανά τηγανητά κολοκυθάκια σε λάδι | VG |
 | French Fries / Πατάτες τηγανητές | 5€ | Hand-cut chips in olive oil / Χειροποίητες πατάτες κομμένες στο χέρι, τηγανισμένες σε λάδι | VG, GF |
 | Meze Sirtaki for 2 / Μεζές Σιρτάκι για 2 | 65€ | Selection of 20+ Greek small dishes on a large plate. Pre-order only, served 17:30-19:00, up to 4 guests / Επιλογή από 20+ ελληνικά μικροπιάτα σε μεγάλο δίσκο. Μόνο με προπαραγγελία, σερβίρεται 17:30-19:00, έως 4 άτομα. Κλείστε τραπέζι και γράψτε "MEZE" | - |
