@@ -157,19 +157,20 @@ export default async function AdminPage({
 
   return (
     <Shell>
-      <div className="mb-5 rounded-2xl border border-stone-200 bg-white p-4 shadow-sm">
-        <div className="mb-3 flex items-center justify-between">
-          <a href={href({ month: shiftMonth(month, -1), cat })} className="rounded-lg px-3 py-1 text-lg text-stone-600 hover:bg-stone-100" aria-label="Previous month">
+      <details className="group mb-4 rounded-2xl border border-stone-200 bg-white shadow-sm">
+        <summary className="flex cursor-pointer list-none items-center gap-2 px-3 py-2 [&::-webkit-details-marker]:hidden">
+          <a href={href({ month: shiftMonth(month, -1), cat, starred: starredOnly })} className="rounded-lg px-2 text-lg text-stone-600 hover:bg-stone-100" aria-label="Previous month">
             ‹
           </a>
-          <div className="text-center">
-            <div className="text-base font-semibold">{MONTH_FMT.format(new Date(`${month}-01T00:00:00Z`))}</div>
-            <div className="text-xs text-stone-500">{monthTotal} conversations</div>
-          </div>
-          <a href={href({ month: shiftMonth(month, 1), cat })} className="rounded-lg px-3 py-1 text-lg text-stone-600 hover:bg-stone-100" aria-label="Next month">
+          <span className="text-sm font-semibold">{MONTH_FMT.format(new Date(`${month}-01T00:00:00Z`))}</span>
+          <a href={href({ month: shiftMonth(month, 1), cat, starred: starredOnly })} className="rounded-lg px-2 text-lg text-stone-600 hover:bg-stone-100" aria-label="Next month">
             ›
           </a>
-        </div>
+          <span className="flex-1 text-xs text-stone-500">{monthTotal} conversations</span>
+          <span className="rounded-lg px-2 py-1 text-xs font-medium text-sky-700 group-open:hidden">Calendar ▾</span>
+          <span className="hidden rounded-lg px-2 py-1 text-xs font-medium text-sky-700 group-open:inline">Hide ▴</span>
+        </summary>
+        <div className="mx-auto max-w-sm px-3 pb-3">
         <div className="grid grid-cols-7 gap-1 text-center text-[11px] font-medium text-stone-400">
           {WEEKDAYS.map((w) => (
             <div key={w}>{w}</div>
@@ -182,7 +183,7 @@ export default async function AdminPage({
               if (!d) return <div key={`e${i}`} />;
               const n = counts[d] ?? 0;
               const selected = d === day;
-              const base = "flex h-12 flex-col items-center justify-center rounded-lg text-sm";
+              const base = "flex h-9 flex-col items-center justify-center rounded-lg text-sm";
               const tone = selected
                 ? "bg-stone-900 text-white"
                 : n > 0
@@ -192,7 +193,7 @@ export default async function AdminPage({
               const inner = (
                 <>
                   <span className="font-medium">{Number(d.slice(8))}</span>
-                  {n > 0 && <span className={`text-[10px] ${selected ? "text-stone-200" : "text-sky-800"}`}>{n}</span>}
+                  {n > 0 && <span className={`text-[9px] leading-none ${selected ? "text-stone-200" : "text-sky-800"}`}>{n}</span>}
                 </>
               );
               return n > 0 || selected ? (
@@ -206,7 +207,8 @@ export default async function AdminPage({
               );
             })}
         </div>
-      </div>
+        </div>
+      </details>
 
       <div className="mb-4 flex flex-wrap items-center gap-1.5">
         <a
