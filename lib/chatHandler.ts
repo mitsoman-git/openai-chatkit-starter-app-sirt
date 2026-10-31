@@ -1,5 +1,6 @@
 import { ERROR_REPLY, respond } from "./chat";
 import { parseChatBody } from "./chatRequest";
+import { redactCardNumbers } from "./guardrails";
 import type { createDb } from "./db";
 import type { Ask } from "./openai";
 
@@ -32,7 +33,7 @@ export function createPostHandler({ ask, db }: Deps) {
     }
 
     try {
-      await db.logExchange({ sessionId, userText: message, replyText: reply, category });
+      await db.logExchange({ sessionId, userText: redactCardNumbers(message), replyText: reply, category });
     } catch (error) {
       console.error("logging failed", error);
     }

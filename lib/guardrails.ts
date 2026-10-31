@@ -28,9 +28,18 @@ function luhnValid(digits: string): boolean {
   return sum % 10 === 0;
 }
 
+const CARD_PREFIX = /^(?:4|5[1-5]|2[2-7]|3|6)/;
+const CARD_RUN = /(?<![\d+])\d(?:[ -]?\d){12,18}/g;
+
+export function redactCardNumbers(text: string): string {
+  return text.replace(CARD_RUN, (run) => {
+    const digits = run.replace(/\D/g, "");
+    return CARD_PREFIX.test(digits) && luhnValid(digits) ? "[card number removed]" : run;
+  });
+}
+
 export function containsCardNumber(text: string): boolean {
-  const runs = text.match(/\d(?:[ -]?\d){12,18}/g) ?? [];
-  return runs.some((run) => luhnValid(run.replace(/\D/g, "")));
+  return redactCardNumbers(text) !== text;
 }
 
 export async function isJailbreak(text: string, ask: Ask): Promise<boolean> {
@@ -40,6 +49,7 @@ export async function isJailbreak(text: string, ask: Ask): Promise<boolean> {
       input: [{ role: "user", text }],
       model: process.env.OPENAI_GUARD_MODEL ?? "gpt-4.1-mini",
       maxOutputTokens: 100,
+      timeoutMs: 6000,
       jsonSchema: { name: "jailbreak_check", schema: JAILBREAK_SCHEMA },
     });
     const parsed = JSON.parse(raw) as { jailbreak?: unknown; confidence?: unknown };

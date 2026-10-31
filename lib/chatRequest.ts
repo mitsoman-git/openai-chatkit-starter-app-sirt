@@ -4,6 +4,7 @@ import type { Turn } from "./types";
 export type ChatBody = { message: string; history: Turn[]; sessionId: string };
 
 const MAX_HISTORY_TEXT_CHARS = 4000;
+const MAX_HISTORY_TOTAL_CHARS = 12000;
 const SESSION_ID = /^[A-Za-z0-9-]{8,64}$/;
 
 type Parsed = { ok: true; value: ChatBody } | { ok: false; error: string };
@@ -31,6 +32,8 @@ export function parseChatBody(body: unknown): Parsed {
       turns.push({ role: t.role, text: t.text.slice(0, MAX_HISTORY_TEXT_CHARS) });
     }
     turns = turns.slice(-MAX_HISTORY_TURNS);
+    let total = turns.reduce((n, t) => n + t.text.length, 0);
+    while (turns.length > 0 && total > MAX_HISTORY_TOTAL_CHARS) total -= turns.shift()!.text.length;
   }
 
   return { ok: true, value: { message: text, history: turns, sessionId } };

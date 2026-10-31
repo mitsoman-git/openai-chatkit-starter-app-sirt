@@ -3,7 +3,7 @@ export type Token =
   | { type: "bold"; text: string }
   | { type: "link"; text: string; href: string };
 
-const PATTERN = /\[([^\]]+)\]\(([^)\s]+)\)|\*\*([^*]+)\*\*|(https?:\/\/[^\s<>)\]]+)/g;
+const PATTERN = /\*\*((?:[^*]|\*(?!\*))+)\*\*|\[([^\]]+)\]\(([^)\s]+)\)|(https?:\/\/[^\s<>)\]]+)/g;
 const SAFE_HREF = /^(https?:|tel:|mailto:)/i;
 
 export function tokenizeLine(line: string): Token[] {
@@ -18,10 +18,12 @@ export function tokenizeLine(line: string): Token[] {
     pushText(line.slice(last, at));
     last = at + m[0].length;
     if (m[1] !== undefined) {
-      if (SAFE_HREF.test(m[2])) tokens.push({ type: "link", text: m[1], href: m[2] });
+      const inner = tokenizeLine(m[1]);
+      if (inner.every((t) => t.type === "text")) tokens.push({ type: "bold", text: m[1] });
+      else tokens.push(...inner.map((t): Token => (t.type === "text" ? { type: "bold", text: t.text } : t)));
+    } else if (m[2] !== undefined) {
+      if (SAFE_HREF.test(m[3])) tokens.push({ type: "link", text: m[2], href: m[3] });
       else pushText(m[0]);
-    } else if (m[3] !== undefined) {
-      tokens.push({ type: "bold", text: m[3] });
     } else {
       tokens.push({ type: "link", text: m[4], href: m[4] });
     }

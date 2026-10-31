@@ -1,5 +1,5 @@
 import { loadClassifierPrompt, loadPrompt } from "./agents/loadPrompt";
-import { FALLBACK_REPLY, containsCardNumber, isJailbreak } from "./guardrails";
+import { FALLBACK_REPLY, containsCardNumber, isJailbreak, redactCardNumbers } from "./guardrails";
 import type { Ask } from "./openai";
 import type { Category, Turn } from "./types";
 
@@ -23,6 +23,7 @@ export async function classify(message: string, ask: Ask): Promise<Category> {
       instructions: loadClassifierPrompt(),
       input: [{ role: "user", text: message }],
       maxOutputTokens: 2048,
+      timeoutMs: 6000,
       jsonSchema: { name: "classification", schema: CLASSIFICATION_SCHEMA },
     });
     const value = (JSON.parse(raw) as { classification?: unknown }).classification;
@@ -44,8 +45,12 @@ export async function respond(
 
   const reply = await ask({
     instructions: loadPrompt(category),
-    input: [...history, { role: "user", text: message }],
+    input: [
+      ...history.map((t) => ({ ...t, text: redactCardNumbers(t.text) })),
+      { role: "user", text: message },
+    ],
     maxOutputTokens: 2048,
+    timeoutMs: 18000,
   });
   return { reply, category };
 }

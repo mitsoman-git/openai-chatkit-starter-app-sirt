@@ -6,6 +6,7 @@ export type AskArgs = {
   model?: string;
   maxOutputTokens: number;
   jsonSchema?: { name: string; schema: object };
+  timeoutMs?: number;
 };
 
 export type Ask = (args: AskArgs) => Promise<string>;
@@ -33,7 +34,7 @@ export function createAsk(opts: Options = {}): Ask {
       store: false,
     };
     const effort = process.env.OPENAI_REASONING_EFFORT;
-    if (effort) body.reasoning = { effort };
+    if (effort && !args.model) body.reasoning = { effort };
     if (args.jsonSchema) {
       body.text = {
         format: { type: "json_schema", name: args.jsonSchema.name, schema: args.jsonSchema.schema, strict: true },
@@ -44,15 +45,18 @@ export function createAsk(opts: Options = {}): Ask {
       method: "POST",
       headers: { "Content-Type": "application/json", Authorization: `Bearer ${apiKey}` },
       body: JSON.stringify(body),
-      signal: AbortSignal.timeout(timeoutMs),
+      signal: AbortSignal.timeout(args.timeoutMs ?? timeoutMs),
     });
     if (!res.ok) throw new Error(`OpenAI request failed with status ${res.status}`);
 
-    const data = (await res.json()) as { output?: OutputItem[] };
-    return (data.output ?? [])
+    const data = (await res.json()) as { status?: string; output?: OutputItem[] };
+    if (data.status === "incomplete") throw new Error("OpenAI response was incomplete");
+    const text = (data.output ?? [])
       .flatMap((item) => item.content ?? [])
       .filter((part) => part.type === "output_text")
       .map((part) => part.text ?? "")
       .join("");
+    if (!text.trim()) throw new Error("OpenAI returned an empty reply");
+    return text;
   };
 }
