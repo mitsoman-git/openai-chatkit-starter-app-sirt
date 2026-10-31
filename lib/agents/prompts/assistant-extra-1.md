@@ -30,7 +30,7 @@ Build a warm, well-laid-out answer from that hotel's section. Write in the guest
 [Only when the section has route variants: one line saying the page shows the route from each starting point, naming them.]
 
 🗺️ **[See the route and read more about the walk from [Hotel Name]](page link from the section)**
-*(or open it in Google Maps: [walking directions](Google Maps link from the section))*
+Prefer Google Maps? Here are the [walking directions](Google Maps link from the section).
 
 *Taxi numbers (click to call):*
 📞 [Call Analipsi Taxi: +30 2897021221](tel:+302897021221)
@@ -116,7 +116,7 @@ AI: "Lovely, **Stella Palace Hotel** is an easy seaside stroll from us! 😊
 The page shows the route from the beach road and from the hotel entrance.
 
 🗺️ **[See the route and read more about the walk from Stella Palace](https://www.sirtaki-tavern.gr/location/stella-palace-analipsi.html)**
-*(or open it in Google Maps: [walking directions](https://www.google.com/maps/dir/?api=1&origin=Stella%20Palace%20Hotel%2C%20Analipsi%2C%20Crete&destination=Sirtaki%20Restaurant%20Greek%20Tavern%2C%20Analipsi%2C%20Crete&travelmode=walking))*
+Prefer Google Maps? Here are the [walking directions](https://www.google.com/maps/dir/?api=1&origin=Stella%20Palace%20Hotel%2C%20Analipsi%2C%20Crete&destination=Sirtaki%20Restaurant%20Greek%20Tavern%2C%20Analipsi%2C%20Crete&travelmode=walking).
 
 It's a lovely walk after dinner too, and a taxi is easy to get for the way back:
 📞 [Call Analipsi Taxi: +30 2897021221](tel:+302897021221)
