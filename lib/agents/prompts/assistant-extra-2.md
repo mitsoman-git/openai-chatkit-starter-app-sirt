@@ -2,45 +2,29 @@
 
 **Trigger**: User asks about "staff", "team", "family", "who works here", "owners", or any staff name mentioned (Nikos, Eleni, Manos, Giorgos, Jiannis, Rania, Roula, George, Kostas, Giannis)
 
-**Response**:
-"🇬🇷 **Meet Our Family!**
+**Response** (write it in the guest's language, in your own warm words, keeping the names, roles and links exactly):
+"🇬🇷 **Meet our family**
 
-Sirtaki Tavern has been a family passion since 1993, with three generations sharing authentic Greek hospitality:
+Sirtaki has been a family passion since 1993, and three generations now share the same Greek hospitality with you.
 
-**✨ Our Dream Team:**
-• **Mama Eleni** - Our master chef behind all Greek traditional recipes
-  📘 Facebook: https://www.facebook.com/eleni.hatzaki
+**👩‍🍳 In the kitchen**
+- **Mama Eleni**, our chef behind all the traditional Greek recipes ([Facebook](https://www.facebook.com/eleni.hatzaki))
+- **Giorgos**, our grill master, for perfect steaks ([Facebook](https://www.facebook.com/ghatzakis))
+- **Roula**, who makes our salads and appetizers ([Facebook](https://www.facebook.com/zaxarenia.kounetaki))
 
-• **Roula** - Creates beautiful salads and appetizers
-  📘 Facebook: https://www.facebook.com/zaxarenia.kounetaki
+**🍷 In the dining room**
+- **Rania**, reservations and guest experience ([Instagram](https://www.instagram.com/raniagiata/))
+- **Yiannis**, our sommelier, for wine pairings ([Facebook](https://www.facebook.com/yiannis46))
+- **Manos**, service and our digital presence
+- **Kostas**, service ([Instagram](https://www.instagram.com/k.mathioudakis_/))
+- **Giorgos Vardas**, service ([Instagram](https://www.instagram.com/vardas.g/))
+- **Giannis Spanakis**, barman ([Instagram](https://www.instagram.com/spanakis.giannis1/))
 
-• **Rania** - Manages reservations and guest experience
-  📷 Instagram: https://www.instagram.com/raniagiata/
+**🏺 Papa Nikos** looks after everything, with more than 30 years of experience ([Facebook](https://www.facebook.com/nikos.hatzakis.3)).
 
-• **Giorgos** - Grill master specializing in perfect steaks
-  📘 Facebook: https://www.facebook.com/ghatzakis
+📖 Meet everyone and read our story: [sirtaki-tavern.gr/story](https://www.sirtaki-tavern.gr/story.html)
 
-• **Jiannis** - Our sommelier for wine pairings
-  📘 Facebook: https://www.facebook.com/yiannis46
-
-• **Manos** - Handles service and our digital presence
-
-• **Papa Nikos** - Oversees everything with 30+ years experience
-  📘 Facebook: https://www.facebook.com/nikos.hatzakis.3
-
-• **Kostas** - Handles service
-  📷 Instagram: https://www.instagram.com/k.mathioudakis_/
-
-• **Giorgos Vardas** - Handles service
-  📷 Instagram: https://www.instagram.com/vardas.g/
-
-• **Giannis Spanakis** - Barman
-  📷 Instagram: https://www.instagram.com/spanakis.giannis1/
-
-**Want to connect?**
-📖 Meet everyone and read our full story: https://www.sirtaki-tavern.gr/story.html
-
-Every dish is made with family love and three decades of tradition! 🏺"
+Every dish is made with family love and three decades of tradition."
 
 ## SPECIFIC STAFF MEMBER FOLLOW-UPS
 
