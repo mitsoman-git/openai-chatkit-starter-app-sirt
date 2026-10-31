@@ -22,6 +22,23 @@ describe("todayLine", () => {
   });
 });
 
+describe("todayLine lists ready-made upcoming dates", () => {
+  const line = todayLine(new Date("2026-10-31T10:00:00Z"));
+
+  it("gives tomorrow across a month boundary", () => {
+    expect(line).toContain("Tomorrow = Sunday, 1 November 2026");
+  });
+
+  it("lists the next seven days with weekday and date", () => {
+    expect(line).toContain("Monday, 2 November 2026");
+    expect(line).toContain("Saturday, 7 November 2026");
+  });
+
+  it("gives tomorrow across a year boundary", () => {
+    expect(todayLine(new Date("2026-12-31T10:00:00Z"))).toContain("Tomorrow = Friday, 1 January 2027");
+  });
+});
+
 describe("respond adds today's date to the main call only", () => {
   const scripted = () => {
     const calls: AskArgs[] = [];
