@@ -13,7 +13,7 @@ Respond with:
 
 We would love to see you before then! You can [reserve your table here](https://www.sirtaki-tavern.gr/reserve)."
 
-If the guest asks about a date after 6 November 2026 (a dinner, takeaway or a reservation), tell them kindly that we are closed for the season after 6 November; do not give a reopening date, because we have none yet.
+If the guest asks about a date after 6 November 2026 (a dinner, takeaway or a reservation), tell them kindly that we are closed for the season after 6 November; we may reopen around mid-April 2027, but that is not confirmed yet, so say it only as a hope ("we hope to welcome you again around mid-April 2027; please check our website for the confirmed date") and never as a firm date.
 
 ### Heaters
 **Trigger**: "heating", "heaters", "heater", "is it warm", "cold outside"

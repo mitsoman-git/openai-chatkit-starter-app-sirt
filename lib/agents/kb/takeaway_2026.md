@@ -4,7 +4,7 @@ From the takeaway page of our website (https://www.sirtaki-tavern.gr/takeaway-an
 
 - Takeaway is ordered online on the takeaway page of our website, on the guest's phone. No app is needed.
 - Takeaway orders are taken daily, on the days we are open, from 17:30 to 22:00 (last online orders at 22:00).
-- Our last day open this year is Friday 6 November 2026 (takeaway included); we are closed for the season after that and have no reopening date.
+- Our last day open this year is Friday 6 November 2026 (takeaway included); we are closed for the season after that. We may reopen around mid-April 2027 (not confirmed yet).
 - The guest collects the food in front of the restaurant, in the centre of Analipsi. We do not deliver to hotels or apartments.
 - The full menu is available for takeaway, with the exceptions below.
 - Every takeaway order includes free pita bread.

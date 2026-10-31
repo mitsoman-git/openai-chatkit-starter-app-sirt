@@ -157,5 +157,7 @@ describe("end of season", () => {
     expect(loadPrompt("get_information")).toContain("Friday 6 November 2026");
     expect(loadPrompt("reserve")).toContain("after **Friday 6 November 2026**");
     expect(loadPrompt("get_information")).not.toContain("closed on Sundays after that");
+    expect(loadPrompt("get_information")).toContain("mid-April 2027");
+    expect(loadPrompt("reserve")).toContain("mid-April 2027");
   });
 });
