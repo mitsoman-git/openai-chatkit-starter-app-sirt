@@ -185,3 +185,9 @@ describe("meze image", () => {
     expect(p).not.toContain("[Image unavailable");
   });
 });
+
+describe("meze language", () => {
+  it("tells the agent to translate the quoted English sentences", () => {
+    expect(loadPrompt("meze")).toContain("translate them into the guest's language");
+  });
+});

@@ -17,7 +17,7 @@ function ReplyText({ text }: { text: string }) {
               <strong key={j}>{t.text}</strong>
             ) : t.type === "image" ? (
               // eslint-disable-next-line @next/next/no-img-element
-              <img key={j} src={t.src} alt={t.alt} className="my-2 block max-w-full rounded-lg" loading="lazy" />
+              <img key={j} src={t.src} alt={t.alt} className="my-2 block max-h-60 max-w-full rounded-lg object-cover" loading="lazy" />
             ) : t.type === "link" ? (
               <a
                 key={j}
