@@ -7,8 +7,7 @@
               Respond with:
               "**🍽️ Our Opening Hours**
               **Monday to Saturday:** 5:30 PM - 11:30 PM
-              **Closed on Sundays**
-              **Sunday Open Exception 27 September 2026**
+              **Sundays:** we are open on Sundays until 6 November 2026 (closed on Sundays after that date)
 
               *Come enjoy authentic Greek hospitality!*"
 
