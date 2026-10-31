@@ -107,6 +107,19 @@ describe("digest handler", () => {
     expect((await handler(req({ authorization: "Bearer s3cret-value" }, "?day=garbage"))).status).toBe(400);
   });
 
+  it("defaults to the mail endpoint in the site's wifi folder", async () => {
+    const db = { messagesOfDay: vi.fn(async () => rows) };
+    const fetchMock = vi.fn(async () => new Response("ok"));
+    const handler = createDigestHandler({
+      db,
+      fetch: fetchMock as unknown as typeof fetch,
+      env: { CRON_SECRET: "s3cret-value" },
+      now: () => new Date("2026-10-31T21:05:00Z"),
+    });
+    await handler(req({ authorization: "Bearer s3cret-value" }));
+    expect((fetchMock.mock.calls[0] as unknown as [string])[0]).toBe("https://www.sirtaki-tavern.gr/wifi/chat-digest.php");
+  });
+
   it("reports failure when the mail endpoint refuses", async () => {
     const { handler } = setup({ sendOk: false });
     expect((await handler(req({ authorization: "Bearer s3cret-value" }))).status).toBe(502);

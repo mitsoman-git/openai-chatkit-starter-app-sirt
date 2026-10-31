@@ -8,7 +8,7 @@ type Deps = {
   now?: () => Date;
 };
 
-const DEFAULT_MAIL_URL = "https://www.sirtaki-tavern.gr/api/chat-digest.php";
+const DEFAULT_MAIL_URL = "https://www.sirtaki-tavern.gr/wifi/chat-digest.php";
 
 /** The conversations to report when the cron runs: Athens day of (now - 3h), so a run at 23:00-01:00 Athens still gets that evening. */
 export function digestDay(now: Date): string {
