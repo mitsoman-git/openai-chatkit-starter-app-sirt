@@ -12,6 +12,7 @@ import html
 import json
 import os
 import re
+import subprocess
 import sys
 from html.parser import HTMLParser
 from urllib.parse import urljoin
@@ -19,6 +20,15 @@ from urllib.parse import urljoin
 SITE = os.path.abspath(sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(__file__), "..", ".."))
 BASE = "https://www.sirtaki-tavern.gr/"
 OUT = os.path.join(os.path.dirname(__file__), "..", "lib", "agents", "kb", "faq_2026.md")
+
+
+def render(path):
+    """Page source as visitors get it: pages with PHP (opening hours come from site-settings) are run through php."""
+    s = open(path, encoding="utf8", errors="ignore").read()
+    if "<?" not in s:
+        return s
+    r = subprocess.run(["php", "-d", "display_errors=0", path], cwd=SITE, capture_output=True, text=True, timeout=60)
+    return r.stdout if r.stdout.strip() else s
 
 
 def clean(s):
@@ -85,7 +95,7 @@ def plain(fragment):
 
 
 def parse_faq_page(path, page_url):
-    s = open(path, encoding="utf8", errors="ignore").read()
+    s = render(path)
     items, cat = [], "General"
     token = re.compile(
         r'faq-cat-title">(.*?)</h3>'
@@ -137,7 +147,7 @@ def main():
     pages = [p for p in glob.glob(os.path.join(SITE, "*.html")) + glob.glob(os.path.join(SITE, "*.php")) + glob.glob(os.path.join(SITE, "blog", "*.html"))
              if not os.path.basename(p).startswith("new") and os.path.basename(p) != "faq.html" and "sirtaki-desk" not in p]
     for path in sorted(pages):
-        s = open(path, encoding="utf8", errors="ignore").read()
+        s = render(path)
         found = []
         for m in re.finditer(r'<script[^>]*application/ld\+json[^>]*>(.*?)</script>', s, re.S):
             try:
@@ -149,7 +159,8 @@ def main():
         qa = []
         for q, a in found:
             q = clean(q)
-            if not q or norm(q) in seen:
+            # answers filled in by PHP at request time (e.g. opening hours) are not static text: skip them
+            if not q or norm(q) in seen or "<?" in a or "<?" in q:
                 continue
             seen.add(norm(q))
             qa.append((q, md(a, url)))
