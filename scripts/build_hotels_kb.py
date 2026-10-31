@@ -49,6 +49,7 @@ def main():
         "",
         "This is the only source for hotel distances and routes. Distance and walking time are on foot, from the hotel to Sirtaki Tavern in the centre of Analipsi village.",
         "For a hotel listed here, give its distance, its walking time, a short picture of the walk (the 'The walk' lines), and the link to its page on our website. The Google Maps link is the secondary link. For a hotel that is not listed here, say you do not have its distance (see the location instructions) and never estimate one.",
+        "Sirtaki has free parking, and a local taxi is an easy way back (both are stated on every hotel page of the website).",
         "",
     ]
     count = 0

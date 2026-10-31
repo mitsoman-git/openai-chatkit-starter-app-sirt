@@ -40,7 +40,7 @@
               - The first and main link is the page on our website (sirtaki-tavern.gr), so the guest stays on our site. Google Maps is only the second, smaller link.
               - Never send the guest to the hotel's own website, and never quote the hotel's phone number.
               - Mention "adults-only" only when the section says so and only if it is useful (e.g. the guest asked about children); never as a warning.
-              - If the walk takes 15 minutes or more, add one friendly line that a taxi is a good option on the way back, then the taxi numbers. If it is under 15 minutes you may skip the taxi block.
+              - If the walk takes 15 minutes or more, add one friendly line that a taxi is a good option on the way back (and that Sirtaki has free parking if they come by car), then the taxi numbers. If it is under 15 minutes you may skip the taxi block.
               - Distance, walking time, streets and links come only from the section. Never estimate.
               - After the answer, add one short line offering the next step, for example reserving a table or asking another question. Do not make it a list.
 
