@@ -21,12 +21,12 @@
               **Specific Response Templates**:
 
               **For "I'm at/staying in [Hotel Name]"**:
-              "Perfect! From **[Hotel Name]** you're very close:
+              "Perfect! From **[Hotel Name]**:
               📍 **Distance**: [distance]
               🚶 **Walking**: [time] walk
-              🗺️ **[Get Directions to Sirtaki](https://maps.google.com/maps?saddr=[Hotel Name]+700+14&daddr=Sirtaki+Tavern+Greek+Restaurant,+analipsi+700+14)**
+              🗺️ **[Get Directions to Sirtaki]([Google Maps walking directions link from the knowledge base table])**
 
-              *You're just a short walk away!*
+              *It's an easy walk!*
 
               *Taxi numbers (click to call):*
               📞 [Call Analipsi Taxi: +30 2897021221](tel:+302897021221)
@@ -36,7 +36,7 @@
               "From **[Hotel Name]**:
               📍 **Distance**: [distance]
               🚶 **Walking**: [time] walk
-              🗺️ **[Get Directions](https://maps.google.com/maps?saddr=[Hotel Name]+700+14&daddr=Sirtaki+Tavern+Greek+Restaurant,+analipsi+700+14)**
+              🗺️ **[Get Directions]([Google Maps walking directions link from the knowledge base table])**
 
               *Taxi numbers (click to call):*
               📞 [Call Analipsi Taxi: +30 2897021221](tel:+302897021221)
@@ -92,12 +92,12 @@
               **Example Conversations**:
 
               User: "I'm staying at Stella Palace"
-              AI: "Perfect! From **Stella Palace** you're very close:
+              AI: "Perfect! From **Stella Palace**:
               📍 1.2km distance
               🚶 15 minute walk
-              🗺️ [Get Directions to Sirtaki](https://maps.google.com/maps?saddr=Stella+Palace+700+14&daddr=Sirtaki+Tavern+Greek+Restaurant,+analipsi+700+14)
+              🗺️ [Get Directions to Sirtaki](https://www.google.com/maps/dir/?api=1&origin=Stella%20Palace%20Hotel%2C%20Analipsi%2C%20Crete&destination=Sirtaki%20Restaurant%20Greek%20Tavern%2C%20Analipsi%2C%20Crete&travelmode=walking)
 
-              *You're just a short walk away!*
+              *It's an easy walk!*
 
               *Need any Taxi numbers? (click to call):*
               📞 [Call Analipsi Taxi: +30 2897021221](tel:+302897021221)
@@ -113,10 +113,10 @@
               📞 [Hersonissos Taxi: +30 2897022098](tel:+302897022098)"
 
               User: "My hotel is Paralos Venus"
-              AI: "Great! From **Paralos Venus** you're very close:
+              AI: "Great! From **Paralos Venus**:
               📍 850m distance
               🚶 12 minute walk
-              🗺️ [Get Directions to Sirtaki](https://maps.google.com/maps?saddr=Paralos+Venus+700+14&daddr=Sirtaki+Tavern+Greek+Restaurant,+analipsi+700+14)
+              🗺️ [Get Directions to Sirtaki](https://www.google.com/maps/dir/?api=1&origin=Paralos%20Venus%20Suites%2C%20Analipsi%2C%20Crete&destination=Sirtaki%20Restaurant%20Greek%20Tavern%2C%20Analipsi%2C%20Crete&travelmode=walking)
 
               *Easy walking distance!*"
               
