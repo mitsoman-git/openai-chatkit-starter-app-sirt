@@ -113,7 +113,7 @@ describe("handler logging hardening", () => {
   it("never stores a card number", async () => {
     const { ask } = scripted();
     const logExchange = vi.fn(async () => {});
-    const db = { logExchange, listSessions: vi.fn(), getSession: vi.fn() };
+    const db = { logExchange, listSessions: vi.fn(), getSession: vi.fn(), deleteSession: vi.fn(), deleteToday: vi.fn() };
     const req = new Request("http://x/api/chat", {
       method: "POST",
       body: JSON.stringify({ message: "my card 4111 1111 1111 1111 thanks", sessionId: "abcd-1234-efgh" }),

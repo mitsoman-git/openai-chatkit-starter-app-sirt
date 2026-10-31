@@ -55,3 +55,22 @@ describe("listSessions / getSession", () => {
     expect(calls[0].values).toEqual(["s1"]);
   });
 });
+
+describe("deleteSession / deleteToday", () => {
+  it("deletes only the rows of the given session", async () => {
+    const { sql, calls } = recordingSql();
+    await createDb(sql).deleteSession("s1");
+    expect(calls).toHaveLength(1);
+    expect(calls[0].text).toContain("delete from messages");
+    expect(calls[0].text).toContain("session_id =");
+    expect(calls[0].values).toEqual(["s1"]);
+  });
+
+  it("deletes today's rows by Athens date", async () => {
+    const { sql, calls } = recordingSql();
+    await createDb(sql).deleteToday();
+    expect(calls).toHaveLength(1);
+    expect(calls[0].text).toContain("delete from messages");
+    expect(calls[0].text).toContain("Europe/Athens");
+  });
+});

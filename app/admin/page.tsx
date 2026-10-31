@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { createDb } from "../../lib/db";
+import { deleteSessionAction, deleteTodayAction } from "./actions";
+import { ConfirmButton } from "./ConfirmButton";
 
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "Sirtaki chat log", robots: { index: false, follow: false } };
@@ -35,6 +37,9 @@ function Shell({ children }: { children: React.ReactNode }) {
   );
 }
 
+const DELETE_BTN =
+  "rounded-lg border border-red-200 bg-white px-3 py-1.5 text-xs font-medium text-red-700 transition hover:bg-red-50";
+
 function CategoryPill({ category }: { category: string | null }) {
   if (!category) return null;
   const tone =
@@ -62,9 +67,17 @@ export default async function AdminPage({
     const messages = await db.getSession(session);
     return (
       <Shell>
-        <a href="/admin" className="mb-4 inline-block text-sm font-medium text-sky-700 hover:underline">
-          ← All conversations
-        </a>
+        <div className="mb-4 flex items-center justify-between">
+          <a href="/admin" className="text-sm font-medium text-sky-700 hover:underline">
+            ← All conversations
+          </a>
+          <form action={deleteSessionAction}>
+            <input type="hidden" name="sessionId" value={session} />
+            <ConfirmButton message="Delete this conversation permanently?" className={DELETE_BTN}>
+              Delete conversation
+            </ConfirmButton>
+          </form>
+        </div>
         {messages.length > 0 && (
           <p className="mb-4 text-sm text-stone-500">
             {fmtDay(messages[0].createdAt)} · {messages.length} messages
@@ -97,15 +110,24 @@ export default async function AdminPage({
   const sessions = await db.listSessions(100);
   return (
     <Shell>
-      <p className="mb-4 text-sm text-stone-500">
-        {sessions.length === 0 ? "No conversations yet." : `Latest ${sessions.length} conversations`}
-      </p>
+      <div className="mb-4 flex items-center justify-between">
+        <p className="text-sm text-stone-500">
+          {sessions.length === 0 ? "No conversations yet." : `Latest ${sessions.length} conversations`}
+        </p>
+        {sessions.length > 0 && (
+          <form action={deleteTodayAction}>
+            <ConfirmButton message="Delete ALL of today's messages permanently?" className={DELETE_BTN}>
+              Delete today&apos;s
+            </ConfirmButton>
+          </form>
+        )}
+      </div>
       <ul className="flex flex-col gap-2">
         {sessions.map((s) => (
-          <li key={s.sessionId}>
+          <li key={s.sessionId} className="flex items-stretch gap-2">
             <a
               href={`/admin?session=${encodeURIComponent(s.sessionId)}`}
-              className="block rounded-xl border border-stone-200 bg-white px-4 py-3 shadow-sm transition hover:border-stone-300 hover:shadow"
+              className="block min-w-0 flex-1 rounded-xl border border-stone-200 bg-white px-4 py-3 shadow-sm transition hover:border-stone-300 hover:shadow"
             >
               <div className="line-clamp-2 text-sm font-medium text-stone-900">{s.firstText || "(no text)"}</div>
               <div className="mt-1.5 flex items-center gap-2 text-xs text-stone-500">
@@ -117,6 +139,12 @@ export default async function AdminPage({
                 </span>
               </div>
             </a>
+            <form action={deleteSessionAction} className="flex">
+              <input type="hidden" name="sessionId" value={s.sessionId} />
+              <ConfirmButton message="Delete this conversation permanently?" className={`${DELETE_BTN} self-center`}>
+                Delete
+              </ConfirmButton>
+            </form>
           </li>
         ))}
       </ul>

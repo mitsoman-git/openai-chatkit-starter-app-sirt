@@ -52,6 +52,16 @@ export function createDb(sql: Sql = lazyNeon) {
       }));
     },
 
+    async deleteSession(sessionId: string): Promise<void> {
+      await sql`delete from messages where session_id = ${sessionId}`;
+    },
+
+    async deleteToday(): Promise<void> {
+      await sql`
+        delete from messages
+        where (created_at at time zone 'Europe/Athens')::date = (now() at time zone 'Europe/Athens')::date`;
+    },
+
     async getSession(sessionId: string): Promise<StoredMessage[]> {
       const rows = await sql`
         select id, session_id, role, text, category, created_at
