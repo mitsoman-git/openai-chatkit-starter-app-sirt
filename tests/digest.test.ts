@@ -13,6 +13,8 @@ const msg = (o: Partial<DayMessage>): DayMessage => ({
 });
 
 describe("buildDigest", () => {
+  const fallback = "I'm sorry, I don't have that information right now. Please check our website.";
+
   it("has the day and counts in the subject", () => {
     const d = buildDigest("2026-10-31", [
       msg({}),
@@ -22,25 +24,58 @@ describe("buildDigest", () => {
     expect(d.subject).toBe("Sirtaki chat · 2026-10-31 · 2 conversations (1 starred)");
   });
 
-  it("groups by conversation with Athens times, roles and categories", () => {
+  it("opens with a summary: totals by category", () => {
     const d = buildDigest("2026-10-31", [
-      msg({ text: "Table for 2?" }),
-      msg({ role: "assistant", text: "Sure!", category: "reserve", createdAt: "2026-10-31T10:05:30Z" }),
+      msg({ sessionId: "a" }),
+      msg({ sessionId: "a", role: "assistant", category: "reserve" }),
+      msg({ sessionId: "b" }),
+      msg({ sessionId: "b", role: "assistant", category: "reserve" }),
+      msg({ sessionId: "c" }),
+      msg({ sessionId: "c", role: "assistant", category: "meze" }),
     ]);
-    expect(d.text).toContain("12:05");
-    expect(d.text).toContain("Guest: Table for 2?");
-    expect(d.text).toContain("Assistant (Reservation): Sure!");
+    expect(d.text.split("\n").slice(0, 6).join("\n")).toContain("3 conversations");
+    expect(d.text).toMatch(/Reservation: 2/);
+    expect(d.text).toMatch(/Meze: 1/);
+    expect(d.html).toContain("Reservation");
   });
 
-  it("marks starred conversations and links to the admin page of that day", () => {
-    const d = buildDigest("2026-10-31", [msg({ starred: true })]);
-    expect(d.text).toContain("★");
-    expect(d.text).toContain("/admin?month=2026-10&day=2026-10-31");
+  it("lists starred, error and 'I don't have' conversations under needs-attention, and not the others", () => {
+    const d = buildDigest("2026-10-31", [
+      msg({ sessionId: "ok", text: "fine question" }),
+      msg({ sessionId: "ok", role: "assistant", category: "meze", text: "fine answer" }),
+      msg({ sessionId: "unans", text: "stella island" }),
+      msg({ sessionId: "unans", role: "assistant", category: "get_information", text: fallback }),
+      msg({ sessionId: "star", text: "interesting", starred: true }),
+      msg({ sessionId: "star", role: "assistant", category: "get_information", text: "ok" }),
+      msg({ sessionId: "err", text: "boom" }),
+      msg({ sessionId: "err", role: "assistant", category: "error", text: "sorry" }),
+    ]);
+    const att = d.text.split("NEEDS YOUR ATTENTION")[1].split("ALL CONVERSATIONS")[0];
+    expect(att).toContain("stella island");
+    expect(att).toContain("interesting");
+    expect(att).toContain("boom");
+    expect(att).not.toContain("fine question");
+    expect(att).toContain(fallback.slice(0, 30));
+  });
+
+  it("lists every conversation briefly with its first guest message, time and a link to it", () => {
+    const d = buildDigest("2026-10-31", [msg({ sessionId: "abc-12345678", text: "Table for 2?" })]);
+    expect(d.text).toContain("12:05");
+    expect(d.text).toContain("Table for 2?");
+    expect(d.text).toContain("/admin?session=abc-12345678");
+    expect(d.html).toContain("/admin?session=abc-12345678");
+  });
+
+  it("escapes guest text in the html", () => {
+    const d = buildDigest("2026-10-31", [msg({ text: '<script>alert(1)</script> & "x"' })]);
+    expect(d.html).not.toContain("<script>");
+    expect(d.html).toContain("&lt;script&gt;");
   });
 
   it("cuts very long messages", () => {
     const d = buildDigest("2026-10-31", [msg({ text: "x".repeat(5000) })]);
-    expect(d.text.length).toBeLessThan(1500);
+    expect(d.text.length).toBeLessThan(2500);
+    expect(d.html.length).toBeLessThan(6000);
   });
 });
 
@@ -91,7 +126,8 @@ describe("digest handler", () => {
     expect((init.headers as Record<string, string>)["X-Digest-Token"]).toBe("s3cret-value");
     const body = JSON.parse(String(init.body));
     expect(body.subject).toContain("2026-10-31");
-    expect(body.text).toContain("Guest: hello");
+    expect(body.text).toContain("hello");
+    expect(body.html).toContain("hello");
   });
 
   it("accepts ?day= for a manual run and rejects a malformed day", async () => {
