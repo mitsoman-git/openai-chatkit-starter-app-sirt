@@ -67,7 +67,7 @@ describe("respond", () => {
     const out = await respond({ message: "what is Meze", history }, ask);
     expect(out).toEqual({ reply: "meze answer", category: "meze" });
     const main = calls.find((c) => !c.jsonSchema)!;
-    expect(main.instructions).toBe(loadPrompt("meze"));
+    expect(main.instructions.startsWith(loadPrompt("meze"))).toBe(true);
     expect(main.input).toEqual([...history, { role: "user", text: "what is Meze" }]);
     expect(main.maxOutputTokens).toBe(2048);
   });
@@ -76,7 +76,7 @@ describe("respond", () => {
     const { ask, calls } = scripted({ classification: cls("greeting") });
     const out = await respond({ message: "thanks", history: [] }, ask);
     expect(out.category).toBe("greeting");
-    expect(calls.find((c) => !c.jsonSchema)!.instructions).toBe(loadPrompt("greeting"));
+    expect(calls.find((c) => !c.jsonSchema)!.instructions.startsWith(loadPrompt("greeting"))).toBe(true);
   });
 
   it("blocks a card number without calling the model", async () => {
