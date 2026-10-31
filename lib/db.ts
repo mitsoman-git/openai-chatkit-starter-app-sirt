@@ -1,3 +1,4 @@
+import type { DayMessage } from "./digest";
 import { neon } from "@neondatabase/serverless";
 
 type Row = Record<string, unknown>;
@@ -102,6 +103,26 @@ export function createDb(sql: Sql = lazyNeon) {
         delete from messages
         where (created_at at time zone 'Europe/Athens')::date = ${day}::date
           and session_id not in (select session_id from starred_sessions)`;
+    },
+
+    async messagesOfDay(day: string): Promise<DayMessage[]> {
+      await ensureStars();
+      const rows = await sql`
+        select m.session_id, m.role, m.text, m.category, m.created_at,
+               (s.session_id is not null) as starred,
+               min(m.created_at) over (partition by m.session_id) as first_at
+        from messages m
+        left join starred_sessions s on s.session_id = m.session_id
+        where (m.created_at at time zone 'Europe/Athens')::date = ${day}::date
+        order by first_at, m.session_id, m.created_at, m.id`;
+      return rows.map((r) => ({
+        sessionId: String(r.session_id),
+        role: r.role as DayMessage["role"],
+        text: String(r.text),
+        category: r.category == null ? null : String(r.category),
+        createdAt: String(r.created_at),
+        starred: Boolean(r.starred),
+      }));
     },
 
     async toggleStar(sessionId: string): Promise<void> {

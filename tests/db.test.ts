@@ -141,3 +141,15 @@ describe("stars", () => {
     expect(calls.map((c) => c.text).join("\n")).toContain("delete from starred_sessions");
   });
 });
+
+describe("messagesOfDay", () => {
+  it("selects one Athens day by parameter and maps rows", async () => {
+    const { sql, calls } = recordingSql([
+      { session_id: "s1", role: "user", text: "hi", category: null, created_at: "t1", starred: true },
+    ]);
+    const out = await createDb(sql).messagesOfDay("2026-10-31");
+    expect(out).toEqual([{ sessionId: "s1", role: "user", text: "hi", category: null, createdAt: "t1", starred: true }]);
+    expect(calls[0].values).toEqual(["2026-10-31"]);
+    expect(calls[0].text).toContain("Europe/Athens");
+  });
+});
