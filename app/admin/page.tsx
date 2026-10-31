@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { createDb } from "../../lib/db";
 import { athensToday, isDay, isMonth, monthGrid, monthRange, shiftMonth } from "../../lib/adminCalendar";
-import { deleteDayAction, deleteSessionAction } from "./actions";
+import { deleteDayAction, deleteSessionAction, toggleStarAction } from "./actions";
 import { ConfirmButton } from "./ConfirmButton";
 
 export const dynamic = "force-dynamic";
@@ -41,6 +41,25 @@ function Shell({ children }: { children: React.ReactNode }) {
 const DELETE_BTN =
   "rounded-lg border border-red-200 bg-white px-3 py-1.5 text-xs font-medium text-red-700 transition hover:bg-red-50";
 
+function StarButton({ sessionId, starred, label }: { sessionId: string; starred: boolean; label?: string }) {
+  return (
+    <form action={toggleStarAction} className="flex">
+      <input type="hidden" name="sessionId" value={sessionId} />
+      <button
+        type="submit"
+        title={starred ? "Remove star" : "Star: needs a new instruction for the agent"}
+        aria-label={starred ? "Remove star" : "Add star"}
+        className={`self-center rounded-lg px-2 py-1.5 text-lg leading-none transition ${
+          starred ? "text-amber-500 hover:text-amber-600" : "text-stone-300 hover:text-amber-500"
+        }`}
+      >
+        {starred ? "\u2605" : "\u2606"}
+        {label && <span className="ml-1.5 text-xs font-medium text-stone-600">{label}</span>}
+      </button>
+    </form>
+  );
+}
+
 function CategoryPill({ category }: { category: string | null }) {
   if (!category) return null;
   const tone =
@@ -60,8 +79,9 @@ const CATEGORIES = ["reserve", "meze", "get_information", "greeting", "blocked",
 const MONTH_FMT = new Intl.DateTimeFormat("en-GB", { month: "long", year: "numeric", timeZone: "UTC" });
 const WEEKDAYS = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
 
-function href(params: { month: string; day?: string; cat?: string }) {
+function href(params: { month: string; day?: string; cat?: string; starred?: boolean }) {
   const q = new URLSearchParams({ month: params.month });
+  if (params.starred) q.set("starred", "1");
   if (params.day) q.set("day", params.day);
   if (params.cat) q.set("cat", params.cat);
   return `/admin?${q.toString()}`;
@@ -70,20 +90,21 @@ function href(params: { month: string; day?: string; cat?: string }) {
 export default async function AdminPage({
   searchParams,
 }: {
-  searchParams: Promise<{ session?: string; month?: string; day?: string; cat?: string }>;
+  searchParams: Promise<{ session?: string; month?: string; day?: string; cat?: string; starred?: string }>;
 }) {
   const sp = await searchParams;
   const session = sp.session;
   const db = createDb();
 
   if (session) {
-    const messages = await db.getSession(session);
+    const [messages, starred] = await Promise.all([db.getSession(session), db.isStarred(session)]);
     return (
       <Shell>
         <div className="mb-4 flex items-center justify-between">
           <a href="/admin" className="text-sm font-medium text-sky-700 hover:underline">
             ← All conversations
           </a>
+          <StarButton sessionId={session} starred={starred} label={starred ? "Starred" : "Star"} />
           <form action={deleteSessionAction}>
             <input type="hidden" name="sessionId" value={session} />
             <ConfirmButton message="Delete this conversation permanently?" className={DELETE_BTN}>
@@ -124,10 +145,11 @@ export default async function AdminPage({
   const month = isMonth(sp.month) ? sp.month : isDay(sp.day) ? sp.day.slice(0, 7) : today.slice(0, 7);
   const day = isDay(sp.day) && sp.day.startsWith(month) ? sp.day : undefined;
   const cat = sp.cat && CATEGORIES.includes(sp.cat) ? sp.cat : undefined;
-  const range = day ? { from: day, to: day } : monthRange(month);
+  const starredOnly = sp.starred === "1";
+  const range = starredOnly ? {} : day ? { from: day, to: day } : monthRange(month);
 
   const [sessions, counts] = await Promise.all([
-    db.listSessions({ ...range, category: cat, limit: 200 }),
+    db.listSessions({ ...range, category: cat, starredOnly, limit: 200 }),
     db.daysWithActivity(month),
   ]);
   const monthTotal = Object.values(counts).reduce((a, b) => a + b, 0);
@@ -187,10 +209,19 @@ export default async function AdminPage({
       </div>
 
       <div className="mb-4 flex flex-wrap items-center gap-1.5">
+        <a
+          href={href({ month, starred: !starredOnly })}
+          className={`rounded-full px-3 py-1 text-xs font-medium ${
+            starredOnly ? "bg-amber-500 text-white" : "bg-white text-amber-700 ring-1 ring-amber-200 hover:bg-amber-50"
+          }`}
+        >
+          {"\u2605"} Starred (all dates)
+        </a>
+        <span className="mx-1 h-4 w-px bg-stone-300" />
         {[undefined, ...CATEGORIES].map((c) => (
           <a
             key={c ?? "all"}
-            href={href({ month, day, cat: c })}
+            href={href({ month, day, cat: c, starred: starredOnly })}
             className={`rounded-full px-3 py-1 text-xs font-medium ${
               c === cat ? "bg-stone-900 text-white" : "bg-white text-stone-600 ring-1 ring-stone-200 hover:bg-stone-50"
             }`}
@@ -202,7 +233,7 @@ export default async function AdminPage({
 
       <div className="mb-3 flex items-center justify-between">
         <p className="text-sm text-stone-500">
-          {day ? `${fmtDay(`${day}T12:00:00Z`)} · ` : ""}
+          {starredOnly ? "Starred conversations · " : day ? `${fmtDay(`${day}T12:00:00Z`)} · ` : ""}
           {sessions.length === 0 ? "No conversations." : `${sessions.length} conversations`}
           {day && (
             <>
@@ -243,6 +274,7 @@ export default async function AdminPage({
                 </span>
               </div>
             </a>
+            <StarButton sessionId={s.sessionId} starred={s.starred} />
             <form action={deleteSessionAction} className="flex">
               <input type="hidden" name="sessionId" value={s.sessionId} />
               <ConfirmButton message="Delete this conversation permanently?" className={`${DELETE_BTN} self-center`}>

@@ -33,11 +33,11 @@ describe("logExchange", () => {
 describe("listSessions / getSession", () => {
   it("maps session summary rows", async () => {
     const { sql, calls } = recordingSql([
-      { session_id: "s1", first_text: "hi", message_count: "4", last_at: "2026-10-31T10:00:00Z" },
+      { session_id: "s1", first_text: "hi", message_count: "4", last_at: "2026-10-31T10:00:00Z", starred: true },
     ]);
     const out = await createDb(sql).listSessions({ limit: 10 });
     expect(out).toEqual([
-      { sessionId: "s1", firstText: "hi", messageCount: 4, lastAt: "2026-10-31T10:00:00Z" },
+      { sessionId: "s1", firstText: "hi", messageCount: 4, lastAt: "2026-10-31T10:00:00Z", starred: true },
     ]);
     expect(calls[0].values).toContain(10);
   });
@@ -68,7 +68,7 @@ describe("listSessions filters", () => {
   it("passes nulls when no filter is given", async () => {
     const { sql, calls } = recordingSql();
     await createDb(sql).listSessions();
-    expect(calls[0].values).toEqual([null, null, null, null, null, null, 100]);
+    expect(calls[0].values).toEqual([null, null, null, null, null, null, null, 100]);
   });
 });
 
@@ -89,7 +89,6 @@ describe("deleteSession / deleteDay", () => {
   it("deletes only the rows of the given session", async () => {
     const { sql, calls } = recordingSql();
     await createDb(sql).deleteSession("s1");
-    expect(calls).toHaveLength(1);
     expect(calls[0].text).toContain("delete from messages");
     expect(calls[0].text).toContain("session_id =");
     expect(calls[0].values).toEqual(["s1"]);
@@ -102,5 +101,43 @@ describe("deleteSession / deleteDay", () => {
     expect(calls[0].text).toContain("delete from messages");
     expect(calls[0].text).toContain("Europe/Athens");
     expect(calls[0].values).toEqual(["2026-10-31"]);
+  });
+});
+
+describe("stars", () => {
+  it("toggles a star for one session using a parameter", async () => {
+    const { sql, calls } = recordingSql();
+    await createDb(sql).toggleStar("s1");
+    expect(calls).toHaveLength(1);
+    expect(calls[0].text).toContain("starred_sessions");
+    expect(calls[0].values).toEqual(expect.arrayContaining(["s1"]));
+    expect(calls[0].text).not.toContain("s1");
+  });
+
+  it("filters to starred sessions across all dates", async () => {
+    const { sql, calls } = recordingSql();
+    await createDb(sql).listSessions({ starredOnly: true });
+    expect(calls[0].values).toContain(true);
+    expect(calls[0].text).toContain("starred_sessions");
+  });
+
+  it("reports whether a session is starred", async () => {
+    const { sql } = recordingSql([{ session_id: "s1" }]);
+    expect(await createDb(sql).isStarred("s1")).toBe(true);
+    const { sql: empty } = recordingSql([]);
+    expect(await createDb(empty).isStarred("s1")).toBe(false);
+  });
+
+  it("deleteDay keeps starred sessions", async () => {
+    const { sql, calls } = recordingSql();
+    await createDb(sql).deleteDay("2026-10-31");
+    expect(calls[0].text).toContain("starred_sessions");
+    expect(calls[0].text).toContain("not in");
+  });
+
+  it("deleteSession also removes the star", async () => {
+    const { sql, calls } = recordingSql();
+    await createDb(sql).deleteSession("s1");
+    expect(calls.map((c) => c.text).join("\n")).toContain("delete from starred_sessions");
   });
 });

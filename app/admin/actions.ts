@@ -20,3 +20,9 @@ export async function deleteDayAction(formData: FormData) {
   revalidatePath("/admin");
   redirect(isDay(day) ? `/admin?month=${day.slice(0, 7)}` : "/admin");
 }
+
+export async function toggleStarAction(formData: FormData) {
+  const sessionId = String(formData.get("sessionId") ?? "");
+  if (SESSION_ID.test(sessionId)) await createDb().toggleStar(sessionId);
+  revalidatePath("/admin");
+}

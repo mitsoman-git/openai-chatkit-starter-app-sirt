@@ -12,4 +12,8 @@ await sql`create table if not exists messages (
   created_at timestamptz not null default now()
 )`;
 await sql`create index if not exists messages_session_created_idx on messages (session_id, created_at)`;
-console.log("messages table ready");
+await sql`create table if not exists starred_sessions (
+  session_id text primary key,
+  starred_at timestamptz not null default now()
+)`;
+console.log("messages and starred_sessions tables ready");
