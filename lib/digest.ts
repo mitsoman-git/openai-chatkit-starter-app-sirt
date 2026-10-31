@@ -41,10 +41,6 @@ export function buildDigest(day: string, messages: DayMessage[]): { subject: str
   const subject = `Sirtaki chat · ${day} · ${sessions.length} conversations${starred ? ` (${starred} starred)` : ""}`;
   const link = `${ADMIN_URL}?month=${day.slice(0, 7)}&day=${day}`;
 
-  if (sessions.length === 0) {
-    return { subject, text: `No conversations on ${day}.\n\nAdmin: ${link}\n` };
-  }
-
   const lines = [`${sessions.length} conversations on ${day}${starred ? `, ${starred} starred` : ""}.`, `Admin: ${link}`, ""];
   sessions.forEach((s, i) => {
     lines.push(`${s[0].starred ? "★ " : ""}#${i + 1} · ${time(s[0].createdAt)} · ${s.length} messages`);

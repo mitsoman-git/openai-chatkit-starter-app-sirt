@@ -25,13 +25,16 @@ export function createDigestHandler({ db, fetch: doFetch, env, now = () => new D
     if (asked !== null && !isDay(asked)) return new Response("Bad day", { status: 400 });
     const day = asked ?? digestDay(now());
 
-    const { subject, text } = buildDigest(day, await db.messagesOfDay(day));
+    const messages = await db.messagesOfDay(day);
+    if (messages.length === 0) return Response.json({ ok: true, day, sent: false });
+
+    const { subject, text } = buildDigest(day, messages);
     const res = await doFetch(env.DIGEST_URL || DEFAULT_MAIL_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json", "X-Digest-Token": secret },
       body: JSON.stringify({ subject, text }),
     });
     if (!res.ok) return Response.json({ ok: false, day, mailStatus: res.status }, { status: 502 });
-    return Response.json({ ok: true, day, subject });
+    return Response.json({ ok: true, day, sent: true, subject });
   };
 }

@@ -38,12 +38,6 @@ describe("buildDigest", () => {
     expect(d.text).toContain("/admin?month=2026-10&day=2026-10-31");
   });
 
-  it("says so when nobody chatted", () => {
-    const d = buildDigest("2026-10-31", []);
-    expect(d.subject).toContain("0 conversations");
-    expect(d.text).toContain("No conversations");
-  });
-
   it("cuts very long messages", () => {
     const d = buildDigest("2026-10-31", [msg({ text: "x".repeat(5000) })]);
     expect(d.text.length).toBeLessThan(1500);
@@ -105,6 +99,21 @@ describe("digest handler", () => {
     await handler(req({ authorization: "Bearer s3cret-value" }, "?day=2026-10-30"));
     expect(db.messagesOfDay).toHaveBeenCalledWith("2026-10-30");
     expect((await handler(req({ authorization: "Bearer s3cret-value" }, "?day=garbage"))).status).toBe(400);
+  });
+
+  it("sends no email when there were no conversations that day", async () => {
+    const db = { messagesOfDay: vi.fn(async () => []) };
+    const fetchMock = vi.fn(async () => new Response("ok"));
+    const handler = createDigestHandler({
+      db,
+      fetch: fetchMock as unknown as typeof fetch,
+      env: { CRON_SECRET: "s3cret-value" },
+      now: () => new Date("2026-10-31T21:05:00Z"),
+    });
+    const res = await handler(req({ authorization: "Bearer s3cret-value" }));
+    expect(res.status).toBe(200);
+    expect(await res.json()).toEqual({ ok: true, day: "2026-10-31", sent: false });
+    expect(fetchMock).not.toHaveBeenCalled();
   });
 
   it("defaults to the mail endpoint in the site's wifi folder", async () => {
