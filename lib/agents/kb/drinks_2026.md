@@ -1,6 +1,6 @@
 # Drinks, cocktails and spirits
 
-Source: the cocktail list and the drinks list published on our website (https://www.sirtaki-tavern.gr/wine-drinks/cocktails.html and https://www.sirtaki-tavern.gr/wine-drinks/drinks.htm). Wine has its own section (the wine list). 
+Source: the cocktail list and the drinks list published on our website (https://www.sirtaki-tavern.gr/wine-drinks/cocktails.html and https://www.sirtaki-tavern.gr/wine-drinks/drinks.htm). Wine has its own section (the wine list).
 
 PRICE RULE: only the cocktail prices written below are known. For every other drink in this section (beers, soft drinks, ouzo, raki, spirits, liqueurs, ciders, juices, water) you do NOT have a price: say so, and send the guest to the drinks page https://www.sirtaki-tavern.gr/wine-drinks/drinks.htm where the full price list is. Never estimate a drink price.
 
@@ -55,7 +55,7 @@ Greek Spritz (mastiha, Ottos sweet vermouth, prosecco, grapefruit soda), Localit
 
 ## Ouzo, raki and Greek spirits (no prices known)
 - Ouzo in 200ml bottles: Matareli (distilled twice in handmade stills with organic anise from Lisvori and honey, 40%), Kazanisto (distilled in copper pots, Chian anise, 40%), Babatzim (anise and fennel seeds from Macedonia, 40%), Plomari (Chios mastic, anise from Lisvori, herbs from Lesbos, 40%); also a glass of ouzo with ice, 50ml
-- Raki (tsikoudia, the traditional spirit of Crete, 40%) in a 120ml carafe, and Rakomelo (sweet honey raki with cinnamon and orange, 30%) in a 120ml carafe; shots of Raki, Rakomelo and aged tsipouro, 40ml
+- Raki (tsikoudia, the traditional spirit of Crete, 40%) in a 120ml serving, and Rakomelo (sweet honey raki with cinnamon and orange, 30%) in a 120ml serving; shots of Raki, Rakomelo and aged tsipouro, 40ml
 - Mastiha from Chios 50ml
 
 ## Brandy, whisky, gin, vodka, rum, tequila and liqueurs, all 50ml (no prices known)

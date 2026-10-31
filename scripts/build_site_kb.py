@@ -62,6 +62,8 @@ def specials():
 def story():
     page = clean(read("σελίδες/story_αγγλικά.md"), ("Photos from the past",))
     name = blog_body("blog/blog-19-why-sirtaki-name-story_αγγλικά.md")
+    home = clean(read("σελίδες/index_αγγλικά.md"))
+    visit = home[home.index("## Not every evening needs a full dinner."):home.index("## Our Family's Story")].strip()
     return "\n".join([
         "# Our story: the family, the name, since 1993",
         "",
@@ -69,6 +71,7 @@ def story():
         "",
         "## Our story page", page, "",
         "## Why is it called Sirtaki? (" + BASE + "blog/why-sirtaki-name-story.html)", name, "",
+        "## You do not have to come for a full dinner (from the home page " + BASE + ")", re.sub(r"^## ", "### ", visit, flags=re.M), "",
     ])
 
 

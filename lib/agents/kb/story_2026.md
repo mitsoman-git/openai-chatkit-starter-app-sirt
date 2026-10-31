@@ -81,3 +81,26 @@ For us it is more than the name of Zorba's dance. Sirtaki is a celebration of li
 Nikos and Eleni opened Sirtaki in 1993, in the centre of the village of Analipsi. Today their three sons, Manos, Giorgos and Yiannis, continue the work together with their wives, Rania and Roula, and Mama Eleni is still the chef for the Greek specialties. We cook with fresh local ingredients, many of them from our own farm and garden. The name has stayed the same, and so has the idea behind it: good food, a warm table and a friendly welcome.
 
 You can meet the whole family on our story page, or see what is cooking tonight in our menu guide.
+
+## You do not have to come for a full dinner (from the home page https://www.sirtaki-tavern.gr/)
+### Not every evening needs a full dinner.
+
+Stop by for a spritz before dinner, a glass of Cretan wine from our cellar, or dessert and coffee after. You are welcome for as long or as little as you like.
+
+### Before dinner
+
+Cocktails and a glass of wine
+
+Start with a spritz, a classic cocktail or a glass of Cretan wine. Come a little early, while it is still quiet.
+
+### A glass or a bottle
+
+Over 100 labels, about 20 by the glass
+
+Pair your dinner with a Cretan wine, or come after 9:00 pm just for a glass or a bottle. Not sure what to pick? Tell us what you like and we will choose with you.
+
+### A sweet ending
+
+Already had dinner? Join us for dessert
+
+Chocolate soufflé and Greek sweets, with a coffee or an espresso martini. A sweet, short end to the night.
