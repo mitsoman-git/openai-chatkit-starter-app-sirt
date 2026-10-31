@@ -64,3 +64,22 @@ describe("loadPrompt", () => {
     }
   });
 });
+
+describe("reservation prompt date rules", () => {
+  const p = loadPrompt("reserve");
+
+  it("resolves relative dates from the CURRENT DATE calendar", () => {
+    expect(p).toContain("CURRENT DATE");
+    expect(p).toContain("**DATES**");
+  });
+
+  it("no longer forbids relative dates or hardcodes the year 2026", () => {
+    expect(p).not.toContain("You are not allowed to write any value into");
+    expect(p).not.toContain("hardcoded year **2026**");
+    expect(p).not.toContain("typed an explicit day and month themselves");
+  });
+
+  it("still never lets a relative word into the link", () => {
+    expect(p).toContain("never the word \"tonight\" or any other relative word");
+  });
+});
