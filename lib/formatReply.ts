@@ -1,10 +1,12 @@
 export type Token =
   | { type: "text"; text: string }
   | { type: "bold"; text: string }
-  | { type: "link"; text: string; href: string };
+  | { type: "link"; text: string; href: string }
+  | { type: "image"; alt: string; src: string };
 
-const PATTERN = /\*\*((?:[^*]|\*(?!\*))+)\*\*|\[([^\]]+)\]\(([^)\s]+)\)|(https?:\/\/[^\s<>)\]]+)/g;
+const PATTERN = /!\[([^\]]*)\]\(([^)\s]+)\)|\*\*((?:[^*]|\*(?!\*))+)\*\*|\[([^\]]+)\]\(([^)\s]+)\)|(https?:\/\/[^\s<>)\]]+)/g;
 const SAFE_HREF = /^(https?:|tel:|mailto:)/i;
+const SAFE_IMAGE = /^https:\/\/www\.sirtaki-tavern\.gr\//i;
 
 export function tokenizeLine(line: string): Token[] {
   const tokens: Token[] = [];
@@ -17,15 +19,18 @@ export function tokenizeLine(line: string): Token[] {
     const at = m.index ?? 0;
     pushText(line.slice(last, at));
     last = at + m[0].length;
-    if (m[1] !== undefined) {
-      const inner = tokenizeLine(m[1]);
-      if (inner.every((t) => t.type === "text")) tokens.push({ type: "bold", text: m[1] });
+    if (m[2] !== undefined) {
+      if (SAFE_IMAGE.test(m[2])) tokens.push({ type: "image", alt: m[1], src: m[2] });
+      else pushText(m[0]);
+    } else if (m[3] !== undefined) {
+      const inner = tokenizeLine(m[3]);
+      if (inner.every((t) => t.type === "text")) tokens.push({ type: "bold", text: m[3] });
       else tokens.push(...inner.map((t): Token => (t.type === "text" ? { type: "bold", text: t.text } : t)));
-    } else if (m[2] !== undefined) {
-      if (SAFE_HREF.test(m[3])) tokens.push({ type: "link", text: m[2], href: m[3] });
+    } else if (m[4] !== undefined) {
+      if (SAFE_HREF.test(m[5])) tokens.push({ type: "link", text: m[4], href: m[5] });
       else pushText(m[0]);
     } else {
-      tokens.push({ type: "link", text: m[4], href: m[4] });
+      tokens.push({ type: "link", text: m[6], href: m[6] });
     }
   }
   pushText(line.slice(last));

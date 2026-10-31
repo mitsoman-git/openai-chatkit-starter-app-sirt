@@ -15,6 +15,9 @@ function ReplyText({ text }: { text: string }) {
           {tokenizeLine(line).map((t, j) =>
             t.type === "bold" ? (
               <strong key={j}>{t.text}</strong>
+            ) : t.type === "image" ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img key={j} src={t.src} alt={t.alt} className="my-2 block max-w-full rounded-lg" loading="lazy" />
             ) : t.type === "link" ? (
               <a
                 key={j}

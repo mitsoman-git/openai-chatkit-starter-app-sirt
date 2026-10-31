@@ -169,3 +169,11 @@ describe("live music answer", () => {
     expect(p).toContain("background music");
   });
 });
+
+describe("meze portion rule", () => {
+  it("says the meze is a portion for 2 and may not be enough for 3-4", () => {
+    const p = loadPrompt("meze");
+    expect(p).toContain("PORTION RULE");
+    expect(p).toContain("portion for 2");
+  });
+});

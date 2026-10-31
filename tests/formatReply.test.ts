@@ -44,4 +44,16 @@ describe("tokenizeLine", () => {
   it("keeps html as text", () => {
     expect(tokenizeLine("<b>x</b>")).toEqual([{ type: "text", text: "<b>x</b>" }]);
   });
+
+  it("parses images from our own site", () => {
+    expect(tokenizeLine("![Sirtaki Meze](https://www.sirtaki-tavern.gr/assets/img/food/meze/meze-sirtaki-2025-sm.jpg)")).toEqual([
+      { type: "image", alt: "Sirtaki Meze", src: "https://www.sirtaki-tavern.gr/assets/img/food/meze/meze-sirtaki-2025-sm.jpg" },
+    ]);
+  });
+
+  it("keeps images from other hosts as plain text", () => {
+    expect(tokenizeLine("![x](https://evil.example.com/a.jpg)")).toEqual([
+      { type: "text", text: "![x](https://evil.example.com/a.jpg)" },
+    ]);
+  });
 });

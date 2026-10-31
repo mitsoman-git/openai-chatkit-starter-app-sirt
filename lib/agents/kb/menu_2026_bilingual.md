@@ -35,7 +35,7 @@
 | Dakos / Ντάκος | 8€ | Cretan rusk with fresh tomato, olive oil and feta / Κρητικό παξιμάδι με φρέσκια ντομάτα, λάδι και φέτα | VG |
 | Fried Zucchini / Τηγανητά κολοκυθάκια | 10€ | Crispy fried zucchini in olive oil / Τραγανά τηγανητά κολοκυθάκια σε λάδι | VG |
 | French Fries / Πατάτες τηγανητές | 5€ | Hand-cut chips in olive oil / Χειροποίητες πατάτες κομμένες στο χέρι, τηγανισμένες σε λάδι | VG, GF |
-| Meze Sirtaki for 2 / Μεζές Σιρτάκι για 2 | 65€ | Selection of 20+ Greek small dishes on a large plate. Pre-order only, served 17:30-19:00, up to 4 guests / Επιλογή από 20+ ελληνικά μικροπιάτα σε μεγάλο δίσκο. Μόνο με προπαραγγελία, σερβίρεται 17:30-19:00, έως 4 άτομα. Κλείστε τραπέζι και γράψτε "MEZE" | - |
+| Meze Sirtaki for 2 / Μεζές Σιρτάκι για 2 | 65€ | Selection of 20+ Greek small dishes on a large plate. Portion for 2 people. Pre-order only, served 17:30-19:00, booking up to 4 guests; for 3-4 guests it may not be enough, suggest adding a few main courses / Μερίδα για 2 άτομα. Επιλογή από 20+ ελληνικά μικροπιάτα σε μεγάλο δίσκο. Μόνο με προπαραγγελία, σερβίρεται 17:30-19:00, κράτηση έως 4 άτομα· για 3-4 άτομα μπορεί να μη φτάνει, προτείνετε και μερικά κυρίως. Κλείστε τραπέζι και γράψτε "MEZE" | - |
 
 ---
 
@@ -198,6 +198,6 @@
 - **GF** = Gluten Free / Χωρίς γλουτένη
 - **GF Without the pita** = Gluten Free only if the pita bread side is removed / Χωρίς γλουτένη μόνο εάν αφαιρεθεί η πίτα
 - **VG** = Vegetarian / Χορτοφαγικό
-- **Meze Sirtaki:** Pre-order only, served 17:30-19:00, up to 4 guests / Μόνο με προπαραγγελία, σερβίρεται 17:30-19:00, έως 4 άτομα
+- **Meze Sirtaki:** Portion for 2 people. Pre-order only, served 17:30-19:00, booking up to 4 guests; for 3-4 guests it may not be enough, suggest adding a few main courses / Μερίδα για 2 άτομα. Μόνο με προπαραγγελία, σερβίρεται 17:30-19:00, κράτηση έως 4 άτομα· για 3-4 άτομα μπορεί να μη φτάνει, προτείνετε και μερικά κυρίως
 - **Gyros combos:** Available only 18:00-19:00 / Διαθέσιμα μόνο 18:00-19:00
 - **Steak sides and sauces:** Extra +3€ each / Συνοδευτικά και σάλτσες μπριζόλας: +3€ το καθένα
