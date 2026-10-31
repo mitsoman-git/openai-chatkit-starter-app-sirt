@@ -1,0 +1,51 @@
+import { loadClassifierPrompt, loadPrompt } from "./agents/loadPrompt";
+import { FALLBACK_REPLY, containsCardNumber, isJailbreak } from "./guardrails";
+import type { Ask } from "./openai";
+import type { Category, Turn } from "./types";
+
+export const MAX_MESSAGE_CHARS = 1000;
+export const MAX_HISTORY_TURNS = 20;
+export const ERROR_REPLY =
+  "I'm sorry, something went wrong on my end — please try again or reach us on WhatsApp.";
+
+const CATEGORIES: Category[] = ["meze", "reserve", "get_information", "greeting"];
+
+const CLASSIFICATION_SCHEMA = {
+  type: "object",
+  properties: { classification: { type: "string", enum: CATEGORIES } },
+  required: ["classification"],
+  additionalProperties: false,
+};
+
+export async function classify(message: string, ask: Ask): Promise<Category> {
+  try {
+    const raw = await ask({
+      instructions: loadClassifierPrompt(),
+      input: [{ role: "user", text: message }],
+      maxOutputTokens: 2048,
+      jsonSchema: { name: "classification", schema: CLASSIFICATION_SCHEMA },
+    });
+    const value = (JSON.parse(raw) as { classification?: unknown }).classification;
+    return CATEGORIES.find((c) => c === value) ?? "get_information";
+  } catch {
+    return "get_information";
+  }
+}
+
+export async function respond(
+  args: { message: string; history: Turn[] },
+  ask: Ask,
+): Promise<{ reply: string; category: Category | "blocked" }> {
+  const { message, history } = args;
+  if (containsCardNumber(message)) return { reply: FALLBACK_REPLY, category: "blocked" };
+
+  const [jailbreak, category] = await Promise.all([isJailbreak(message, ask), classify(message, ask)]);
+  if (jailbreak) return { reply: FALLBACK_REPLY, category: "blocked" };
+
+  const reply = await ask({
+    instructions: loadPrompt(category),
+    input: [...history, { role: "user", text: message }],
+    maxOutputTokens: 2048,
+  });
+  return { reply, category };
+}
