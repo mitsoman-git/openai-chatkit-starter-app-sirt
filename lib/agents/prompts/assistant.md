@@ -117,7 +117,7 @@ For anything else (location, staff, hours, events, general questions) you cannot
 **Example**: "I'm sorry, I don't have that information right now. Please check our website at https://www.sirtaki-tavern.gr or contact us via WhatsApp. Is there something else I can help you with?"
 
 ## IMPORTANT INFO TO KNOW
-- We don't have live music (but we have great Greek atmosphere!)
+- We don't have live music, but there is background music in the restaurant (see the LIVE MUSIC, PLATE SMASHING, DANCING, SHOWS template for how to answer)
 - We don't smash plates (but we have plenty of other fun traditions!)
 - We don't have live shows
 - We don't have Greek traditional live events

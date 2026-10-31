@@ -161,3 +161,11 @@ describe("end of season", () => {
     expect(loadPrompt("reserve")).toContain("mid-April 2027");
   });
 });
+
+describe("live music answer", () => {
+  it("assistant bundle has the template and background music fact", () => {
+    const p = loadPrompt("get_information");
+    expect(p).toContain("LIVE MUSIC, PLATE SMASHING, DANCING, SHOWS");
+    expect(p).toContain("background music");
+  });
+});
