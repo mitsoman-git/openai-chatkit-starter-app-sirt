@@ -1,6 +1,8 @@
 import { neon } from "@neondatabase/serverless";
 
-export type Sql = (strings: TemplateStringsArray, ...values: unknown[]) => Promise<any[]>;
+type Row = Record<string, unknown>;
+
+export type Sql = (strings: TemplateStringsArray, ...values: unknown[]) => Promise<Row[]>;
 
 export type StoredMessage = {
   id: number;
@@ -43,8 +45,8 @@ export function createDb(sql: Sql = lazyNeon) {
         order by max(created_at) desc
         limit ${limit}`;
       return rows.map((r) => ({
-        sessionId: r.session_id,
-        firstText: r.first_text ?? "",
+        sessionId: String(r.session_id),
+        firstText: String(r.first_text ?? ""),
         messageCount: Number(r.message_count),
         lastAt: String(r.last_at),
       }));
@@ -58,10 +60,10 @@ export function createDb(sql: Sql = lazyNeon) {
         order by created_at, id`;
       return rows.map((r) => ({
         id: Number(r.id),
-        sessionId: r.session_id,
-        role: r.role,
-        text: r.text,
-        category: r.category ?? null,
+        sessionId: String(r.session_id),
+        role: r.role as StoredMessage["role"],
+        text: String(r.text),
+        category: r.category == null ? null : String(r.category),
         createdAt: String(r.created_at),
       }));
     },
