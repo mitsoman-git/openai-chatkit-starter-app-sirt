@@ -5,7 +5,7 @@ import { loadClassifierPrompt, loadPrompt } from "../lib/agents/loadPrompt";
 
 const promptsDir = join(process.cwd(), "lib/agents/prompts");
 const kbDir = join(process.cwd(), "lib/agents/kb");
-const kbFiles = ["menu_2026_bilingual.md", "wines_sirtaki_2026.md", "wineries-2026.md", "hotels_distances_2026.md"];
+const kbFiles = ["menu_2026_bilingual.md", "wines_sirtaki_2026.md", "wineries-2026.md", "hotels_distances_2026.md", "faq_2026.md"];
 
 describe("prompt files", () => {
   it("contain no TypeScript string escapes", () => {
@@ -98,5 +98,21 @@ describe("hotel distances", () => {
   it("are not added to the meze or reservation prompts", () => {
     expect(loadPrompt("meze")).not.toContain("Stella Island Resort");
     expect(loadPrompt("reserve")).not.toContain("Stella Island Resort");
+  });
+});
+
+describe("website FAQ", () => {
+  it("is in the assistant knowledge base, with the instruction to use it", () => {
+    for (const category of ["get_information", "greeting"] as const) {
+      const p = loadPrompt(category);
+      expect(p).toContain("# Website FAQ");
+      expect(p).toContain("Do you take reservations?");
+      expect(p).toContain("WEBSITE FAQ");
+    }
+  });
+
+  it("is not in the meze or reservation prompts", () => {
+    expect(loadPrompt("meze")).not.toContain("# Website FAQ");
+    expect(loadPrompt("reserve")).not.toContain("# Website FAQ");
   });
 });
