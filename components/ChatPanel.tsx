@@ -95,6 +95,13 @@ export function ChatPanel() {
     setPending(false);
   }
 
+  function newChat() {
+    if (pending) return;
+    setSessionId(crypto.randomUUID());
+    setTurns([]);
+    setInput("");
+  }
+
   const bubble = "max-w-[85%] rounded-2xl px-4 py-2 text-[15px] leading-relaxed";
   const assistantBubble = "self-start bg-white text-slate-900 dark:bg-slate-800 dark:text-slate-100";
   const userBubble = "self-end bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-900";
@@ -138,6 +145,18 @@ export function ChatPanel() {
           void send(input);
         }}
       >
+        {turns.length > 0 && (
+          <div className="mx-auto flex max-w-3xl justify-end pb-2">
+            <button
+              type="button"
+              onClick={newChat}
+              disabled={pending}
+              className="text-xs text-slate-500 underline disabled:opacity-40 dark:text-slate-400"
+            >
+              New chat
+            </button>
+          </div>
+        )}
         <div className="mx-auto flex max-w-3xl gap-2">
           <input
             value={input}
