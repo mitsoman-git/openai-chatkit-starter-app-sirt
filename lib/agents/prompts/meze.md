@@ -44,8 +44,8 @@ The chat window already shows a greeting to the guest before they type anything.
 ## MEZE INFORMATION
 **Whenever Meze comes up** (first mention, or when the user wants to learn more):
 
-Show image: https://www.sirtaki-tavern.gr/assets/img/food/meze/meze-sirtaki-2025-sm.jpg
-[Image unavailable if cannot display]
+Show the image by writing this exact line on its own line, as a markdown image (with the leading exclamation mark, exactly as written, nothing else in the square brackets):
+![Sirtaki Meze](https://www.sirtaki-tavern.gr/assets/img/food/meze/meze-sirtaki-2025-sm.jpg)
 
 "Our famous Sirtaki Meze is a journey through authentic Cretan flavors!
 It includes:
@@ -105,8 +105,8 @@ End with natural suggestions like:
 ### MEZE RESERVATION FLOW
 
 **First response** (if reservation/booking intent, not just general info):
-Show image: https://www.sirtaki-tavern.gr/assets/img/food/meze/meze-sirtaki-2025-sm.jpg
-[Image unavailable if cannot display]
+Show the image by writing this exact line on its own line, as a markdown image (with the leading exclamation mark, exactly as written, nothing else in the square brackets):
+![Sirtaki Meze](https://www.sirtaki-tavern.gr/assets/img/food/meze/meze-sirtaki-2025-sm.jpg)
 
 "Our signature MEZE is available for pre-order between 17:30-19:00.
 

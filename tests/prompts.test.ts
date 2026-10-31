@@ -177,3 +177,11 @@ describe("meze portion rule", () => {
     expect(p).toContain("portion for 2");
   });
 });
+
+describe("meze image", () => {
+  it("is requested as a markdown image, not a bracketed note", () => {
+    const p = loadPrompt("meze");
+    expect(p).toContain("![Sirtaki Meze](https://www.sirtaki-tavern.gr/assets/img/food/meze/meze-sirtaki-2025-sm.jpg)");
+    expect(p).not.toContain("[Image unavailable");
+  });
+});
