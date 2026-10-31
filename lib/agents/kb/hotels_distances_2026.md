@@ -166,6 +166,22 @@ Sirtaki has free parking, and a local taxi is an easy way back (both are stated 
 - Page on our website (map of the route, more details): https://www.sirtaki-tavern.gr/location/stella-village-analipsi.html
 - Google Maps walking directions: https://www.google.com/maps/dir/?api=1&origin=Stella%20Village%20Hotel%2C%20Analipsi%2C%20Crete&destination=Sirtaki%20Restaurant%20Greek%20Tavern%2C%20Analipsi%2C%20Crete&travelmode=walking
 
+## Hotels further away: by taxi
+These hotels have no walking route on our website. Give the distance and the taxi time, and the Google Maps link; there is no page on our website for them.
+
+| Hotel | Distance | Taxi time | Google Maps directions |
+|---|---|---|---|
+| Bella Beach Hotel | 1.9 km | 5 min | https://www.google.com/maps/dir/?api=1&origin=Bella%20Beach%20Hotel%2C%20Crete&destination=Sirtaki%20Restaurant%20Greek%20Tavern%2C%20Analipsi%2C%20Crete&travelmode=driving |
+| Oasis Beach Hotel | 3 km | 6 min | https://www.google.com/maps/dir/?api=1&origin=Oasis%20Beach%20Hotel%2C%20Crete&destination=Sirtaki%20Restaurant%20Greek%20Tavern%2C%20Analipsi%2C%20Crete&travelmode=driving |
+| Amirandes Grecotel | 3.4 km | 6 min | https://www.google.com/maps/dir/?api=1&origin=Amirandes%20Grecotel%2C%20Crete&destination=Sirtaki%20Restaurant%20Greek%20Tavern%2C%20Analipsi%2C%20Crete&travelmode=driving |
+| allsun Zorbas Village | 3.5 km | 7 min | https://www.google.com/maps/dir/?api=1&origin=allsun%20Zorbas%20Village%2C%20Crete&destination=Sirtaki%20Restaurant%20Greek%20Tavern%2C%20Analipsi%2C%20Crete&travelmode=driving |
+| Serita Beach Hotel | 4.3 km | 8 min | https://www.google.com/maps/dir/?api=1&origin=Serita%20Beach%20Hotel%2C%20Crete&destination=Sirtaki%20Restaurant%20Greek%20Tavern%2C%20Analipsi%2C%20Crete&travelmode=driving |
+| Mitsis Selection Laguna | 5.1 km | 10 min | https://www.google.com/maps/dir/?api=1&origin=Mitsis%20Selection%20Laguna%2C%20Crete&destination=Sirtaki%20Restaurant%20Greek%20Tavern%2C%20Analipsi%2C%20Crete&travelmode=driving |
+| Creta Maris Resort | 5.1 km | 8 min | https://www.google.com/maps/dir/?api=1&origin=Creta%20Maris%20Resort%2C%20Crete&destination=Sirtaki%20Restaurant%20Greek%20Tavern%2C%20Analipsi%2C%20Crete&travelmode=driving |
+| Village Heights Resort | 5.7 km | 12 min | https://www.google.com/maps/dir/?api=1&origin=Village%20Heights%20Resort%2C%20Crete&destination=Sirtaki%20Restaurant%20Greek%20Tavern%2C%20Analipsi%2C%20Crete&travelmode=driving |
+| Hotel Anissa Beach & Village | 3.1 km | 6 min | https://www.google.com/maps/dir/?api=1&origin=Hotel%20Anissa%20Beach%20%26%20Village%2C%20Crete&destination=Sirtaki%20Restaurant%20Greek%20Tavern%2C%20Analipsi%2C%20Crete&travelmode=driving |
+| Paralos Kosta Alimia | 3.2 km | 6 min | https://www.google.com/maps/dir/?api=1&origin=Paralos%20Kosta%20Alimia%2C%20Crete&destination=Sirtaki%20Restaurant%20Greek%20Tavern%2C%20Analipsi%2C%20Crete&travelmode=driving |
+
 Hotels guests may name that are the same as the ones above:
 - "Stella Island" or "Stella Island Luxury Resort" = Stella Island Resort
 - "Atlantica Caldera Palace" or "Caldera Palace" = Caldera Palace Hotel

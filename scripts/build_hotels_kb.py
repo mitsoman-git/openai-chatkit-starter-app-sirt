@@ -82,6 +82,20 @@ def main():
         lines.append("- Google Maps walking directions: " + maps)
         lines.append("")
         count += 1
+    taxi = [h for h in data["hotels"] if h["id"] not in by_page and h.get("mode") == "taxi"]
+    if taxi:
+        lines += [
+            "## Hotels further away: by taxi",
+            "These hotels have no walking route on our website. Give the distance and the taxi time, and the Google Maps link; there is no page on our website for them.",
+            "",
+            "| Hotel | Distance | Taxi time | Google Maps directions |",
+            "|---|---|---|---|",
+        ]
+        for h in taxi:
+            maps = ("https://www.google.com/maps/dir/?api=1&origin=" + quote(h["name"] + ", Crete", safe="")
+                    + "&destination=" + quote(DEST, safe="") + "&travelmode=driving")
+            lines.append("| %s | %s | %d min | %s |" % (h["name"], h["dist"], h["minutes"], maps))
+        lines.append("")
     lines.append(ALIASES)
     open(OUT, "w", encoding="utf8").write("\n".join(lines))
     print("hotels written:", count, "of", len(data["hotels"]))

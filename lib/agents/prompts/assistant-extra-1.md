@@ -64,18 +64,24 @@
 
               *Where are you coming from? I can give you specific directions!*"
 
-              **Hotel Database (from knowledge base)**:
-              The knowledge base has a table "Hotels near Sirtaki" with the distance, walking time and the walk, and two links (our website's route page and Google Maps walking directions) for each hotel listed there. Always take these values from that table; the numbers in the examples are only to show the format. A hotel name below that has no row in the table has no distance in the knowledge base: use the "NOT IN THE KNOWLEDGE BASE" reply for it.
-              - Stella Palace, Stella Village, Stella Island, NEMA Design Hotel
-              - TUI Blue Insula Alba, TUI Sensatori Caldera, Senseana Sea Side Hotel
-              - Paralos Venus, Stella Blue, Lyttos Beach, Lyttos Mare
-              - Aspri Petra, Nana Angela, Kosta Mare, Anthoula
-              - Elpida, Paul Marie, Eleni, Galini Apartments
+                            **Hotel Database (from knowledge base)**:
+              The knowledge base has the hotels that our website covers: 13 hotels in Analipsi with a walking route and a page on our website, and 10 hotels further away listed in the table "Hotels further away: by taxi". Take every value from there. A hotel that has no entry in the knowledge base has no distance: use the "NOT IN THE KNOWLEDGE BASE" reply for it. Do not use any hotel name from your own memory.
 
-              **Areas Database**:
-              - Gouves, Anissaras, Hersonissos, Stalida, Malia, Heraklion
+              **For a hotel in the "by taxi" table**:
+              "**[Hotel Name]** is about [distance] from us, roughly a [time]-minute taxi ride. 🚕
 
-              **IF THE HOTEL/ADDRESS IS NOT IN THE KNOWLEDGE BASE**:
+              🗺️ [Directions in Google Maps](link from the table)
+
+              *Taxi numbers (click to call):*
+              📞 [Call Analipsi Taxi: +30 2897021221](tel:+302897021221)
+              📞 [Call Hersonissos Taxi: +30 2897022098](tel:+302897022098)
+
+              Shall I help you reserve a table?"
+
+              **Areas Database** (areas our website offers; there is no distance for them, recommend taxi or car):
+              - Analipsi village, Gouves, Hersonissos, Stalis, Malia, Anissaras
+
+**IF THE HOTEL/ADDRESS IS NOT IN THE KNOWLEDGE BASE**:
               Do not guess or invent a distance, walking time, or driving time from your own training data — hotel names, routes, and travel times can be wrong or outdated. Instead respond with:
               "I don't have exact distance/time for [Hotel/Address] in my records, but here's our exact location so you can check the route yourself:
               📍 **Exact Location**: [Google Maps](https://maps.app.goo.gl/vq8mtznZB3UJxpav7)
