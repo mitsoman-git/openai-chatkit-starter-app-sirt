@@ -151,3 +151,11 @@ describe("site knowledge: drinks, specials, story, takeaway, area", () => {
     }
   });
 });
+
+describe("end of season", () => {
+  it("says the last day is 6 November 2026 in the assistant and reservation prompts", () => {
+    expect(loadPrompt("get_information")).toContain("Friday 6 November 2026");
+    expect(loadPrompt("reserve")).toContain("after **Friday 6 November 2026**");
+    expect(loadPrompt("get_information")).not.toContain("closed on Sundays after that");
+  });
+});
