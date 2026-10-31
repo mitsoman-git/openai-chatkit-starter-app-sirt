@@ -3,6 +3,7 @@
 import { Fragment, useEffect, useRef, useState } from "react";
 import { ERROR_REPLY, GREETING, PLACEHOLDER_INPUT, STARTER_PROMPTS } from "@/lib/config";
 import { tokenizeLine } from "@/lib/formatReply";
+import { loadChat, saveChat } from "@/lib/chatStore";
 import type { Turn } from "@/lib/types";
 
 function ReplyText({ text }: { text: string }) {
@@ -35,11 +36,35 @@ function ReplyText({ text }: { text: string }) {
 }
 
 export function ChatPanel() {
-  const [sessionId] = useState(() => crypto.randomUUID());
+  const [sessionId, setSessionId] = useState(() => crypto.randomUUID());
   const [turns, setTurns] = useState<Turn[]>([]);
   const [input, setInput] = useState("");
   const [pending, setPending] = useState(false);
   const endRef = useRef<HTMLDivElement>(null);
+  const [hydrated, setHydrated] = useState(false);
+
+  // The chat lives in an iframe that reloads on every page of the site: keep the conversation for this tab.
+  useEffect(() => {
+    try {
+      const saved = loadChat(window.sessionStorage);
+      if (saved) {
+        setSessionId(saved.sessionId);
+        setTurns(saved.turns);
+      }
+    } catch {
+      // storage blocked: start fresh
+    }
+    setHydrated(true);
+  }, []);
+
+  useEffect(() => {
+    if (!hydrated) return;
+    try {
+      saveChat(window.sessionStorage, { sessionId, turns });
+    } catch {
+      // storage blocked
+    }
+  }, [hydrated, sessionId, turns]);
 
   useEffect(() => {
     endRef.current?.scrollIntoView({ block: "end" });
