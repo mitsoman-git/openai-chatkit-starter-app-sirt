@@ -35,7 +35,7 @@ describe("listSessions / getSession", () => {
     const { sql, calls } = recordingSql([
       { session_id: "s1", first_text: "hi", message_count: "4", last_at: "2026-10-31T10:00:00Z" },
     ]);
-    const out = await createDb(sql).listSessions(10);
+    const out = await createDb(sql).listSessions({ limit: 10 });
     expect(out).toEqual([
       { sessionId: "s1", firstText: "hi", messageCount: 4, lastAt: "2026-10-31T10:00:00Z" },
     ]);
@@ -56,7 +56,36 @@ describe("listSessions / getSession", () => {
   });
 });
 
-describe("deleteSession / deleteToday", () => {
+describe("listSessions filters", () => {
+  it("passes the Athens date range and category as parameters, never inline", async () => {
+    const { sql, calls } = recordingSql();
+    await createDb(sql).listSessions({ from: "2026-10-01", to: "2026-10-31", category: "reserve", limit: 50 });
+    expect(calls[0].text).toContain("Europe/Athens");
+    expect(calls[0].text).not.toContain("2026-10-01");
+    expect(calls[0].values).toEqual(expect.arrayContaining(["2026-10-01", "2026-10-31", "reserve", 50]));
+  });
+
+  it("passes nulls when no filter is given", async () => {
+    const { sql, calls } = recordingSql();
+    await createDb(sql).listSessions();
+    expect(calls[0].values).toEqual([null, null, null, null, null, null, 100]);
+  });
+});
+
+describe("daysWithActivity", () => {
+  it("maps day rows to counts for the given month", async () => {
+    const { sql, calls } = recordingSql([
+      { day: "2026-10-30", sessions: "3" },
+      { day: "2026-10-31", sessions: "1" },
+    ]);
+    const out = await createDb(sql).daysWithActivity("2026-10");
+    expect(out).toEqual({ "2026-10-30": 3, "2026-10-31": 1 });
+    expect(calls[0].values).toEqual(["2026-10"]);
+    expect(calls[0].text).toContain("Europe/Athens");
+  });
+});
+
+describe("deleteSession / deleteDay", () => {
   it("deletes only the rows of the given session", async () => {
     const { sql, calls } = recordingSql();
     await createDb(sql).deleteSession("s1");
@@ -66,11 +95,12 @@ describe("deleteSession / deleteToday", () => {
     expect(calls[0].values).toEqual(["s1"]);
   });
 
-  it("deletes today's rows by Athens date", async () => {
+  it("deletes the rows of one Athens day, date passed as a parameter", async () => {
     const { sql, calls } = recordingSql();
-    await createDb(sql).deleteToday();
+    await createDb(sql).deleteDay("2026-10-31");
     expect(calls).toHaveLength(1);
     expect(calls[0].text).toContain("delete from messages");
     expect(calls[0].text).toContain("Europe/Athens");
+    expect(calls[0].values).toEqual(["2026-10-31"]);
   });
 });

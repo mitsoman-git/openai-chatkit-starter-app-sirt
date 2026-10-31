@@ -21,7 +21,7 @@ function makeDb(fail = false) {
   const logExchange = vi.fn(async () => {
     if (fail) throw new Error("db down");
   });
-  return { logExchange, listSessions: vi.fn(), getSession: vi.fn(), deleteSession: vi.fn(), deleteToday: vi.fn() };
+  return { logExchange, listSessions: vi.fn(), getSession: vi.fn(), deleteSession: vi.fn(), deleteDay: vi.fn(), daysWithActivity: vi.fn() };
 }
 
 const post = (body: unknown) =>

@@ -34,7 +34,12 @@ export function createDb(sql: Sql = lazyNeon) {
       await sql`insert into messages (session_id, role, text, category) values (${e.sessionId}, ${"assistant"}, ${e.replyText}, ${e.category})`;
     },
 
-    async listSessions(limit = 100): Promise<SessionSummary[]> {
+    async listSessions(
+      opts: { from?: string; to?: string; category?: string; limit?: number } = {},
+    ): Promise<SessionSummary[]> {
+      const from = opts.from ?? null;
+      const to = opts.to ?? null;
+      const category = opts.category ?? null;
       const rows = await sql`
         select session_id,
                (array_agg(text order by created_at, id) filter (where role = 'user'))[1] as first_text,
@@ -42,8 +47,11 @@ export function createDb(sql: Sql = lazyNeon) {
                max(created_at) as last_at
         from messages
         group by session_id
+        having (${from}::date is null or (max(created_at) at time zone 'Europe/Athens')::date >= ${from}::date)
+           and (${to}::date is null or (max(created_at) at time zone 'Europe/Athens')::date <= ${to}::date)
+           and (${category}::text is null or bool_or(category = ${category}::text))
         order by max(created_at) desc
-        limit ${limit}`;
+        limit ${opts.limit ?? 100}`;
       return rows.map((r) => ({
         sessionId: String(r.session_id),
         firstText: String(r.first_text ?? ""),
@@ -52,14 +60,22 @@ export function createDb(sql: Sql = lazyNeon) {
       }));
     },
 
+    async daysWithActivity(month: string): Promise<Record<string, number>> {
+      const rows = await sql`
+        select to_char((created_at at time zone 'Europe/Athens')::date, 'YYYY-MM-DD') as day,
+               count(distinct session_id) as sessions
+        from messages
+        where to_char(created_at at time zone 'Europe/Athens', 'YYYY-MM') = ${month}
+        group by 1`;
+      return Object.fromEntries(rows.map((r) => [String(r.day), Number(r.sessions)]));
+    },
+
     async deleteSession(sessionId: string): Promise<void> {
       await sql`delete from messages where session_id = ${sessionId}`;
     },
 
-    async deleteToday(): Promise<void> {
-      await sql`
-        delete from messages
-        where (created_at at time zone 'Europe/Athens')::date = (now() at time zone 'Europe/Athens')::date`;
+    async deleteDay(day: string): Promise<void> {
+      await sql`delete from messages where (created_at at time zone 'Europe/Athens')::date = ${day}::date`;
     },
 
     async getSession(sessionId: string): Promise<StoredMessage[]> {
