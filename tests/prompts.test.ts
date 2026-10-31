@@ -5,7 +5,7 @@ import { loadClassifierPrompt, loadPrompt } from "../lib/agents/loadPrompt";
 
 const promptsDir = join(process.cwd(), "lib/agents/prompts");
 const kbDir = join(process.cwd(), "lib/agents/kb");
-const kbFiles = ["menu_2026_bilingual.md", "wines_sirtaki_2026.md", "wineries-2026.md"];
+const kbFiles = ["menu_2026_bilingual.md", "wines_sirtaki_2026.md", "wineries-2026.md", "hotels_distances_2026.md"];
 
 describe("prompt files", () => {
   it("contain no TypeScript string escapes", () => {
@@ -81,5 +81,22 @@ describe("reservation prompt date rules", () => {
 
   it("still never lets a relative word into the link", () => {
     expect(p).toContain("never the word \"tonight\" or any other relative word");
+  });
+});
+
+describe("hotel distances", () => {
+  it("are in the assistant knowledge base with distance, walking time and a directions link", () => {
+    for (const category of ["get_information", "greeting"] as const) {
+      const p = loadPrompt(category);
+      expect(p).toContain("Stella Island Resort");
+      expect(p).toContain("1.4 km");
+      expect(p).toContain("19 min");
+      expect(p).toContain("https://www.sirtaki-tavern.gr/location/stella-island-resort-analipsi.html");
+    }
+  });
+
+  it("are not added to the meze or reservation prompts", () => {
+    expect(loadPrompt("meze")).not.toContain("Stella Island Resort");
+    expect(loadPrompt("reserve")).not.toContain("Stella Island Resort");
   });
 });

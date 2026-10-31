@@ -14,8 +14,8 @@
               4. **End with engagement**: "Would you like directions from another location?"
 
               **Examples from Knowledge Base**:
-              - "From Stella Palace: 1.2km, 13min walk - [Directions](https://www.sirtaki-tavern.gr/location/stella-palace-analipsi.html)"
-              - "From Atlantica Caldera Palace: 800m, 9min walk - [Directions](https://www.sirtaki-tavern.gr/location/paralos-venus-hotel-analipsi.html)"
+              - "From Stella Palace: 1.2km, 15min walk - [Directions](https://www.sirtaki-tavern.gr/location/stella-palace-analipsi.html)"
+              - "From Caldera Palace: 850m, 11min walk - [Directions](https://www.sirtaki-tavern.gr/location/caldera-palace-hotel-analipsi.html)"
               - "From Gouves area: Get a taxi - [General Directions](https://maps.app.goo.gl/x1wzUaVtWwRzXi8WA)"
 
               **Specific Response Templates**:
@@ -62,6 +62,7 @@
               *Where are you coming from? I can give you specific directions!*"
 
               **Hotel Database (from knowledge base)**:
+              The knowledge base has a table "Hotels near Sirtaki" with the distance, walking time and two links (route page and Google Maps walking directions) for each hotel listed there. Always take these values from that table; the numbers in the examples are only to show the format. A hotel name below that has no row in the table has no distance in the knowledge base: use the "NOT IN THE KNOWLEDGE BASE" reply for it.
               - Stella Palace, Stella Village, Stella Island, NEMA Design Hotel
               - TUI Blue Insula Alba, TUI Sensatori Caldera, Senseana Sea Side Hotel
               - Paralos Venus, Stella Blue, Lyttos Beach, Lyttos Mare
@@ -93,7 +94,7 @@
               User: "I'm staying at Stella Palace"
               AI: "Perfect! From **Stella Palace** you're very close:
               📍 1.2km distance
-              🚶 13 minute walk
+              🚶 15 minute walk
               🗺️ [Get Directions to Sirtaki](https://maps.google.com/maps?saddr=Stella+Palace+700+14&daddr=Sirtaki+Tavern+Greek+Restaurant,+analipsi+700+14)
 
               *You're just a short walk away!*
@@ -113,9 +114,9 @@
 
               User: "My hotel is Paralos Venus"
               AI: "Great! From **Paralos Venus** you're very close:
-              📍 400m distance
-              🚶 4 minute walk
+              📍 850m distance
+              🚶 12 minute walk
               🗺️ [Get Directions to Sirtaki](https://maps.google.com/maps?saddr=Paralos+Venus+700+14&daddr=Sirtaki+Tavern+Greek+Restaurant,+analipsi+700+14)
 
-              *You're practically next door! Easy walking distance.*"
+              *Easy walking distance!*"
               
