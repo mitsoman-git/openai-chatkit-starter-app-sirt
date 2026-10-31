@@ -18,11 +18,13 @@ const CLASSIFICATION_SCHEMA = {
   additionalProperties: false,
 };
 
-export async function classify(message: string, ask: Ask): Promise<Category> {
+const CLASSIFIER_HISTORY_TURNS = 6;
+
+export async function classify(message: string, ask: Ask, history: Turn[] = []): Promise<Category> {
   try {
     const raw = await ask({
       instructions: loadClassifierPrompt(),
-      input: [{ role: "user", text: message }],
+      input: [...history.slice(-CLASSIFIER_HISTORY_TURNS), { role: "user", text: message }],
       maxOutputTokens: 2048,
       timeoutMs: 6000,
       jsonSchema: { name: "classification", schema: CLASSIFICATION_SCHEMA },
@@ -41,15 +43,16 @@ export async function respond(
   const { message, history, now } = args;
   if (containsCardNumber(message)) return { reply: FALLBACK_REPLY, category: "blocked" };
 
-  const [jailbreak, category] = await Promise.all([isJailbreak(message, ask), classify(message, ask)]);
+  const safeHistory = history.map((t) => ({ ...t, text: redactCardNumbers(t.text) }));
+  const [jailbreak, category] = await Promise.all([
+    isJailbreak(message, ask),
+    classify(message, ask, safeHistory),
+  ]);
   if (jailbreak) return { reply: FALLBACK_REPLY, category: "blocked" };
 
   const reply = await ask({
     instructions: `${loadPrompt(category)}\n\n${todayLine(now)}`,
-    input: [
-      ...history.map((t) => ({ ...t, text: redactCardNumbers(t.text) })),
-      { role: "user", text: message },
-    ],
+    input: [...safeHistory, { role: "user", text: message }],
     maxOutputTokens: 2048,
     timeoutMs: 18000,
   });
