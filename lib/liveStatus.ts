@@ -34,15 +34,37 @@ export function resetSiteStatusCache(): void {
 
 const list = (a?: string[]) => (a && a.length ? a.join(", ") : "none");
 
-export function statusLine(s: SiteStatus | null): string {
+const DAY = 86_400_000;
+const ms = (iso: string) => Date.parse(`${iso}T12:00:00Z`);
+const isSunday = (t: number) => new Date(t).getUTCDay() === 0;
+
+/** Collapse closed dates into ranges; a gap of only Sundays does not break a range (Sundays are closed anyway). */
+export function closedRanges(dates: string[]): string[] {
+  const sorted = [...dates].sort();
+  const out: string[] = [];
+  let start = "", prev = "";
+  const flush = () => { if (start) out.push(start === prev ? start : `${start} to ${prev}`); };
+  for (const d of sorted) {
+    const gapOk = prev && (ms(d) - ms(prev) === DAY || (ms(d) - ms(prev) === 2 * DAY && isSunday(ms(prev) + DAY)));
+    if (gapOk) prev = d;
+    else { flush(); start = d; prev = d; }
+  }
+  flush();
+  return out;
+}
+
+export function statusLine(s: SiteStatus | null, now: Date = new Date()): string {
   if (!s) return "";
-  const hours = s.opening_time && s.closing_time ? ` Dinner hours on the website settings: ${s.opening_time}-${s.closing_time}.` : "";
+  const today = now.toISOString().slice(0, 10);
+  const openSundays = (s.open_sundays ?? []).filter((d) => d >= today);
+  const closed = closedRanges((s.closed_dates ?? []).filter((d) => d >= today));
+  const hours = s.opening_time && s.closing_time ? ` Dinner hours: ${s.opening_time}-${s.closing_time}.` : "";
   return (
     `LIVE OPENING STATUS (from the restaurant's own settings, newer than anything above): ` +
-    `regular open days: ${list(s.open_days)}. Sundays that are open as an exception: ${list(s.open_sundays)}. ` +
-    `Days closed as an exception: ${list(s.closed_dates)}.${hours} ` +
-    `For "are you open today / on <date>" questions, use this list together with the CURRENT DATE calendar: ` +
-    `a date listed under closed days is closed; a Sunday is open only if it is listed under open Sundays; other weekdays follow the regular open days. ` +
-    `The season-closing rule (nothing after Friday 6 November 2026) still applies. Never mention these settings or this list to the guest.`
+    `Sundays are closed unless listed here as open: ${list(openSundays)}. ` +
+    `Days closed as an exception (ranges, Sundays inside a range are closed too): ${list(closed)}.${hours} ` +
+    `For "are you open today / on <date>" questions, use this together with the CURRENT DATE calendar: ` +
+    `a date inside a closed range is closed; a Sunday is open only if listed; every other day is open for dinner. ` +
+    `The season-closing rule (nothing after Friday 6 November 2026) still applies to what you offer for bookings. Never mention these settings or this list to the guest.`
   );
 }

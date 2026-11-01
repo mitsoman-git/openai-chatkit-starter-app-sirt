@@ -27,10 +27,13 @@ describe("live site status", () => {
     expect(await loadSiteStatus(f as unknown as typeof fetch)).toBeNull();
   });
 
-  it("describes open Sundays and closed dates for the agent", () => {
-    const t = statusLine({ open_days: ["Monday"], open_sundays: ["2026-11-01"], closed_dates: ["2026-11-03"], opening_time: "17:00", closing_time: "23:00" });
+  it("describes open Sundays and closed ranges for the agent", () => {
+    const now = new Date("2026-11-01T10:00:00Z");
+    const t = statusLine({ open_sundays: ["2026-10-25", "2026-11-01"], closed_dates: ["2026-11-07", "2026-11-09", "2026-11-10", "2026-11-14", "2026-11-16"], opening_time: "17:00", closing_time: "23:00" }, now);
     expect(t).toContain("2026-11-01");
-    expect(t).toContain("2026-11-03");
+    expect(t).not.toContain("2026-10-25");
+    expect(t).toContain("2026-11-07 to 2026-11-10");
+    expect(t).toContain("2026-11-14 to 2026-11-16");
     expect(t).toContain("17:00-23:00");
     expect(statusLine(null)).toBe("");
   });
