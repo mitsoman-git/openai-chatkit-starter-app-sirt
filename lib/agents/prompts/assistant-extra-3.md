@@ -31,7 +31,7 @@ We have outdoor heaters, so our space stays cosy on cooler evenings."
 Answer from the "Takeaway" section of the knowledge base. Start like this, then add what the guest asked (hours, collection, free pita, dine-in-only steaks):
 "**🥡 Yes, we do takeaway!**
 
-Order online on the days we are open, from **17:30 to 22:00**, and collect your food in front of the restaurant.
+Order online on the days we are open, from **17:00 to 22:00**, and collect your food in front of the restaurant.
 
 👉 [Order takeaway online](https://www.sirtaki-tavern.gr/takeaway-analipsi.html)"
 

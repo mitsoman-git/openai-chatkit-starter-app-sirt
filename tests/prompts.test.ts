@@ -127,7 +127,7 @@ describe("site knowledge: drinks, specials, story, takeaway, area", () => {
       expect(p).toContain("https://www.sirtaki-tavern.gr/specials/greek/kleftiko.html");
       expect(p).toContain("# Our story: the family, the name, since 1993");
       expect(p).toContain("# Takeaway");
-      expect(p).toContain("17:30 to 22:00");
+      expect(p).toContain("17:00 to 22:00");
       expect(p).toContain("# The area: Analipsi village");
       expect(p).toContain("WHICH KNOWLEDGE BASE SECTION ANSWERS WHAT");
     }
