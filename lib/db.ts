@@ -30,6 +30,9 @@ const lazyNeon: Sql = (strings, ...values) => {
 };
 
 let starTableReady = false;
+let rateTableReady = false;
+
+export type RateRule = { max: number; windowSec: number };
 
 export function createDb(sql: Sql = lazyNeon) {
   // The star table is created on first use so no manual SQL step is needed (only for the real connection).
@@ -42,7 +45,29 @@ export function createDb(sql: Sql = lazyNeon) {
     starTableReady = true;
   }
 
+  async function ensureRateHits() {
+    if (sql !== lazyNeon || rateTableReady) return;
+    await sql`create table if not exists rate_hits (
+      key text not null,
+      at timestamptz not null default now()
+    )`;
+    await sql`create index if not exists rate_hits_key_at on rate_hits (key, at)`;
+    rateTableReady = true;
+  }
+
   return {
+    /** Records one hit for `key` and reports whether it is over any of the rules (the hit itself counts). */
+    async rateLimited(key: string, rules: RateRule[]): Promise<boolean> {
+      await ensureRateHits();
+      await sql`insert into rate_hits (key) values (${key})`;
+      for (const r of rules) {
+        const rows = await sql`select count(*)::int as n from rate_hits where key = ${key} and at > now() - make_interval(secs => ${r.windowSec})`;
+        if (Number(rows[0]?.n ?? 0) > r.max) return true;
+      }
+      if (Math.random() < 0.02) await sql`delete from rate_hits where at < now() - interval '3 hours'`;
+      return false;
+    },
+
     async logExchange(e: { sessionId: string; userText: string; replyText: string; category: string }) {
       await sql`insert into messages (session_id, role, text, category) values (${e.sessionId}, ${"user"}, ${e.userText}, ${null})`;
       await sql`insert into messages (session_id, role, text, category) values (${e.sessionId}, ${"assistant"}, ${e.replyText}, ${e.category})`;

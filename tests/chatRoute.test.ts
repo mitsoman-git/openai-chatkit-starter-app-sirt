@@ -17,11 +17,11 @@ function makeAsk(mainReply: string | Error = "the reply") {
   return { ask, calls };
 }
 
-function makeDb(fail = false) {
+function makeDb(fail = false, limited = false) {
   const logExchange = vi.fn(async () => {
     if (fail) throw new Error("db down");
   });
-  return { logExchange, listSessions: vi.fn(), getSession: vi.fn(), deleteSession: vi.fn(), deleteDay: vi.fn(), daysWithActivity: vi.fn(), toggleStar: vi.fn(), isStarred: vi.fn(), messagesOfDay: vi.fn() };
+  return { rateLimited: vi.fn(async () => limited), logExchange, listSessions: vi.fn(), getSession: vi.fn(), deleteSession: vi.fn(), deleteDay: vi.fn(), daysWithActivity: vi.fn(), toggleStar: vi.fn(), isStarred: vi.fn(), messagesOfDay: vi.fn() };
 }
 
 const post = (body: unknown) =>
@@ -31,6 +31,21 @@ const post = (body: unknown) =>
   });
 
 describe("POST /api/chat", () => {
+  it("answers 429 without calling OpenAI when the IP is over the limit", async () => {
+    const { ask, calls } = makeAsk();
+    const res = await createPostHandler({ ask, db: makeDb(false, true) })(post({ message: "hi", sessionId }));
+    expect(res.status).toBe(429);
+    expect(calls).toHaveLength(0);
+  });
+
+  it("fails open when the rate limiter itself errors", async () => {
+    const { ask } = makeAsk();
+    const db = makeDb();
+    db.rateLimited.mockRejectedValueOnce(new Error("db down"));
+    const res = await createPostHandler({ ask, db })(post({ message: "hi", sessionId }));
+    expect(res.status).toBe(200);
+  });
+
   it("answers and logs the exchange with its category", async () => {
     const { ask } = makeAsk();
     const db = makeDb();

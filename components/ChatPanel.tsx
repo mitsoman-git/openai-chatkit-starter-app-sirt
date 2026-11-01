@@ -87,7 +87,7 @@ export function ChatPanel() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message, history, sessionId }),
       });
-      if (res.ok) {
+      if (res.ok || res.status === 429) {
         const data = (await res.json()) as { reply?: string };
         if (data.reply) reply = data.reply;
       }
