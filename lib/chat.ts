@@ -1,6 +1,7 @@
 import { loadClassifierPrompt, loadPrompt } from "./agents/loadPrompt";
 import { FALLBACK_REPLY, containsCardNumber, isJailbreak, redactCardNumbers } from "./guardrails";
 import type { Ask } from "./openai";
+import { loadSiteStatus, statusLine } from "./liveStatus";
 import { todayLine } from "./today";
 import type { Category, Turn } from "./types";
 
@@ -50,8 +51,9 @@ export async function respond(
   ]);
   if (jailbreak) return { reply: FALLBACK_REPLY, category: "blocked" };
 
+  const status = statusLine(await loadSiteStatus());
   const reply = await ask({
-    instructions: `${loadPrompt(category)}\n\n${todayLine(now)}`,
+    instructions: `${loadPrompt(category)}\n\n${todayLine(now)}${status ? `\n\n${status}` : ""}`,
     input: [...safeHistory, { role: "user", text: message }],
     maxOutputTokens: 2048,
     timeoutMs: 18000,

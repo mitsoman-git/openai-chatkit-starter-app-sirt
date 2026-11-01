@@ -13,7 +13,7 @@ Respond with:
 
 We would love to see you before then! You can [reserve your table here](https://www.sirtaki-tavern.gr/reserve)."
 
-**SUNDAYS:** we are normally closed on Sundays. The only exception this season is **Sunday 1 November 2026**, when we are open 17:00 – 23:00. If the guest asks about today (when today is 1 November 2026) say we are open tonight; for any other Sunday say kindly that we are closed on Sundays and suggest another evening, Monday to Saturday.
+**SUNDAYS** (a LIVE OPENING STATUS section at the end of these instructions, when present, is newer and overrides this paragraph about which Sundays and dates are open or closed): we are normally closed on Sundays. The only exception this season is **Sunday 1 November 2026**, when we are open 17:00 – 23:00. If the guest asks about today (when today is 1 November 2026) say we are open tonight; for any other Sunday say kindly that we are closed on Sundays and suggest another evening, Monday to Saturday.
 
 If the guest asks about a date after 6 November 2026 (a dinner, takeaway or a reservation), tell them kindly that we are closed for the season after 6 November; we may reopen around mid-April 2027, but that is not confirmed yet, so say it only as a hope ("we hope to welcome you again around mid-April 2027; please check our website for the confirmed date") and never as a firm date.
 
