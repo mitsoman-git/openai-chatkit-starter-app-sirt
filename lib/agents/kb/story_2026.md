@@ -82,7 +82,7 @@ Nikos and Eleni opened Sirtaki in 1993, in the centre of the village of Analipsi
 
 You can meet the whole family on our story page, or see what is cooking tonight in our menu guide.
 
-## You do not have to come for a full dinner (from the home page https://www.sirtaki-tavern.gr/)
+## You do not have to come for a full dinner (from the [home page](https://www.sirtaki-tavern.gr/))
 ### Not every evening needs a full dinner.
 
 Stop by for a spritz before dinner, a glass of Cretan wine from our cellar, or dessert and coffee after. You are welcome for as long or as little as you like.

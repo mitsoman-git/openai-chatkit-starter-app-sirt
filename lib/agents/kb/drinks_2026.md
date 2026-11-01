@@ -1,8 +1,8 @@
 # Drinks, cocktails and spirits
 
-Source: the cocktail list and the drinks list published on our website (https://www.sirtaki-tavern.gr/wine-drinks/cocktails.html and https://www.sirtaki-tavern.gr/wine-drinks/drinks.htm). Wine has its own section (the wine list).
+Source: the cocktail list and the drinks list published on our website ([cocktail list](https://www.sirtaki-tavern.gr/wine-drinks/cocktails.html) and [drinks list](https://www.sirtaki-tavern.gr/wine-drinks/drinks.htm)). Wine has its own section (the wine list).
 
-PRICE RULE: only the cocktail prices written below are known. For every other drink in this section (beers, soft drinks, ouzo, raki, spirits, liqueurs, ciders, juices, water) you do NOT have a price: say so, and send the guest to the drinks page https://www.sirtaki-tavern.gr/wine-drinks/drinks.htm where the full price list is. Never estimate a drink price.
+PRICE RULE: only the cocktail prices written below are known. For every other drink in this section (beers, soft drinks, ouzo, raki, spirits, liqueurs, ciders, juices, water) you do NOT have a price: say so, and send the guest to the [drinks page](https://www.sirtaki-tavern.gr/wine-drinks/drinks.htm) where the full price list is. Never estimate a drink price.
 
 ## Cocktails (price in euro; classic cocktails are served on request)
 

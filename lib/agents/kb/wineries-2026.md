@@ -8,7 +8,7 @@
 **Description:** A third-generation family winery located in the mountainous village of Kato Asites, near Heraklion. The Diamantakis family combines deep viticultural knowledge with modern techniques to highlight indigenous grapes like Vidiano and Mandilari, producing expressive, terroir-driven wines.
 **Key Grapes:** Vidiano, Mandilari, Syrah, Assyrtiko
 **Wines in Menu:** Diamantopetra White (Vidiano, Assyrtiko), Diamantopetra Red (Syrah, Mandilari), Prinos Syrah
-**Website:** https://www.diamantakiswines.gr/en
+**Website:** [Visit the winery website](https://www.diamantakiswines.gr/en)
 
 ### Daskalaki Winery (Silva Daskalaki Winery)
 **Region:** PGI Crete
@@ -16,7 +16,7 @@
 **Description:** Situated in Siva village, the Silva Daskalaki estate pioneers organic and biodynamic viticulture on Crete. Focused on native varieties such as Vidiano, Liatiko, and Mandilari, the winery produces wines celebrated for their depth, purity, and distinctive sense of place.
 **Key Grapes:** Vidiano, Liatiko, Mandilari, Cabernet Sauvignon
 **Wines in Menu:** Enstikto Vidiano Vegan, Grifos Natural Wine Bio, Liastos (Naturally Sweet Red), Sera Vegan
-**Website:** https://www.silvawines.gr/en
+**Website:** [Visit the winery website](https://www.silvawines.gr/en)
 
 ### Efrosini Winery
 **Region:** PGI Crete
@@ -24,7 +24,7 @@
 **Description:** A small family-run estate in Kerasia, Heraklion, embracing organic cultivation and minimal intervention. Efrosini produces vegan and bio wines that emphasize aromatic expression and balance, reflecting the philosophy: 'Wine gladdens the heart.'
 **Key Grapes:** Liatiko, Cabernet Sauvignon, Chardonnay, Vidiano
 **Wines in Menu:** Liatiko Maceration Carbonic, Isorropia Bio Vegan, Sofia Bio Vegan
-**Website:** https://www.efrosiniwinery.gr/
+**Website:** [Visit the winery website](https://www.efrosiniwinery.gr/)
 
 ### Idaia Winery
 **Region:** PGI Crete
@@ -32,7 +32,7 @@
 **Description:** Family-owned since 2000 in the Malevizi/Heraklion region, Idaia focuses on indigenous Cretan varieties, crafting wines that showcase the island's unique terroir and traditional character.
 **Key Grapes:** Liatiko, Kotsifali, Mandilari, Malvasia Aromatica, Muscat of Spina
 **Wines in Menu:** Ocean (Liatiko), Fresco Rosso (Kotsifali), Hestia (Mandilari), Malva de Crete, Venerata Rosa
-**Website:** https://www.idaiawinery.com/en/main-home-english/
+**Website:** [Visit the winery website](https://www.idaiawinery.com/en/main-home-english/)
 
 ### Haralambakis Winery (Haralabakis Winery)
 **Region:** PGI Crete
@@ -40,7 +40,7 @@
 **Description:** Family vineyard in Avli, Heraklion region, reviving local varieties and producing special wines under the 'Praxis' label, combining tradition and modern winemaking techniques.
 **Key Grapes:** Assyrtiko, Moschato Spinas, Liatiko
 **Wines in Menu:** Assyrtiko Crete, Moschato Spinas, Blanc de Noir (Liatiko)
-**Website:** https://www.haralabakis.wine/en/
+**Website:** [Visit the winery website](https://www.haralabakis.wine/en/)
 
 ### Klados Winery
 **Region:** PGI Crete
@@ -66,7 +66,7 @@
 **Description:** Family-owned winery in western Crete focusing on organic cultivation and Syrah.
 **Key Grapes:** Syrah
 **Wines in Menu:** Nostos Syrah Bio
-**Website:** https://www.manousakiswinery.com/
+**Website:** [Visit the winery website](https://www.manousakiswinery.com/)
 
 ### Stilianou Winery
 **Region:** PGI Crete
@@ -85,14 +85,14 @@
 **Description:** Founded in 2005 in Nemea, this family winery emphasizes Agiorgitiko and sustainable viticulture. Bairaktaris produces modern wines that reflect the unique terroir of the Peloponnese.
 **Key Grapes:** Agiorgitiko, Kidonitsa, Malagousia, Assyrtiko, Muscat of Alexandria
 **Wines in Menu:** Kidonitsa Rarus K, Monolithos Vegan, Rock n Rosé, 3/13 Off-Dry, Terra Opus Vegan
-**Website:** https://www.bairaktariswines.gr/en/
+**Website:** [Visit the winery website](https://www.bairaktariswines.gr/en/)
 
 ### Lantides Winery / Estate
 **Region:** PGI Peloponnese / PDO Nemea
 **Description:** Estate producing wines from Chardonnay and Agiorgitiko in Peloponnese, blending traditional methods with modern winemaking to achieve finesse and elegance.
 **Key Grapes:** Agiorgitiko, Moschofilero, Chardonnay, Assyrtiko
 **Wines in Menu:** Anosis (Moschofilero), Chrysampelo (Chardonnay), Abyss (Assyrtiko), Ergo Nemea (Agiorgitiko)
-**Website:** https://lantides.gr/en/
+**Website:** [Visit the winery website](https://lantides.gr/en/)
 
 ### Skouras Estate
 **Region:** PGI Peloponnese
@@ -105,14 +105,14 @@
 **Description:** Family-owned winery producing Agiorgitiko rosé with elegance and character, reflecting Peloponnesian tradition.
 **Key Grapes:** Agiorgitiko
 **Wines in Menu:** Saint George Rosé
-**Website:** https://www.f-iero.gr/indexe.html
+**Website:** [Visit the winery website](https://www.f-iero.gr/indexe.html)
 
 ### Rira Vineyards
 **Region:** PGI Peloponnese
 **Description:** Winery producing Pinot Noir and other varietals, blending local and international grape varieties to create fresh, vibrant wines.
 **Key Grapes:** Pinot Noir
 **Wines in Menu:** Solist Pinot Noir
-**Website:** http://www.rira.gr/
+**Website:** [Visit the winery website](http://www.rira.gr/)
 
 ### Markou Vineyards
 **Region:** PGI Attica
@@ -125,7 +125,7 @@
 **Description:** A boutique estate producing semi-dry Chardonnay in the Corinth region, focusing on balanced wines with aromatic complexity.
 **Key Grapes:** Chardonnay
 **Wines in Menu:** Late Harvest (Chardonnay Off-Dry)
-**Website:** https://oinopoiio-pirgaki.gr/
+**Website:** [Visit the winery website](https://oinopoiio-pirgaki.gr/)
 
 ---
 
@@ -137,14 +137,14 @@
 **Description:** A large family-owned estate in Vounaina, Thessaly, managing over 300 hectares of vineyards. Karipidis combines modern winemaking with regional tradition, producing expressive and elegant wines.
 **Key Grapes:** Sauvignon Blanc, Malagousia, Merlot, Sangiovese
 **Wines in Menu:** Sauvignon Blanc Fumé Bio, Malagousia Bio, Hydria Bio, Pink Pull Bio
-**Website:** https://www.karipidi.gr/en/
+**Website:** [Visit the winery website](https://www.karipidi.gr/en/)
 
 ### Tsililis Winery
 **Region:** PGI Thessaly / PGI Meteora
 **Description:** Thessalian winery producing wines from Gewürztraminer, Xinomavro, and Limniona.
 **Key Grapes:** Gewürztraminer, Xinomavro, Limniona
 **Wines in Menu:** 100% Gewürztraminer, Theopetra Xinomavro Bio, Limniona Theopetra Bio, Ktima Theopetra Bio (Rosé)
-**Website:** https://www.tsililis.gr/
+**Website:** [Visit the winery website](https://www.tsililis.gr/)
 
 ### Gkirlemis Winery
 **Region:** PGI Thessaly
@@ -163,14 +163,14 @@
 **Description:** Small winery producing Mouchtaro and other regional varieties in Central Greece, emphasizing authentic expression and artisanal winemaking.
 **Key Grapes:** Malagousia, Sauvignon Blanc, Mouchtaro
 **Wines in Menu:** Stigmata (Malagousia, Sauvignon Blanc), Mouchtaro
-**Website:** https://www.thivaikigi.com/
+**Website:** [Visit the winery website](https://www.thivaikigi.com/)
 
 ### Ampeloeis Estate (Ampelois Estate)
 **Region:** PGI Pangeo, Greece
 **Description:** Estate focusing on Sauvignon Blanc and Assyrtiko from the northern Pangeo region. Known for crisp and aromatic wines that express the local terroir.
 **Key Grapes:** Sauvignon Blanc, Assyrtiko
 **Wines in Menu:** Symfonia
-**Website:** https://ampeloeis.gr/en/
+**Website:** [Visit the winery website](https://ampeloeis.gr/en/)
 
 ### Chatzivaritis Estate
 **Region:** PDO Goumenissa, Greece
@@ -189,7 +189,7 @@
 **Description:** Producers of Xinomavro wines in the northern Amynteo region, crafting structured and age-worthy wines with regional authenticity.
 **Key Grapes:** Xinomavro
 **Wines in Menu:** Xinomavro
-**Website:** https://vegoritis.com/en/
+**Website:** [Visit the winery website](https://vegoritis.com/en/)
 
 ---
 
@@ -236,7 +236,7 @@
 **Description:** Cooperative winery on Samos island, producing sweet Muscat wines and dry styles, maintaining the island's centuries-old winemaking tradition.
 **Key Grapes:** Muscat Blanc à Petits Grains
 **Wines in Menu:** Samos Vin Doux
-**Website:** https://www.eossamos.gr/
+**Website:** [Visit the winery website](https://www.eossamos.gr/)
 
 ---
 
@@ -257,7 +257,7 @@
 **Description:** Italian luxury producer of wines and spirits, famous for Prosecco and Pinot Grigio, combining elegance with tradition.
 **Key Grapes:** Glera (Prosecco), Moscato, Pinot Grigio
 **Wines in Menu:** Prosecco Poeti Doc, Moscato Petalo, Pinot Grigio, Pinot Grigio Rosé
-**Website:** https://www.bottega.it/
+**Website:** [Visit the winery website](https://www.bottega.it/)
 
 ### Cantine Paradiso
 **Region:** Puglia IGT, Italy
@@ -282,7 +282,7 @@
 **Description:** Historic Tuscan estate in Castellina in Chianti, producing Sangiovese-based Chianti Classico with balance, elegance, and regional authenticity.
 **Key Grapes:** Sangiovese
 **Wines in Menu:** Chianti Classico
-**Website:** https://www.castellare.it/en/
+**Website:** [Visit the winery website](https://www.castellare.it/en/)
 
 ### La Morandina
 **Region:** Barbaresco DOCG, Piemonte, Italy
@@ -295,7 +295,7 @@
 **Description:** Prestigious Barolo producer in Piemonte, specializing in Nebbiolo wines with structure, finesse, and age-worthy potential.
 **Key Grapes:** Nebbiolo
 **Wines in Menu:** Barolo
-**Website:** https://www.paoloscavino.com/
+**Website:** [Visit the winery website](https://www.paoloscavino.com/)
 
 ### Canalicchio di Sopra
 **Region:** Brunello di Montalcino DOCG, Tuscany, Italy
@@ -348,7 +348,7 @@
 **Description:** Historic family estate in Chablis, Burgundy, producing pure and mineral-driven Chardonnay from prestigious vineyards.
 **Key Grapes:** Chardonnay
 **Wines in Menu:** Chablis
-**Website:** https://www.williamfevre.com/en/
+**Website:** [Visit the winery website](https://www.williamfevre.com/en/)
 
 ### Maison Perron de Mypont
 **Region:** Bourgogne AOC, Burgundy, France
@@ -385,14 +385,14 @@
 **Description:** Renowned Provençal estate famous for its elegant rosés and Cinsault/Grenache/Syrah blends, blending terroir-driven quality with celebrity heritage.
 **Key Grapes:** Grenache, Cinsault, Syrah, Rolle
 **Wines in Menu:** Miraval Rosé
-**Website:** https://www.miraval.com/
+**Website:** [Visit the winery website](https://www.miraval.com/)
 
 ### Château Routas
 **Region:** Côtes de Provence AOC, France
 **Description:** Boutique estate in Provence producing delicate rosé wines from Cinsault and Grenache grapes, emphasizing freshness and elegance.
 **Key Grapes:** Cinsault, Grenache
 **Wines in Menu:** Routas Rosé Vegan
-**Website:** https://www.chateauroutas.com/
+**Website:** [Visit the winery website](https://www.chateauroutas.com/)
 
 ### Château Talbot
 **Region:** Saint-Julien AOC (4ème Grand Cru Classé), Bordeaux, France
@@ -409,7 +409,7 @@
 **Description:** Spanish winery in Rioja producing Tempranillo and Graciano blends, renowned for vibrant, structured wines that reflect the terroir.
 **Key Grapes:** Tempranillo, Graciano
 **Wines in Menu:** Pies Negros
-**Website:** https://www.artuke.com/
+**Website:** [Visit the winery website](https://www.artuke.com/)
 
 ### Familia Torres
 **Region:** Spain
@@ -426,7 +426,7 @@
 **Description:** Boutique Marlborough wine brand specializing in vibrant, aromatic Sauvignon Blancs and Pinot Noir, reflecting New Zealand's pristine terroir.
 **Key Grapes:** Sauvignon Blanc, Pinot Noir
 **Wines in Menu:** Sauvignon Blanc NZ, Pinot Noir
-**Website:** https://www.julestaylor.co.nz/
+**Website:** [Visit the winery website](https://www.julestaylor.co.nz/)
 
 ---
 
@@ -447,7 +447,7 @@
 **Description:** Premier Mendoza winery specializing in Malbec and old-vine terroir expression, combining traditional Argentine winemaking with modern refinement.
 **Key Grapes:** Malbec
 **Wines in Menu:** Malbec
-**Website:** https://www.altoslashormigas.com/
+**Website:** [Visit the winery website](https://www.altoslashormigas.com/)
 
 ### Bodega Aleanna
 **Region:** Mendoza, Argentina
@@ -464,7 +464,7 @@
 **Description:** Boutique Shiraz producer from Barossa Valley, crafting rich, intense wines that reflect the iconic terroir of Australia.
 **Key Grapes:** Shiraz
 **Wines in Menu:** Mother's Milk Shiraz
-**Website:** https://firstdropwines.com/
+**Website:** [Visit the winery website](https://firstdropwines.com/)
 
 ---
 

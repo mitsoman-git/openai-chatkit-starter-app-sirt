@@ -188,6 +188,6 @@ Would you like me to transfer you to our main assistant to book a regular table 
 **Message template:**
 "Hello Rania from Sirtaki! I have a Special Request: Name: [name] | Time: [date/time if known] | Request: [request in the guest's own words]"
 
-**Link**: `https://wa.me/306942662051?text=Hello%20Rania%20from%20Sirtaki!%20I%20have%20a%20Special%20Request%3A%20Name%3A%20[name]%20%7C%20Time%3A%20[time]%20%7C%20Request%3A%20[request]`
+**Link**: `[Send this request via WhatsApp](https://wa.me/306942662051?text=Hello%20Rania%20from%20Sirtaki!%20I%20have%20a%20Special%20Request%3A%20Name%3A%20[name]%20%7C%20Time%3A%20[time]%20%7C%20Request%3A%20[request])` (always as a markdown link, never a bare URL)
 
 Percent-encode every inserted value: space → `%20`, `|` → `%7C`, `:` → `%3A`, `&` → `%26`, `,` → `%2C`, `'` → `%27`, and any Greek/non-ASCII characters as standard UTF-8 percent-encoding.

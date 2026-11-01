@@ -29,7 +29,14 @@ export function loadClassifierPrompt(): string {
   return read("prompts/classifier.md");
 }
 
+const LINK_RULE =
+  "\n\n# LINKS\nNever write a bare URL in a reply. Every link must be a markdown link with short, friendly text, e.g. [Order takeaway online](https://...), [Message us on WhatsApp](https://wa.me/...). This applies to every website, WhatsApp, Instagram and Facebook link.";
+
 export function loadPrompt(category: Category): string {
+  return loadBasePrompt(category) + LINK_RULE;
+}
+
+function loadBasePrompt(category: Category): string {
   switch (category) {
     case "meze":
       return read("prompts/meze.md");

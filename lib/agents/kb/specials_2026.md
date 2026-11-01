@@ -3,7 +3,7 @@
 Facts about each special dish, from the specials pages of our website. Each section names the page where the guest can see photos and details; always give that page link when you talk about the dish. Prices and weights are exactly as written. Do not add facts that are not here.
 
 ## Specials overview
-Page: https://www.sirtaki-tavern.gr/specials/
+Page: [Read more on our website](https://www.sirtaki-tavern.gr/specials/)
 
 # Our Specials
 
@@ -32,7 +32,7 @@ Traditional Greek and Cretan dishes – Kleftiko, Moussaka, Soutzoukakia, Villag
 **Explore Greek Specialties ** ](greek/)
 
 ## Greek Specialties overview
-Page: https://www.sirtaki-tavern.gr/specials/greek/
+Page: [Read more on our website](https://www.sirtaki-tavern.gr/specials/greek/)
 
 # Greek Specialties
 
@@ -59,7 +59,7 @@ At Sirtaki Tavern in Analipsi, Greek specialties are part of a family-run kitche
     What to Order Not sure what to order? Build your perfect Cretan dinner in a few taps Plan my dinner
 
 ## Black Angus Cuts & Steaks overview
-Page: https://www.sirtaki-tavern.gr/specials/black-angus-cuts.html
+Page: [Read more on our website](https://www.sirtaki-tavern.gr/specials/black-angus-cuts.html)
 
 # Black Angus Premium Cuts
 
@@ -103,7 +103,7 @@ We offer authentic homemade quality dishes! Popular Greek starters and specialti
  View our Menu
 
 ## Cretan Spare Ribs
-Page: https://www.sirtaki-tavern.gr/specials/greek/cretan-spare-ribs.html
+Page: [Read more on our website](https://www.sirtaki-tavern.gr/specials/greek/cretan-spare-ribs.html)
 
 
 ### Slow-Baked Pork Ribs with Wild Thyme Honey
@@ -182,7 +182,7 @@ Where can I eat Cretan spare ribs in Hersonissos?
 They are served at Sirtaki Tavern in the centre of Analipsi, near Hersonissos, Crete. Find us on Google Maps.
 
 ## Kleftiko Lamb
-Page: https://www.sirtaki-tavern.gr/specials/greek/kleftiko.html
+Page: [Read more on our website](https://www.sirtaki-tavern.gr/specials/greek/kleftiko.html)
 
 
 ### Slow-Baked Greek Lamb, Full of Mediterranean Flavour
@@ -261,7 +261,7 @@ Is Kleftiko available for takeaway?
 For takeaway availability, please contact the restaurant directly when you order.
 
 ## Minoan Special
-Page: https://www.sirtaki-tavern.gr/specials/greek/minoan-special.html
+Page: [Read more on our website](https://www.sirtaki-tavern.gr/specials/greek/minoan-special.html)
 
 
 ### A Spicy Chicken Dish Inspired by Crete
@@ -342,7 +342,7 @@ Where can I try the Minoan Special in Hersonissos?
 It is served at Sirtaki Tavern in the centre of Analipsi, near Hersonissos, Crete. Find us on Google Maps.
 
 ## Greek Moussaka
-Page: https://www.sirtaki-tavern.gr/specials/greek/moussaka.html
+Page: [Read more on our website](https://www.sirtaki-tavern.gr/specials/greek/moussaka.html)
 
 
 ### A Classic Greek Comfort Food
@@ -421,7 +421,7 @@ Where can I eat traditional Moussaka in Hersonissos?
 It is served at Sirtaki Tavern in the centre of Analipsi, near Hersonissos, Crete. Find us on Google Maps.
 
 ## Soutzoukakia
-Page: https://www.sirtaki-tavern.gr/specials/greek/soutzoukakia.html
+Page: [Read more on our website](https://www.sirtaki-tavern.gr/specials/greek/soutzoukakia.html)
 
 
 ### Izmir-Style Beef Meatballs with Cumin & Garlic
@@ -500,7 +500,7 @@ Where can I eat Soutzoukakia in Hersonissos?
 They are served at Sirtaki Tavern in the centre of Analipsi, near Hersonissos, Crete. Find us on Google Maps.
 
 ## Village Chicken
-Page: https://www.sirtaki-tavern.gr/specials/greek/village-chicken.html
+Page: [Read more on our website](https://www.sirtaki-tavern.gr/specials/greek/village-chicken.html)
 
 
 ### Roasted Chicken with Lemon, Mustard & Mediterranean Spices
@@ -579,7 +579,7 @@ Where can I eat roasted chicken in Hersonissos?
 The Village Chicken is served at Sirtaki Tavern in the centre of Analipsi, near Hersonissos, Crete. Find us on Google Maps.
 
 ## Black Angus Burger (300gr)
-Page: https://www.sirtaki-tavern.gr/specials/blackangus/black-angus-burger.html
+Page: [Read more on our website](https://www.sirtaki-tavern.gr/specials/blackangus/black-angus-burger.html)
 
 
 ### Black Angus Burger in Hersonissos - Sirtaki Tavern, Analipsi Crete
@@ -659,7 +659,7 @@ Where can I eat a Black Angus burger in Hersonissos?
 At Sirtaki Tavern in the centre of Analipsi, near Hersonissos, Crete. Find us on Google Maps.
 
 ## Black Angus Fillet Steak (250gr)
-Page: https://www.sirtaki-tavern.gr/specials/blackangus/black-angus-fillet-steak.html
+Page: [Read more on our website](https://www.sirtaki-tavern.gr/specials/blackangus/black-angus-fillet-steak.html)
 
 
 ### Black Angus Fillet Steak in Hersonissos - Sirtaki Tavern, Analipsi Crete
@@ -747,7 +747,7 @@ Where can I eat Black Angus Fillet in Hersonissos?
 At Sirtaki Tavern in the centre of Analipsi, near Hersonissos, Crete. Find us on Google Maps.
 
 ## Black Angus Prime Rib Eye (500gr)
-Page: https://www.sirtaki-tavern.gr/specials/blackangus/black-angus-prime-rib-steak.html
+Page: [Read more on our website](https://www.sirtaki-tavern.gr/specials/blackangus/black-angus-prime-rib-steak.html)
 
 
 ### Black Angus Prime Rib Eye in Hersonissos - Sirtaki Tavern, Analipsi Crete
@@ -843,7 +843,7 @@ Where can I eat Black Angus Prime Rib in Hersonissos?
 At Sirtaki Tavern in the centre of Analipsi, near Hersonissos, Crete. Find us on Google Maps.
 
 ## Black Angus Ribeye Steak in Analipsi
-Page: https://www.sirtaki-tavern.gr/specials/blackangus/black-angus-ribeye-steak.html
+Page: [Read more on our website](https://www.sirtaki-tavern.gr/specials/blackangus/black-angus-ribeye-steak.html)
 
 
 ### Black Angus Ribeye Steak in Hersonissos - Sirtaki Tavern, Analipsi Crete
@@ -937,7 +937,7 @@ Where can I eat Black Angus Ribeye in Hersonissos?
 At Sirtaki Tavern in the centre of Analipsi, near Hersonissos, Crete. Find us on Google Maps.
 
 ## Black Angus Sirtaki Souvlaki XXL (400gr)
-Page: https://www.sirtaki-tavern.gr/specials/blackangus/black-angus-souvlaki-xxl.html
+Page: [Read more on our website](https://www.sirtaki-tavern.gr/specials/blackangus/black-angus-souvlaki-xxl.html)
 
 
 ### Black Angus Souvlaki XXL in Hersonissos - Sirtaki Tavern, Analipsi Crete
@@ -1028,7 +1028,7 @@ Where can I eat beef souvlaki in Hersonissos?
 At Sirtaki Tavern in the centre of Analipsi, near Hersonissos, Crete. Find us on Google Maps.
 
 ## Black Angus T-Bone Steak (650gr)
-Page: https://www.sirtaki-tavern.gr/specials/blackangus/black-angus-tbone-steak.html
+Page: [Read more on our website](https://www.sirtaki-tavern.gr/specials/blackangus/black-angus-tbone-steak.html)
 
 
 ### Black Angus T-Bone Steak in Hersonissos - Sirtaki Tavern, Analipsi Crete
@@ -1122,7 +1122,7 @@ Where can I eat a Black Angus T-Bone in Hersonissos?
 At Sirtaki Tavern in the centre of Analipsi, near Hersonissos, Crete. Find us on Google Maps.
 
 ## Black Angus Tomahawk Steak (1.2kg)
-Page: https://www.sirtaki-tavern.gr/specials/blackangus/black-angus-tomahawk-steak.html
+Page: [Read more on our website](https://www.sirtaki-tavern.gr/specials/blackangus/black-angus-tomahawk-steak.html)
 
 
 ### 25-Day Dry Aged Cretan Black Angus - Hersonissos, Crete

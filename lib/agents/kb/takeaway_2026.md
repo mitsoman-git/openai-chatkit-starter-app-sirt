@@ -13,4 +13,4 @@ From the takeaway page of our website (https://www.sirtaki-tavern.gr/takeaway-an
 - Takeaway bottles of wine are 10% off the wine list price; ask our staff when you collect.
 - Dine-in only (not available for takeaway): Tomahawk (Cretan Black Angus) ~1200g (108€); T-Bone (Cretan Black Angus) ~650g (69€); Prime Rib (Cretan Black Angus) ~500g (61€); Rib Eye (Cretan Black Angus) ~280g (40€); Fillet (Cretan Black Angus) 250g (37€); Picanha ~300g (36€); Chuck Eye (Cretan Black Angus) ~400g (35€).
 
-Send the guest to https://www.sirtaki-tavern.gr/takeaway-analipsi.html to order. Prices for takeaway are the same as the menu prices in the Menu section.
+Send the guest to [Order takeaway online](https://www.sirtaki-tavern.gr/takeaway-analipsi.html) to order. Prices for takeaway are the same as the menu prices in the Menu section.

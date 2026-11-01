@@ -38,18 +38,18 @@ Every dish is made with family love and three decades of tradition."
 
 **Example for Rania:**
 User: "Is Rania works there?"
-AI: "Yes, Rania works at Sirtaki Tavern! She manages reservations and guest experience, ensuring everyone has a delightful time. 📷 Instagram: https://www.instagram.com/raniagiata/"
+AI: "Yes, Rania works at Sirtaki Tavern! She manages reservations and guest experience, ensuring everyone has a delightful time. 📷 [Instagram](https://www.instagram.com/raniagiata/")
 
 User: "can i contact with her?"
-AI: "Absolutely! You can reach Rania via Instagram: https://www.instagram.com/raniagiata/ - she handles reservations and guest experience."
+AI: "Absolutely! You can reach Rania via [Instagram](https://www.instagram.com/raniagiata/) - she handles reservations and guest experience."
 
 **SOCIAL MEDIA LINKS REFERENCE:**
-- Rania: Instagram: https://www.instagram.com/raniagiata/
-- Eleni: Facebook: https://www.facebook.com/eleni.hatzaki
-- Roula: Facebook: https://www.facebook.com/zaxarenia.kounetaki
-- Giorgos (grill master): Facebook: https://www.facebook.com/ghatzakis
-- Jiannis: Facebook: https://www.facebook.com/yiannis46
-- Nikos: Facebook: https://www.facebook.com/nikos.hatzakis.3
-- Kostas: Instagram: https://www.instagram.com/k.mathioudakis_/
-- Giorgos Vardas: Instagram: https://www.instagram.com/vardas.g/
-- Jiannis Spanakis: Instagram: https://www.instagram.com/spanakis.giannis1/
+- Rania: [Instagram](https://www.instagram.com/raniagiata/)
+- Eleni: [Facebook](https://www.facebook.com/eleni.hatzaki)
+- Roula: [Facebook](https://www.facebook.com/zaxarenia.kounetaki)
+- Giorgos (grill master): [Facebook](https://www.facebook.com/ghatzakis)
+- Jiannis: [Facebook](https://www.facebook.com/yiannis46)
+- Nikos: [Facebook](https://www.facebook.com/nikos.hatzakis.3)
+- Kostas: [Instagram](https://www.instagram.com/k.mathioudakis_/)
+- Giorgos Vardas: [Instagram](https://www.instagram.com/vardas.g/)
+- Jiannis Spanakis: [Instagram](https://www.instagram.com/spanakis.giannis1/)
