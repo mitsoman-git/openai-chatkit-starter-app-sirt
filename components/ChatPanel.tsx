@@ -1,7 +1,7 @@
 "use client";
 
 import { Fragment, useEffect, useRef, useState } from "react";
-import { ERROR_REPLY, GREETING, PLACEHOLDER_INPUT, STARTER_PROMPTS } from "@/lib/config";
+import { UI, langFromSearch, type Lang } from "@/lib/i18n";
 import { tokenizeLine } from "@/lib/formatReply";
 import { loadChat, saveChat } from "@/lib/chatStore";
 import type { Turn } from "@/lib/types";
@@ -45,9 +45,12 @@ export function ChatPanel() {
   const [pending, setPending] = useState(false);
   const endRef = useRef<HTMLDivElement>(null);
   const [hydrated, setHydrated] = useState(false);
+  const [lang, setLang] = useState<Lang>("en");
+  const ui = UI[lang];
 
   // The chat lives in an iframe that reloads on every page of the site: keep the conversation for this tab.
   useEffect(() => {
+    setLang(langFromSearch(window.location.search));
     try {
       const saved = loadChat(window.sessionStorage);
       if (saved) {
@@ -80,7 +83,7 @@ export function ChatPanel() {
     setTurns([...history, { role: "user", text: message }]);
     setInput("");
     setPending(true);
-    let reply = ERROR_REPLY;
+    let reply = ui.error;
     try {
       const res = await fetch("/api/chat", {
         method: "POST",
@@ -92,7 +95,7 @@ export function ChatPanel() {
         if (data.reply) reply = data.reply;
       }
     } catch {
-      reply = ERROR_REPLY;
+      reply = ui.error;
     }
     setTurns((current) => [...current, { role: "assistant", text: reply }]);
     setPending(false);
@@ -105,6 +108,8 @@ export function ChatPanel() {
     setInput("");
   }
 
+  if (!hydrated) return <div className="h-full" />;
+
   const bubble = "max-w-[85%] rounded-2xl px-4 py-2 text-[15px] leading-relaxed";
   const assistantBubble = "self-start bg-white text-slate-900 dark:bg-slate-800 dark:text-slate-100";
   const userBubble = "self-end bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-900";
@@ -113,7 +118,7 @@ export function ChatPanel() {
     <div className="flex h-full flex-col">
       <div className="flex-1 overflow-y-auto overscroll-contain px-4 py-4">
         <div className="mx-auto flex max-w-3xl flex-col gap-3">
-          <div className={`${bubble} ${assistantBubble}`}>{GREETING}</div>
+          <div className={`${bubble} ${assistantBubble}`}>{ui.greeting}</div>
           {turns.map((t, i) => (
             <div key={i} className={`${bubble} ${t.role === "user" ? userBubble : assistantBubble}`}>
               <ReplyText text={t.text} />
@@ -126,7 +131,7 @@ export function ChatPanel() {
           )}
           {turns.length === 0 && (
             <div className="flex flex-wrap gap-2 pt-2">
-              {STARTER_PROMPTS.map((s) => (
+              {ui.starters.map((s) => (
                 <button
                   key={s.label}
                   type="button"
@@ -156,7 +161,7 @@ export function ChatPanel() {
               disabled={pending}
               className="text-xs text-slate-500 underline disabled:opacity-40 dark:text-slate-400"
             >
-              New chat
+              {ui.newChat}
             </button>
           </div>
         )}
@@ -164,7 +169,7 @@ export function ChatPanel() {
           <input
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder={PLACEHOLDER_INPUT}
+            placeholder={ui.placeholder}
             maxLength={1000}
             className="min-w-0 flex-1 rounded-full border border-slate-300 bg-transparent px-4 py-2 text-base text-slate-900 outline-none dark:border-slate-700 dark:text-slate-100"
           />
@@ -173,7 +178,7 @@ export function ChatPanel() {
             disabled={pending || input.trim() === ""}
             className="rounded-full bg-slate-900 px-5 py-2 text-sm font-medium text-white disabled:opacity-40 dark:bg-slate-100 dark:text-slate-900"
           >
-            Send
+            {ui.send}
           </button>
         </div>
       </form>
