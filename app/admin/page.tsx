@@ -3,6 +3,7 @@ import { createDb } from "../../lib/db";
 import { athensToday, isDay, isMonth, monthGrid, monthRange, shiftMonth } from "../../lib/adminCalendar";
 import { deleteDayAction, deleteSessionAction, toggleStarAction } from "./actions";
 import { ConfirmButton } from "./ConfirmButton";
+import { logoutAction } from "./login/actions";
 
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "Sirtaki chat log", robots: { index: false, follow: false } };
@@ -30,7 +31,12 @@ function Shell({ children }: { children: React.ReactNode }) {
           <a href="/admin" className="text-lg font-semibold tracking-tight text-stone-900">
             Sirtaki · Chat conversations
           </a>
-          <span className="text-xs text-stone-500">Times in Athens</span>
+          <span className="flex items-center gap-3 text-xs text-stone-500">
+            Times in Athens
+            <form action={logoutAction}>
+              <button type="submit" className="rounded border border-stone-300 px-2 py-1 text-stone-700">Sign out</button>
+            </form>
+          </span>
         </div>
       </header>
       <main className="mx-auto max-w-3xl px-4 py-6">{children}</main>
