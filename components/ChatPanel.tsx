@@ -50,10 +50,10 @@ function ReplyText({ text, lang }: { text: string; lang: Lang }) {
                 const lead = parseLeadClick(btn.link.href);
                 if (lead) reportLeadClick(lead, lang);
               }}
-              className={`mt-2 flex w-fit max-w-full items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold no-underline ${
+              className={`mt-4 flex min-h-11 w-64 max-w-full items-center justify-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold no-underline ${
                 wa
-                  ? "bg-emerald-600 text-white"
-                  : "border border-slate-400 text-slate-800 dark:border-slate-500 dark:text-slate-100"
+                  ? "border-emerald-600 bg-emerald-600 text-white"
+                  : "border-slate-400 text-slate-800 dark:border-slate-500 dark:text-slate-100"
               }`}
             >
               {btn.emoji && <span aria-hidden="true">{btn.emoji}</span>}
