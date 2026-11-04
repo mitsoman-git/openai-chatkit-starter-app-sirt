@@ -3,10 +3,11 @@
 import { Fragment, useEffect, useRef, useState } from "react";
 import { UI, langFromSearch, type Lang } from "@/lib/i18n";
 import { tokenizeLine } from "@/lib/formatReply";
+import { parseLeadClick, reportLeadClick } from "@/lib/leadClick";
 import { loadChat, saveChat } from "@/lib/chatStore";
 import type { Turn } from "@/lib/types";
 
-function ReplyText({ text }: { text: string }) {
+function ReplyText({ text, lang }: { text: string; lang: Lang }) {
   return (
     <>
       {text.split("\n").map((line, i) => (
@@ -24,6 +25,10 @@ function ReplyText({ text }: { text: string }) {
                 href={t.href}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => {
+                  const lead = parseLeadClick(t.href);
+                  if (lead) reportLeadClick(lead, lang);
+                }}
                 className="break-words underline underline-offset-2"
               >
                 {t.text}
@@ -121,7 +126,7 @@ export function ChatPanel() {
           <div className={`${bubble} ${assistantBubble}`}>{ui.greeting}</div>
           {turns.map((t, i) => (
             <div key={i} className={`${bubble} ${t.role === "user" ? userBubble : assistantBubble}`}>
-              <ReplyText text={t.text} />
+              <ReplyText text={t.text} lang={lang} />
             </div>
           ))}
           {pending && (
