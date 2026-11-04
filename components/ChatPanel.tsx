@@ -21,23 +21,35 @@ const EMOJI_ONLY = /^[\s\p{Extended_Pictographic}\uFE0F\u200D]*$/u;
 type Token = ReturnType<typeof tokenizeLine>[number];
 
 /** A line made only of an emoji and one link (e.g. "📱 [Send on WhatsApp](...)") is shown as a button. */
-function buttonOf(tokens: Token[]): { emoji: string; link: Extract<Token, { type: "link" }> } | null {
+function buttonOf(
+  tokens: Token[],
+): { emoji: string; link: Extract<Token, { type: "link" }> } | null {
   const links = tokens.filter((t) => t.type === "link");
   if (links.length !== 1) return null;
   const rest = tokens.filter((t) => t.type !== "link");
-  if (!rest.every((t) => t.type === "text" && EMOJI_ONLY.test(t.text))) return null;
-  const emoji = rest.map((t) => (t.type === "text" ? t.text.trim() : "")).join("");
+  if (!rest.every((t) => t.type === "text" && EMOJI_ONLY.test(t.text)))
+    return null;
+  const emoji = rest
+    .map((t) => (t.type === "text" ? t.text.trim() : ""))
+    .join("");
   return { emoji, link: links[0] as Extract<Token, { type: "link" }> };
 }
 
 function ReplyText({ text, lang }: { text: string; lang: Lang }) {
   const lines = text.split("\n").map((line) => tokenizeLine(line));
   const buttons = lines.map(buttonOf);
+  const isStaff = (tokens: Token[]) =>
+    tokens.some(
+      (t) => t.type === "image" && t.src.includes("/assets/img/staff/"),
+    );
+  const hasStaff = lines.some(isStaff);
   return (
     <>
       {lines.map((tokens, i) => {
         const btn = buttons[i];
-        const spacer = i > 0 && !btn && !buttons[i - 1] ? <br /> : null;
+        const staff = isStaff(tokens);
+        const spacer =
+          i > 0 && !btn && !buttons[i - 1] && !hasStaff ? <br /> : null;
         if (btn) {
           const wa = btn.link.href.startsWith("https://wa.me/");
           return (
@@ -50,7 +62,7 @@ function ReplyText({ text, lang }: { text: string; lang: Lang }) {
                 const lead = parseLeadClick(btn.link.href);
                 if (lead) reportLeadClick(lead, lang);
               }}
-              className={`mt-4 flex min-h-11 w-64 max-w-full items-center justify-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold no-underline ${
+              className={`mt-4 flex min-h-11 w-64 ${hasStaff ? "mx-auto" : ""} max-w-full items-center justify-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold no-underline ${
                 wa
                   ? "border-emerald-600 bg-emerald-600 text-white"
                   : "border-slate-400 text-slate-800 dark:border-slate-500 dark:text-slate-100"
@@ -64,36 +76,64 @@ function ReplyText({ text, lang }: { text: string; lang: Lang }) {
         return (
           <Fragment key={i}>
             {spacer}
-            {tokens.map((t, j) =>
-              t.type === "bold" ? (
-                <strong key={j}>{t.text}</strong>
-              ) : t.type === "image" && t.src.includes("/assets/img/staff/") ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img key={j} src={t.src} alt={t.alt} width={56} height={56} className="mr-3 inline-block h-14 w-14 rounded-full object-cover align-middle ring-2 ring-emerald-600" />
-              ) : t.type === "image" ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img key={j} src={t.src} alt={t.alt} className="my-2 block max-h-60 max-w-full rounded-lg object-cover" loading="lazy" />
-              ) : t.type === "link" ? (
-                <a
-                  key={j}
-                  href={t.href}
-                  target={isSiteLink(t.href) ? "_top" : "_blank"}
-                  rel="noopener noreferrer"
-                  onClick={() => {
-                    const lead = parseLeadClick(t.href);
-                    if (lead) reportLeadClick(lead, lang);
-                  }}
-                  className="break-words underline underline-offset-2"
-                >
-                  {t.text}
-                </a>
-              ) : (
-                <Fragment key={j}>{t.text}</Fragment>
-              ),
+            {hasStaff ? (
+              <div
+                className={`min-h-[1.2em] text-center ${staff ? "my-3" : ""}`}
+              >
+                {lineContent(tokens, lang)}
+              </div>
+            ) : (
+              lineContent(tokens, lang)
             )}
           </Fragment>
         );
       })}
+    </>
+  );
+}
+function lineContent(tokens: Token[], lang: Lang) {
+  return (
+    <>
+      {tokens.map((t, j) =>
+        t.type === "bold" ? (
+          <strong key={j}>{t.text}</strong>
+        ) : t.type === "image" && t.src.includes("/assets/img/staff/") ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            key={j}
+            src={t.src}
+            alt={t.alt}
+            width={56}
+            height={56}
+            className="mx-auto mb-2 block h-16 w-16 rounded-full object-cover ring-2 ring-emerald-600"
+          />
+        ) : t.type === "image" ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            key={j}
+            src={t.src}
+            alt={t.alt}
+            className="my-2 block max-h-60 max-w-full rounded-lg object-cover"
+            loading="lazy"
+          />
+        ) : t.type === "link" ? (
+          <a
+            key={j}
+            href={t.href}
+            target={isSiteLink(t.href) ? "_top" : "_blank"}
+            rel="noopener noreferrer"
+            onClick={() => {
+              const lead = parseLeadClick(t.href);
+              if (lead) reportLeadClick(lead, lang);
+            }}
+            className="break-words underline underline-offset-2"
+          >
+            {t.text}
+          </a>
+        ) : (
+          <Fragment key={j}>{t.text}</Fragment>
+        ),
+      )}
     </>
   );
 }
@@ -170,9 +210,12 @@ export function ChatPanel() {
 
   if (!hydrated) return <div className="h-full" />;
 
-  const bubble = "max-w-[85%] rounded-2xl px-4 py-2 text-[15px] leading-relaxed";
-  const assistantBubble = "self-start bg-white text-slate-900 dark:bg-slate-800 dark:text-slate-100";
-  const userBubble = "self-end bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-900";
+  const bubble =
+    "max-w-[85%] rounded-2xl px-4 py-2 text-[15px] leading-relaxed";
+  const assistantBubble =
+    "self-start bg-white text-slate-900 dark:bg-slate-800 dark:text-slate-100";
+  const userBubble =
+    "self-end bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-900";
 
   return (
     <div className="flex h-full flex-col">
@@ -180,7 +223,10 @@ export function ChatPanel() {
         <div className="mx-auto flex max-w-3xl flex-col gap-3">
           <div className={`${bubble} ${assistantBubble}`}>{ui.greeting}</div>
           {turns.map((t, i) => (
-            <div key={i} className={`${bubble} ${t.role === "user" ? userBubble : assistantBubble}`}>
+            <div
+              key={i}
+              className={`${bubble} ${t.role === "user" ? userBubble : assistantBubble}`}
+            >
               <ReplyText text={t.text} lang={lang} />
             </div>
           ))}
