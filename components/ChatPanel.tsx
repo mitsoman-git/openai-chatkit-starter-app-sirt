@@ -16,38 +16,81 @@ function isSiteLink(href: string): boolean {
   }
 }
 
+const EMOJI_ONLY = /^[\s\p{Extended_Pictographic}\uFE0F\u200D]*$/u;
+
+type Token = ReturnType<typeof tokenizeLine>[number];
+
+/** A line made only of an emoji and one link (e.g. "📱 [Send on WhatsApp](...)") is shown as a button. */
+function buttonOf(tokens: Token[]): { emoji: string; link: Extract<Token, { type: "link" }> } | null {
+  const links = tokens.filter((t) => t.type === "link");
+  if (links.length !== 1) return null;
+  const rest = tokens.filter((t) => t.type !== "link");
+  if (!rest.every((t) => t.type === "text" && EMOJI_ONLY.test(t.text))) return null;
+  const emoji = rest.map((t) => (t.type === "text" ? t.text.trim() : "")).join("");
+  return { emoji, link: links[0] as Extract<Token, { type: "link" }> };
+}
+
 function ReplyText({ text, lang }: { text: string; lang: Lang }) {
+  const lines = text.split("\n").map((line) => tokenizeLine(line));
+  const buttons = lines.map(buttonOf);
   return (
     <>
-      {text.split("\n").map((line, i) => (
-        <Fragment key={i}>
-          {i > 0 && <br />}
-          {tokenizeLine(line).map((t, j) =>
-            t.type === "bold" ? (
-              <strong key={j}>{t.text}</strong>
-            ) : t.type === "image" ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img key={j} src={t.src} alt={t.alt} className="my-2 block max-h-60 max-w-full rounded-lg object-cover" loading="lazy" />
-            ) : t.type === "link" ? (
-              <a
-                key={j}
-                href={t.href}
-                target={isSiteLink(t.href) ? "_top" : "_blank"}
-                rel="noopener noreferrer"
-                onClick={() => {
-                  const lead = parseLeadClick(t.href);
-                  if (lead) reportLeadClick(lead, lang);
-                }}
-                className="break-words underline underline-offset-2"
-              >
-                {t.text}
-              </a>
-            ) : (
-              <Fragment key={j}>{t.text}</Fragment>
-            ),
-          )}
-        </Fragment>
-      ))}
+      {lines.map((tokens, i) => {
+        const btn = buttons[i];
+        const spacer = i > 0 && !btn && !buttons[i - 1] ? <br /> : null;
+        if (btn) {
+          const wa = btn.link.href.startsWith("https://wa.me/");
+          return (
+            <a
+              key={i}
+              href={btn.link.href}
+              target={isSiteLink(btn.link.href) ? "_top" : "_blank"}
+              rel="noopener noreferrer"
+              onClick={() => {
+                const lead = parseLeadClick(btn.link.href);
+                if (lead) reportLeadClick(lead, lang);
+              }}
+              className={`mt-2 flex w-fit max-w-full items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold no-underline ${
+                wa
+                  ? "bg-emerald-600 text-white"
+                  : "border border-slate-400 text-slate-800 dark:border-slate-500 dark:text-slate-100"
+              }`}
+            >
+              {btn.emoji && <span aria-hidden="true">{btn.emoji}</span>}
+              <span className="break-words">{btn.link.text}</span>
+            </a>
+          );
+        }
+        return (
+          <Fragment key={i}>
+            {spacer}
+            {tokens.map((t, j) =>
+              t.type === "bold" ? (
+                <strong key={j}>{t.text}</strong>
+              ) : t.type === "image" ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img key={j} src={t.src} alt={t.alt} className="my-2 block max-h-60 max-w-full rounded-lg object-cover" loading="lazy" />
+              ) : t.type === "link" ? (
+                <a
+                  key={j}
+                  href={t.href}
+                  target={isSiteLink(t.href) ? "_top" : "_blank"}
+                  rel="noopener noreferrer"
+                  onClick={() => {
+                    const lead = parseLeadClick(t.href);
+                    if (lead) reportLeadClick(lead, lang);
+                  }}
+                  className="break-words underline underline-offset-2"
+                >
+                  {t.text}
+                </a>
+              ) : (
+                <Fragment key={j}>{t.text}</Fragment>
+              ),
+            )}
+          </Fragment>
+        );
+      })}
     </>
   );
 }
