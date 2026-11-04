@@ -6,12 +6,16 @@ export const CLICK_URL = "https://www.sirtaki-tavern.gr/reserve-click.php";
 export type LeadClick = { channel: "wa" | "email"; party: number; date: string; time: string };
 
 const MONTHS = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"];
+// Greek month names (genitive, as in "5 Νοεμβρίου"), lower-case and without accents.
+const MONTHS_EL = ["ιανουαριου", "φεβρουαριου", "μαρτιου", "απριλιου", "μαιου", "ιουνιου", "ιουλιου", "αυγουστου", "σεπτεμβριου", "οκτωβριου", "νοεμβριου", "δεκεμβριου"];
 
-/** "Thursday 5 November 2026" -> "2026-11-05" ("" when it cannot be read). */
+const plain = (s: string) => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
+/** "Thursday 5 November 2026" or "Πέμπτη 5 Νοεμβρίου 2026" -> "2026-11-05" ("" when it cannot be read). */
 export function isoFromEnglishDate(text: string): string {
-  const m = /(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})/.exec(text);
+  const m = /(\d{1,2})\s+([^\s\d]+)\s+(\d{4})/.exec(plain(text));
   if (!m) return "";
-  const month = MONTHS.indexOf(m[2].toLowerCase()) + 1;
+  const month = MONTHS.indexOf(m[2]) + 1 || MONTHS_EL.indexOf(m[2]) + 1;
   const day = Number(m[1]);
   if (!month || day < 1 || day > 31) return "";
   return `${m[3]}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
@@ -35,14 +39,14 @@ export function parseLeadClick(href: string): LeadClick | null {
   } else {
     return null;
   }
-  const party = /for\s+(\d{1,2})\s+(?:people|persons|guests)/i.exec(text);
+  const party = /(?:for|για)\s+(\d{1,2})\s+(?:people|persons|guests|ατομα|ατομων|ατομο)/.exec(plain(text));
   if (!party) return null;
-  const when = /\bon\s+(.+?)\s+at\s+([01]?\d|2[0-3]):([0-5]\d)/i.exec(text);
+  const time = /\b([01]?\d|2[0-3]):([0-5]\d)\b/.exec(text);
   return {
     channel,
     party: Number(party[1]),
-    date: when ? isoFromEnglishDate(when[1]) : "",
-    time: when ? `${when[2].padStart(2, "0")}:${when[3]}` : "",
+    date: isoFromEnglishDate(text),
+    time: time ? `${time[1].padStart(2, "0")}:${time[2]}` : "",
   };
 }
 

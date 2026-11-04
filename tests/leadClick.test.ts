@@ -15,6 +15,12 @@ describe("parseLeadClick", () => {
   it("reads the event link", () => {
     expect(parseLeadClick("https://wa.me/306942662051?text=I%20would%20like%20to%20plan%20an%20event%20for%2025%20people%20on%206%20November%202026%20at%2020%3A00")).toMatchObject({ party: 25, date: "2026-11-06", time: "20:00" });
   });
+  it("reads the Greek links (raw Greek letters or encoded)", () => {
+    const raw = "https://wa.me/306942662051?text=Γεια%20σας%20Σιρτάκι!%20Θα%20ήθελα%20να%20κλείσω%20τραπέζι%20για%2011%20άτομα%20την%20Πέμπτη%205%20Νοεμβρίου%202026%20στις%2018:00";
+    expect(parseLeadClick(raw)).toEqual({ channel: "wa", party: 11, date: "2026-11-05", time: "18:00" });
+    expect(parseLeadClick("https://wa.me/306942662051?text=" + encodeURIComponent("Θα ήθελα τραπέζι για 11 άτομα την Πέμπτη 5 Νοεμβρίου 2026 στις 18:00"))).toEqual({ channel: "wa", party: 11, date: "2026-11-05", time: "18:00" });
+    expect(parseLeadClick("https://www.sirtaki-tavern.gr/contact?subject=x&message=Θα%20ήθελα%20τραπέζι%20για%2013%20άτομα%20την%206%20Νοεμβρίου%202026%20στις%2020:30.#contact")).toEqual({ channel: "email", party: 13, date: "2026-11-06", time: "20:30" });
+  });
   it("ignores other links and plain WhatsApp contact", () => {
     expect(parseLeadClick("https://wa.me/306942662051")).toBeNull();
     expect(parseLeadClick("https://example.com/?text=for%2011%20people")).toBeNull();
