@@ -49,7 +49,7 @@ export function parseLeadClick(href: string): LeadClick | null {
 /** Fire-and-forget: never blocks or breaks the guest's click. */
 export function reportLeadClick(lead: LeadClick, lang: string, send: typeof fetch = fetch): void {
   try {
-    const body = new URLSearchParams({ channel: lead.channel, party: String(lead.party), date: lead.date, time: lead.time, lang });
+    const body = new URLSearchParams({ channel: lead.channel, party: String(lead.party), date: lead.date, time: lead.time, lang, src: "agent" });
     void send(CLICK_URL, {
       method: "POST",
       mode: "no-cors",

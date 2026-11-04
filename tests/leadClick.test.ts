@@ -34,7 +34,7 @@ describe("reportLeadClick", () => {
     const send = vi.fn().mockResolvedValue(new Response(null));
     reportLeadClick({ channel: "wa", party: 11, date: "2026-11-05", time: "18:00" }, "el", send as unknown as typeof fetch);
     expect(send).toHaveBeenCalledOnce();
-    expect(send.mock.calls[0][1].body).toBe("channel=wa&party=11&date=2026-11-05&time=18%3A00&lang=el");
+    expect(send.mock.calls[0][1].body).toBe("channel=wa&party=11&date=2026-11-05&time=18%3A00&lang=el&src=agent");
     expect(() => reportLeadClick({ channel: "wa", party: 1, date: "", time: "" }, "en", (() => { throw new Error("x"); }) as unknown as typeof fetch)).not.toThrow();
   });
 });
