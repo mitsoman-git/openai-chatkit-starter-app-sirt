@@ -67,6 +67,9 @@ function ReplyText({ text, lang }: { text: string; lang: Lang }) {
             {tokens.map((t, j) =>
               t.type === "bold" ? (
                 <strong key={j}>{t.text}</strong>
+              ) : t.type === "image" && t.src.includes("/assets/img/staff/") ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img key={j} src={t.src} alt={t.alt} width={56} height={56} className="mr-3 inline-block h-14 w-14 rounded-full object-cover align-middle ring-2 ring-emerald-600" />
               ) : t.type === "image" ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img key={j} src={t.src} alt={t.alt} className="my-2 block max-h-60 max-w-full rounded-lg object-cover" loading="lazy" />
