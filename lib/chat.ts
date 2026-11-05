@@ -3,6 +3,7 @@ import { FALLBACK_REPLY, containsCardNumber, isJailbreak, redactCardNumbers } fr
 import type { Ask } from "./openai";
 import { loadSiteStatus, statusLine } from "./liveStatus";
 import { todayLine } from "./today";
+import { buildMapsAllowList, fixMapsLinks } from "./mapsLinks";
 import { extractBooking, freeTimesLine, loadFreeTimes } from "./availability";
 import type { Category, Turn } from "./types";
 
@@ -67,5 +68,11 @@ export async function respond(
     maxOutputTokens: 2048,
     timeoutMs: 18000,
   });
-  return { reply, category };
+  return { reply: fixMapsLinks(reply, mapsAllowList()), category };
+}
+
+let mapsAllow: ReturnType<typeof buildMapsAllowList> | null = null;
+function mapsAllowList() {
+  if (!mapsAllow) mapsAllow = buildMapsAllowList(loadPrompt("get_information"), loadPrompt("reserve"), loadPrompt("meze"));
+  return mapsAllow;
 }
