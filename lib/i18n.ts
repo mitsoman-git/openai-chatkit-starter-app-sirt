@@ -35,7 +35,7 @@ export const UI: Record<Lang, UiText> = {
     ],
   },
   de: {
-    greeting: "👋 Hallo, hier ist Sirtaki! Wie kann ich Ihnen heute helfen?",
+    greeting: "👋 Hallo! Ich bin Eleni, Ihre Gastgeberin. Wie kann ich Ihnen heute helfen?",
     placeholder: "Fragen Sie alles über Sirtaki...",
     send: "Senden",
     newChat: "Neuer Chat",
@@ -49,7 +49,7 @@ export const UI: Record<Lang, UiText> = {
     ],
   },
   fr: {
-    greeting: "👋 Bonjour, ici Sirtaki ! Comment puis-je vous aider aujourd’hui ?",
+    greeting: "👋 Bonjour ! Je suis Eleni, votre hôtesse. Comment puis-je vous aider aujourd’hui ?",
     placeholder: "Posez vos questions sur Sirtaki...",
     send: "Envoyer",
     newChat: "Nouveau chat",
