@@ -36,3 +36,16 @@ export function tokenizeLine(line: string): Token[] {
   pushText(line.slice(last));
   return tokens;
 }
+
+const CHOICE_LINE = /^\s*\{\{\s*choices\s*:\s*(.+?)\s*\}\}\s*$/i;
+
+/** A line like "{{choices: 1 | 2 | 3}}" becomes tap-to-answer buttons. Returns null for any other line. */
+export function parseChoiceLine(line: string): string[] | null {
+  const m = CHOICE_LINE.exec(line);
+  if (!m) return null;
+  const items = m[1]
+    .split("|")
+    .map((x) => x.trim())
+    .filter((x) => x.length > 0 && x.length <= 40);
+  return items.length >= 2 ? items.slice(0, 8) : null;
+}

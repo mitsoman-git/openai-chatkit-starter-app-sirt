@@ -3,6 +3,7 @@ import { FALLBACK_REPLY, containsCardNumber, isJailbreak, redactCardNumbers } fr
 import type { Ask } from "./openai";
 import { loadSiteStatus, statusLine } from "./liveStatus";
 import { todayLine } from "./today";
+import { extractBooking, freeTimesLine, loadFreeTimes } from "./availability";
 import type { Category, Turn } from "./types";
 
 export const MAX_MESSAGE_CHARS = 1000;
@@ -52,8 +53,16 @@ export async function respond(
   if (jailbreak) return { reply: FALLBACK_REPLY, category: "blocked" };
 
   const status = statusLine(await loadSiteStatus());
+  let times = "";
+  if (category === "reserve") {
+    const { party, date } = await extractBooking([...safeHistory, { role: "user", text: message }], ask, now);
+    const today = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Athens" }).format(now ?? new Date());
+    if (party >= 1 && party <= 10 && date >= today) {
+      times = freeTimesLine(date, party, await loadFreeTimes(date, party));
+    }
+  }
   const reply = await ask({
-    instructions: `${loadPrompt(category)}\n\n${todayLine(now)}${status ? `\n\n${status}` : ""}`,
+    instructions: `${loadPrompt(category)}\n\n${todayLine(now)}${status ? `\n\n${status}` : ""}${times ? `\n\n${times}` : ""}`,
     input: [...safeHistory, { role: "user", text: message }],
     maxOutputTokens: 2048,
     timeoutMs: 18000,

@@ -5,7 +5,7 @@ import { loadClassifierPrompt, loadPrompt } from "../lib/agents/loadPrompt";
 
 const promptsDir = join(process.cwd(), "lib/agents/prompts");
 const kbDir = join(process.cwd(), "lib/agents/kb");
-const kbFiles = ["menu_2026_bilingual.md", "wines_sirtaki_2026.md", "wineries-2026.md", "hotels_distances_2026.md", "parking_2026.md", "faq_2026.md"];
+const kbFiles = ["menu_2026_bilingual.md", "wines_sirtaki_2026.md", "wine_links_2026.md", "wineries-2026.md", "hotels_distances_2026.md", "parking_2026.md", "faq_2026.md"];
 
 describe("prompt files", () => {
   it("contain no TypeScript string escapes", () => {

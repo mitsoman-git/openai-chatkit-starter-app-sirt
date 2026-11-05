@@ -2,7 +2,7 @@
 
 import { Fragment, useEffect, useRef, useState } from "react";
 import { UI, langFromSearch, type Lang } from "@/lib/i18n";
-import { tokenizeLine } from "@/lib/formatReply";
+import { parseChoiceLine, tokenizeLine } from "@/lib/formatReply";
 import { parseLeadClick, reportLeadClick } from "@/lib/leadClick";
 import { loadChat, saveChat } from "@/lib/chatStore";
 import type { Turn } from "@/lib/types";
@@ -35,8 +35,24 @@ function buttonOf(
   return { emoji, link: links[0] as Extract<Token, { type: "link" }> };
 }
 
-function ReplyText({ text, lang }: { text: string; lang: Lang }) {
-  const lines = text.split("\n").map((line) => tokenizeLine(line));
+function ReplyText({
+  text,
+  lang,
+  onChoose,
+}: {
+  text: string;
+  lang: Lang;
+  /** Given only for the newest assistant reply; older choice buttons are not shown. */
+  onChoose?: (choice: string) => void;
+}) {
+  const rawLines = text.split("\n");
+  const choiceRows = rawLines.map(parseChoiceLine);
+  const noteRows = rawLines.map((line) => /^>\s+\S/.test(line));
+  const lines = rawLines.map((line, i) =>
+    choiceRows[i]
+      ? ([] as Token[])
+      : tokenizeLine(noteRows[i] ? line.replace(/^>\s+/, "") : line),
+  );
   const buttons = lines.map(buttonOf);
   const isStaff = (tokens: Token[]) =>
     tokens.some(
@@ -46,6 +62,34 @@ function ReplyText({ text, lang }: { text: string; lang: Lang }) {
   return (
     <>
       {lines.map((tokens, i) => {
+        const choices = choiceRows[i];
+        if (choices) {
+          if (!onChoose) return null;
+          return (
+            <div key={i} className="mt-2 flex flex-wrap gap-1.5">
+              {choices.map((c) => (
+                <button
+                  key={c}
+                  type="button"
+                  onClick={() => onChoose(c)}
+                  className="min-h-8 rounded-full border border-slate-400 bg-white px-3 py-1 text-[13px] text-slate-800 dark:border-slate-500 dark:bg-slate-900 dark:text-slate-100"
+                >
+                  {c}
+                </button>
+              ))}
+            </div>
+          );
+        }
+        if (noteRows[i]) {
+          return (
+            <div
+              key={i}
+              className="mt-3 text-[13px] leading-snug text-slate-500 dark:text-slate-400"
+            >
+              {lineContent(tokens, lang)}
+            </div>
+          );
+        }
         const btn = buttons[i];
         const staff = isStaff(tokens);
         const spacer =
@@ -65,7 +109,9 @@ function ReplyText({ text, lang }: { text: string; lang: Lang }) {
               className={`mt-4 flex min-h-11 w-64 ${hasStaff ? "mx-auto" : ""} max-w-full items-center justify-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold no-underline ${
                 wa
                   ? "border-emerald-600 bg-emerald-600 text-white"
-                  : "border-slate-400 text-slate-800 dark:border-slate-500 dark:text-slate-100"
+                  : /\/what-to-order/.test(btn.link.href)
+                    ? "border-slate-900 bg-slate-900 text-white shadow-sm dark:border-slate-100 dark:bg-slate-100 dark:text-slate-900"
+                    : "border-slate-400 text-slate-800 dark:border-slate-500 dark:text-slate-100"
               }`}
             >
               {btn.emoji && <span aria-hidden="true">{btn.emoji}</span>}
@@ -227,7 +273,15 @@ export function ChatPanel() {
               key={i}
               className={`${bubble} ${t.role === "user" ? userBubble : assistantBubble}`}
             >
-              <ReplyText text={t.text} lang={lang} />
+              <ReplyText
+                text={t.text}
+                lang={lang}
+                onChoose={
+                  t.role === "assistant" && i === turns.length - 1 && !pending
+                    ? (c) => void send(c)
+                    : undefined
+                }
+              />
             </div>
           ))}
           {pending && (
@@ -236,13 +290,13 @@ export function ChatPanel() {
             </div>
           )}
           {turns.length === 0 && (
-            <div className="flex flex-wrap gap-2 pt-2">
+            <div className="flex flex-wrap gap-1.5 pt-2">
               {ui.starters.map((s) => (
                 <button
                   key={s.label}
                   type="button"
                   onClick={() => void send(s.prompt)}
-                  className="rounded-full border border-slate-300 bg-white px-3 py-1.5 text-sm text-slate-800 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
+                  className="rounded-full border border-slate-300 bg-white px-2.5 py-1 text-[13px] text-slate-800 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
                 >
                   {s.label}
                 </button>

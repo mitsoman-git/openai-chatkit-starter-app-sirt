@@ -247,3 +247,12 @@
 | Xinomavro // Vegoritis Winery | 9 | Xinomavro | PDO Amyndeo - Greece |
 | Diamantopetra // Diamantakis Winery | 7.5 | Syrah, Mandilari | PGI Crete |
 | Malbec // Altos Las Hormigas | 11 | Malbec | Uco Valley Mendoza - Argentina |
+
+---
+
+## NEW ON THE WEBSITE (review)
+
+| Wine Name | Glass 150ml (€) | Bottle (€) | Grape Variety | Category |
+|---|---|---|---|---|
+| Ktima Theopetra // Tsililis Winery | - | 750ml 42 | Syrah, Limniona, Cabernet Sauvignon | red |
+| Pinot Noir FR // Maison Perron de Mypont | - | 750ml 65 | Pinot Noir | red |
