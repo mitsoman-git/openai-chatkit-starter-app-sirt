@@ -47,7 +47,7 @@
 | Cretan Salad / Κρητική σαλάτα | 11€ | Tomato, cucumber, onion, peppers, lettuce, Cretan cream cheese, olives, crispy rusk, crithmum, olive oil / Ντομάτα, αγγούρι, κρεμμύδι, πιπεριές, μαρούλι, ξίγαλο, ελιές, παξιμάδι, κρίταμο, λάδι | VG |
 | Greek Salad / Χωριάτικη σαλάτα | 9€ | Tomato, cucumber, onion, peppers, feta, olives, olive oil, oregano / Ντομάτα, αγγούρι, κρεμμύδι, πιπεριές, φέτα, ελιές, λάδι, ρίγανη | VG, GF |
 | Beetroot Salad / Παντζαροσαλάτα | 9€ | Mixed greens, beetroot, orange, walnuts, mint, vinaigrette / Χόρτα, παντζάρι, πορτοκάλι, καρύδια, δυόσμος, βινεγκρέτ | VG, GF |
-| Cherry Tomato Salad / Σαλάτα ντοματίνια | 13€ | Cherry tomatoes, soft cream cheese, capers, rusks, basil pesto, olive oil / Ντοματίνια, μαλακή κρέμα τυριού, κάπαρη, παξιμάδια, πέστο βασιλικού, λάδι | - |
+| Cherry Tomato Salad / Σαλάτα ντοματίνια | 13€ | Cherry tomatoes, soft cream cheese, capers, rusks, basil pesto, olive oil / Ντοματίνια, μαλακή κρέμα τυριού, κάπαρη, παξιμάδια, πέστο βασιλικού, λάδι | VG |
 
 ---
 
