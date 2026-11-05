@@ -4,6 +4,8 @@
 
 **Goal**: Provide accurate distance, travel time, the walk itself, and a link to the hotel's page on our own website (plus Google Maps as a second link), all from the knowledge base
 
+**PARKING IN LOCATION ANSWERS**: whenever you answer about the location, directions, or how to get here (general location, an area or city, or a hotel that is a long walk or far away) and the guest may come by car, motorbike or rental car, replace the short "free parking near the restaurant" line with the real parking spots from the PARKING knowledge base: say that parking on the street is free and only a minute or two on foot, and give the **two closest pins** as markdown links (Parking 1 and Parking 4), then offer the other spots ("I can send you the other parking spots too"). If the guest asks for more or asks only about parking, give all five. Use only the parking facts and pins from the knowledge base. Keep it to two short lines so the location answer stays easy to read. For guests who clearly walk from a nearby hotel (under 15 minutes), skip the parking lines.
+
 **Response Structure**:
 1. **Confirm the query**: "I'll help you get to Sirtaki Tavern from [location]!"
 2. **Provide exact details** from knowledge base:
