@@ -2,7 +2,7 @@
 
 import { Fragment, useEffect, useRef, useState } from "react";
 import { UI, langFromSearch, type Lang } from "@/lib/i18n";
-import { tokenizeLine } from "@/lib/formatReply";
+import { parseChoiceLine, tokenizeLine } from "@/lib/formatReply";
 import { parseLeadClick, reportLeadClick } from "@/lib/leadClick";
 import { loadChat, saveChat } from "@/lib/chatStore";
 import type { Turn } from "@/lib/types";
@@ -35,8 +35,21 @@ function buttonOf(
   return { emoji, link: links[0] as Extract<Token, { type: "link" }> };
 }
 
-function ReplyText({ text, lang }: { text: string; lang: Lang }) {
-  const lines = text.split("\n").map((line) => tokenizeLine(line));
+function ReplyText({
+  text,
+  lang,
+  onChoose,
+}: {
+  text: string;
+  lang: Lang;
+  /** Given only for the newest assistant reply; older choice buttons are not shown. */
+  onChoose?: (choice: string) => void;
+}) {
+  const rawLines = text.split("\n");
+  const choiceRows = rawLines.map(parseChoiceLine);
+  const lines = rawLines.map((line, i) =>
+    choiceRows[i] ? ([] as Token[]) : tokenizeLine(line),
+  );
   const buttons = lines.map(buttonOf);
   const isStaff = (tokens: Token[]) =>
     tokens.some(
@@ -46,6 +59,24 @@ function ReplyText({ text, lang }: { text: string; lang: Lang }) {
   return (
     <>
       {lines.map((tokens, i) => {
+        const choices = choiceRows[i];
+        if (choices) {
+          if (!onChoose) return null;
+          return (
+            <div key={i} className="mt-3 flex flex-wrap gap-2">
+              {choices.map((c) => (
+                <button
+                  key={c}
+                  type="button"
+                  onClick={() => onChoose(c)}
+                  className="min-h-10 rounded-full border border-slate-400 bg-white px-4 py-1.5 text-sm font-medium text-slate-800 dark:border-slate-500 dark:bg-slate-900 dark:text-slate-100"
+                >
+                  {c}
+                </button>
+              ))}
+            </div>
+          );
+        }
         const btn = buttons[i];
         const staff = isStaff(tokens);
         const spacer =
@@ -227,7 +258,15 @@ export function ChatPanel() {
               key={i}
               className={`${bubble} ${t.role === "user" ? userBubble : assistantBubble}`}
             >
-              <ReplyText text={t.text} lang={lang} />
+              <ReplyText
+                text={t.text}
+                lang={lang}
+                onChoose={
+                  t.role === "assistant" && i === turns.length - 1 && !pending
+                    ? (c) => void send(c)
+                    : undefined
+                }
+              />
             </div>
           ))}
           {pending && (

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { tokenizeLine } from "../lib/formatReply";
+import { parseChoiceLine, tokenizeLine } from "../lib/formatReply";
 
 describe("tokenizeLine", () => {
   it("returns plain text as one token", () => {
@@ -55,5 +55,15 @@ describe("tokenizeLine", () => {
     expect(tokenizeLine("![x](https://evil.example.com/a.jpg)")).toEqual([
       { type: "text", text: "![x](https://evil.example.com/a.jpg)" },
     ]);
+  });
+});
+
+describe("parseChoiceLine", () => {
+  it("turns a choices line into buttons", () => {
+    expect(parseChoiceLine("{{choices: 1 | 2 | 3 | 4 | 5 or more}}")).toEqual(["1", "2", "3", "4", "5 or more"]);
+  });
+  it("ignores normal lines and single choices", () => {
+    expect(parseChoiceLine("How many people?")).toBeNull();
+    expect(parseChoiceLine("{{choices: only one}}")).toBeNull();
   });
 });
