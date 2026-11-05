@@ -10,7 +10,7 @@ export const STARTER_PROMPTS: StarterPrompt[] = [
 
 export const PLACEHOLDER_INPUT = "Ask anything about Sirtaki...";
 
-export const GREETING = "👋 Hi, Sirtaki is here! How can I help you today?";
+export const GREETING = "👋 Hi! I'm Eleni, your hostess. How can I help you today?";
 
 export const ERROR_REPLY =
   "I'm sorry, something went wrong on my end — please try again or reach us on WhatsApp.";
