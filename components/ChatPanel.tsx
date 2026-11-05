@@ -7,25 +7,7 @@ import { parseLeadClick, reportLeadClick } from "@/lib/leadClick";
 import { loadChat, saveChat } from "@/lib/chatStore";
 import type { Turn } from "@/lib/types";
 
-// Links to the restaurant's own site (e.g. the prefilled contact form) open in the same tab, so the chat keeps its history.
-function isSiteLink(href: string): boolean {
-  try {
-    return /(^|\.)sirtaki-tavern\.gr$/.test(new URL(href).hostname);
-  } catch {
-    return false;
-  }
-}
-
-/** Site pages replace the whole page (the guest stays on our site); Cellar wine pages open in a new tab so the chat stays open behind them. */
-function linkTarget(href: string): "_top" | "_blank" {
-  if (!isSiteLink(href)) return "_blank";
-  try {
-    return /^\/(el\/)?cellar\//.test(new URL(href).pathname) ? "_blank" : "_top";
-  } catch {
-    return "_top";
-  }
-}
-
+// Every link that leaves the chat (site pages, the booking page, Cellar, maps, WhatsApp) opens in a new tab, so the chat stays open and keeps its place.
 const EMOJI_ONLY = /^[\s\p{Extended_Pictographic}\uFE0F\u200D]*$/u;
 
 type Token = ReturnType<typeof tokenizeLine>[number];
@@ -110,7 +92,7 @@ function ReplyText({
             <a
               key={i}
               href={btn.link.href}
-              target={linkTarget(btn.link.href)}
+              target="_blank"
               rel="noopener noreferrer"
               onClick={() => {
                 const lead = parseLeadClick(btn.link.href);
@@ -176,7 +158,7 @@ function lineContent(tokens: Token[], lang: Lang) {
           <a
             key={j}
             href={t.href}
-            target={linkTarget(t.href)}
+            target="_blank"
             rel="noopener noreferrer"
             onClick={() => {
               const lead = parseLeadClick(t.href);
