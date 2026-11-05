@@ -16,6 +16,16 @@ function isSiteLink(href: string): boolean {
   }
 }
 
+/** Site pages replace the whole page (the guest stays on our site); Cellar wine pages open in a new tab so the chat stays open behind them. */
+function linkTarget(href: string): "_top" | "_blank" {
+  if (!isSiteLink(href)) return "_blank";
+  try {
+    return /^\/(el\/)?cellar\//.test(new URL(href).pathname) ? "_blank" : "_top";
+  } catch {
+    return "_top";
+  }
+}
+
 const EMOJI_ONLY = /^[\s\p{Extended_Pictographic}\uFE0F\u200D]*$/u;
 
 type Token = ReturnType<typeof tokenizeLine>[number];
@@ -100,7 +110,7 @@ function ReplyText({
             <a
               key={i}
               href={btn.link.href}
-              target={isSiteLink(btn.link.href) ? "_top" : "_blank"}
+              target={linkTarget(btn.link.href)}
               rel="noopener noreferrer"
               onClick={() => {
                 const lead = parseLeadClick(btn.link.href);
@@ -166,7 +176,7 @@ function lineContent(tokens: Token[], lang: Lang) {
           <a
             key={j}
             href={t.href}
-            target={isSiteLink(t.href) ? "_top" : "_blank"}
+            target={linkTarget(t.href)}
             rel="noopener noreferrer"
             onClick={() => {
               const lead = parseLeadClick(t.href);
