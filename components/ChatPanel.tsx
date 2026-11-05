@@ -7,15 +7,7 @@ import { parseLeadClick, reportLeadClick } from "@/lib/leadClick";
 import { loadChat, saveChat } from "@/lib/chatStore";
 import type { Turn } from "@/lib/types";
 
-// Links to the restaurant's own site (e.g. the prefilled contact form) open in the same tab, so the chat keeps its history.
-function isSiteLink(href: string): boolean {
-  try {
-    return /(^|\.)sirtaki-tavern\.gr$/.test(new URL(href).hostname);
-  } catch {
-    return false;
-  }
-}
-
+// Every link that leaves the chat (site pages, the booking page, Cellar, maps, WhatsApp) opens in a new tab, so the chat stays open and keeps its place.
 const EMOJI_ONLY = /^[\s\p{Extended_Pictographic}\uFE0F\u200D]*$/u;
 
 type Token = ReturnType<typeof tokenizeLine>[number];
@@ -100,7 +92,7 @@ function ReplyText({
             <a
               key={i}
               href={btn.link.href}
-              target={isSiteLink(btn.link.href) ? "_top" : "_blank"}
+              target="_blank"
               rel="noopener noreferrer"
               onClick={() => {
                 const lead = parseLeadClick(btn.link.href);
@@ -166,7 +158,7 @@ function lineContent(tokens: Token[], lang: Lang) {
           <a
             key={j}
             href={t.href}
-            target={isSiteLink(t.href) ? "_top" : "_blank"}
+            target="_blank"
             rel="noopener noreferrer"
             onClick={() => {
               const lead = parseLeadClick(t.href);
