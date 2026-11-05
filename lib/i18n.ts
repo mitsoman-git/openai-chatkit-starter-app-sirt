@@ -21,7 +21,7 @@ export const UI: Record<Lang, UiText> = {
     starters: STARTER_PROMPTS,
   },
   el: {
-    greeting: "👋 Γεια σας, εδώ ο Sirtaki! Πώς μπορώ να σας βοηθήσω σήμερα;",
+    greeting: "👋 Γεια σας! Είμαι η Ελένη, η οικοδέσποινά σας. Πώς μπορώ να σας βοηθήσω σήμερα;",
     placeholder: "Ρωτήστε ό,τι θέλετε για το Sirtaki...",
     send: "Αποστολή",
     newChat: "Νέα συνομιλία",
