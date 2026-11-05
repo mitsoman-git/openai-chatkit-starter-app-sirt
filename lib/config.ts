@@ -5,6 +5,7 @@ export const STARTER_PROMPTS: StarterPrompt[] = [
   { label: "How can I reserve?", prompt: "I would like to reserve a table" },
   { label: "How can I get there?", prompt: "where is sirtaki tavern?" },
   { label: "Tell me more about a dish", prompt: "i like to ask for a dish you have" },
+  { label: "What should we order?", prompt: "We don't know what to order. Can you help us build a dinner?" },
   { label: "Can you recommend a wine?", prompt: "I’d like a wine recommendation with my meal" },
 ];
 

@@ -11,9 +11,9 @@ describe("chat UI languages", () => {
     expect(langFromSearch("?lang=EL")).toBe("en");
   });
 
-  it("has the same five starters and all texts for every language", () => {
+  it("has starters (six, five in Greek: no dinner builder there) and all texts for every language", () => {
     for (const ui of Object.values(UI)) {
-      expect(ui.starters).toHaveLength(5);
+      expect(ui.starters).toHaveLength(ui === UI.el ? 5 : 6);
       for (const s of ui.starters) {
         expect(s.label.length).toBeGreaterThan(0);
         expect(s.prompt.length).toBeGreaterThan(0);
