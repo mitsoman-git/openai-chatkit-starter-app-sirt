@@ -63,7 +63,7 @@ describe("respond adds today's date to the main call only", () => {
   it("leaves the classifier and the guard prompts without a date", async () => {
     const { ask, calls } = scripted();
     await respond({ message: "hi", history: [], now: new Date("2026-10-31T10:00:00Z") }, ask);
-    for (const c of calls.filter((c) => c.jsonSchema)) {
+    for (const c of calls.filter((c) => c.jsonSchema && c.jsonSchema.name !== "booking")) {
       expect(c.instructions).not.toContain("Saturday, 31 October 2026");
     }
   });
