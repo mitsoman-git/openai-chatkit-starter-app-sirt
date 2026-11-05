@@ -35,14 +35,34 @@ function decoded(s: string): string {
   }
 }
 
+const GENERIC = new Set(["hotel", "resort", "apts", "apartments", "beach", "village", "suites", "the", "and", "grecotel", "design", "mare"]);
+
+function words(s: string): string[] {
+  return s.split(/[^a-z0-9\u0370-\u03ff]+/).filter(Boolean);
+}
+
+/** The hotel from our list whose distinctive words (ignoring Hotel, Resort, Apts...) all appear in the text. */
+function findHotel(hay: string, hotels: MapsAllowList["hotels"]): { name: string; url: string } | undefined {
+  const have = new Set(words(hay));
+  let best: { name: string; url: string } | undefined;
+  let bestScore = 0;
+  for (const h of hotels) {
+    const key = words(h.name).filter((w) => !GENERIC.has(w));
+    const all = words(h.name);
+    const need = key.length ? key : all;
+    if (need.length && need.every((w) => have.has(w))) {
+      const score = all.filter((w) => have.has(w)).length;
+      if (score > bestScore) { best = h; bestScore = score; }
+    }
+  }
+  return best;
+}
+
 export function fixMapsLinks(reply: string, allow: MapsAllowList): string {
   return reply.replace(MAPS_LINK, (whole, text: string, rawUrl: string) => {
     const url = rawUrl.trim().replace(/&amp;/g, "&");
     if (allow.urls.has(url)) return `[${text}](${url})`;
-    const hay = `${decoded(url)} ${text.toLowerCase()}`;
-    const hit = allow.hotels
-      .filter((h) => hay.includes(h.name))
-      .sort((a, b) => b.name.length - a.name.length)[0];
+    const hit = findHotel(`${decoded(url)} ${text.toLowerCase()}`, allow.hotels);
     return hit ? `[${text}](${hit.url})` : text;
   });
 }
