@@ -66,13 +66,13 @@ function ReplyText({
         if (choices) {
           if (!onChoose) return null;
           return (
-            <div key={i} className="mt-3 flex flex-wrap gap-2">
+            <div key={i} className="mt-2 flex flex-wrap gap-1.5">
               {choices.map((c) => (
                 <button
                   key={c}
                   type="button"
                   onClick={() => onChoose(c)}
-                  className="min-h-10 rounded-full border border-slate-400 bg-white px-4 py-1.5 text-sm font-medium text-slate-800 dark:border-slate-500 dark:bg-slate-900 dark:text-slate-100"
+                  className="min-h-8 rounded-full border border-slate-400 bg-white px-3 py-1 text-[13px] text-slate-800 dark:border-slate-500 dark:bg-slate-900 dark:text-slate-100"
                 >
                   {c}
                 </button>
@@ -290,13 +290,13 @@ export function ChatPanel() {
             </div>
           )}
           {turns.length === 0 && (
-            <div className="flex flex-wrap gap-2 pt-2">
+            <div className="flex flex-wrap gap-1.5 pt-2">
               {ui.starters.map((s) => (
                 <button
                   key={s.label}
                   type="button"
                   onClick={() => void send(s.prompt)}
-                  className="rounded-full border border-slate-300 bg-white px-3 py-1.5 text-sm text-slate-800 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
+                  className="rounded-full border border-slate-300 bg-white px-2.5 py-1 text-[13px] text-slate-800 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
                 >
                   {s.label}
                 </button>
