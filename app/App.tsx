@@ -7,7 +7,7 @@ export default function App() {
   useColorScheme();
 
   return (
-    <main className="h-dvh overflow-hidden bg-slate-100 dark:bg-slate-950">
+    <main className="h-dvh overflow-hidden bg-slate-100 dark:bg-[#141311]">
       <ChatPanel />
     </main>
   );
