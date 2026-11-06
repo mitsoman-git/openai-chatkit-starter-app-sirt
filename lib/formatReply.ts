@@ -49,3 +49,8 @@ export function parseChoiceLine(line: string): string[] | null {
     .filter((x) => x.length > 0 && x.length <= 40);
   return items.length >= 2 ? items.slice(0, 8) : null;
 }
+
+/** The model sometimes writes the buttons on the same line as the question; move them to their own line. */
+export function splitInlineChoices(text: string): string {
+  return text.replace(/([^\n])[ \t]*(\{\{\s*choices\s*:)/gi, "$1\n$2");
+}

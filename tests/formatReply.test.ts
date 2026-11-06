@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { parseChoiceLine, tokenizeLine } from "../lib/formatReply";
+import { parseChoiceLine, splitInlineChoices, tokenizeLine } from "../lib/formatReply";
 
 describe("tokenizeLine", () => {
   it("returns plain text as one token", () => {
@@ -65,5 +65,18 @@ describe("parseChoiceLine", () => {
   it("ignores normal lines and single choices", () => {
     expect(parseChoiceLine("How many people?")).toBeNull();
     expect(parseChoiceLine("{{choices: only one}}")).toBeNull();
+  });
+});
+
+describe("splitInlineChoices", () => {
+  it("moves buttons written on the same line to their own line", () => {
+    const out = splitInlineChoices("Where are you staying? {{choices: In Analipsi | Gouves | Malia}}");
+    expect(out).toBe("Where are you staying?\n{{choices: In Analipsi | Gouves | Malia}}");
+    expect(parseChoiceLine(out.split("\n")[1])).toEqual(["In Analipsi", "Gouves", "Malia"]);
+  });
+
+  it("leaves a buttons line that already stands alone untouched", () => {
+    const t = "Hello\n{{choices: A | B}}";
+    expect(splitInlineChoices(t)).toBe(t);
   });
 });

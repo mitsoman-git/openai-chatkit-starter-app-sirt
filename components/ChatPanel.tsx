@@ -2,7 +2,7 @@
 
 import { Fragment, useEffect, useRef, useState } from "react";
 import { UI, langFromSearch, type Lang } from "@/lib/i18n";
-import { parseChoiceLine, tokenizeLine } from "@/lib/formatReply";
+import { parseChoiceLine, splitInlineChoices, tokenizeLine } from "@/lib/formatReply";
 import { parseLeadClick, reportLeadClick } from "@/lib/leadClick";
 import { loadChat, saveChat } from "@/lib/chatStore";
 import type { Turn } from "@/lib/types";
@@ -37,7 +37,7 @@ function ReplyText({
   /** Given only for the newest assistant reply; older choice buttons are not shown. */
   onChoose?: (choice: string) => void;
 }) {
-  const rawLines = text.split("\n");
+  const rawLines = splitInlineChoices(text).split("\n");
   const choiceRows = rawLines.map(parseChoiceLine);
   const noteRows = rawLines.map((line) => /^>\s+\S/.test(line));
   const lines = rawLines.map((line, i) =>
