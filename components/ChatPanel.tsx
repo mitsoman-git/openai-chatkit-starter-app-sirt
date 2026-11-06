@@ -277,8 +277,14 @@ export function ChatPanel() {
             </div>
           ))}
           {pending && (
-            <div className={`${bubble} ${assistantBubble}`} aria-live="polite">
-              …
+            <div
+              className={`${bubble} ${assistantBubble} flex items-center gap-1.5 py-3.5`}
+              aria-live="polite"
+              aria-label="…"
+            >
+              <span className="h-2 w-2 rounded-full bg-current opacity-50 motion-safe:animate-bounce" />
+              <span className="h-2 w-2 rounded-full bg-current opacity-50 motion-safe:animate-bounce [animation-delay:150ms]" />
+              <span className="h-2 w-2 rounded-full bg-current opacity-50 motion-safe:animate-bounce [animation-delay:300ms]" />
             </div>
           )}
           {turns.length === 0 && (
