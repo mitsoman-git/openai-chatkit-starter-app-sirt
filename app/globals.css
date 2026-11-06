@@ -9,15 +9,15 @@
 }
 
 :root[data-color-scheme="dark"] {
-  --background: #0c0b09;
-  --foreground: #e9e4da;
+  --background: #141311;
+  --foreground: #e8e4dc;
   color-scheme: dark;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-color-scheme]) {
-    --background: #0c0b09;
-    --foreground: #e9e4da;
+    --background: #141311;
+    --foreground: #e8e4dc;
     color-scheme: dark;
   }
 }
