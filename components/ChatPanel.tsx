@@ -211,6 +211,14 @@ export function ChatPanel() {
   }, [hydrated, sessionId, turns]);
 
   useEffect(() => {
+    const last = turns[turns.length - 1];
+    if (!pending && last && last.role === "assistant") {
+      const el = document.querySelector('[data-last-reply="true"]');
+      if (el) {
+        el.scrollIntoView({ block: "start" });
+        return;
+      }
+    }
     endRef.current?.scrollIntoView({ block: "end" });
   }, [turns, pending]);
 
@@ -263,7 +271,10 @@ export function ChatPanel() {
           {turns.map((t, i) => (
             <div
               key={i}
-              className={`${bubble} ${t.role === "user" ? userBubble : assistantBubble}`}
+              data-last-reply={
+                t.role === "assistant" && i === turns.length - 1 ? "true" : undefined
+              }
+              className={`${bubble} ${t.role === "user" ? userBubble : assistantBubble} scroll-mt-3`}
             >
               <ReplyText
                 text={t.text}
