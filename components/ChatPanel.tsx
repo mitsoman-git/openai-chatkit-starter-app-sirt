@@ -64,7 +64,7 @@ function ReplyText({
                   key={c}
                   type="button"
                   onClick={() => onChoose(c)}
-                  className="min-h-8 rounded-full border border-slate-400 bg-white px-3 py-1 text-[13px] text-slate-800 dark:border-slate-500 dark:bg-slate-900 dark:text-slate-100"
+                  className="min-h-8 rounded-full border border-slate-400 bg-white px-3 py-1 text-[13px] text-slate-800 dark:border-[#6b5a38] dark:bg-[#1a1814] dark:text-[#e9e4da]"
                 >
                   {c}
                 </button>
@@ -76,7 +76,7 @@ function ReplyText({
           return (
             <div
               key={i}
-              className="mt-3 text-[13px] leading-snug text-slate-500 dark:text-slate-400"
+              className="mt-3 text-[13px] leading-snug text-slate-500 dark:text-[#a79f92]"
             >
               {lineContent(tokens, lang)}
             </div>
@@ -102,8 +102,8 @@ function ReplyText({
                 wa
                   ? "border-emerald-600 bg-emerald-600 text-white"
                   : /\/what-to-order/.test(btn.link.href)
-                    ? "border-slate-900 bg-slate-900 text-white shadow-sm dark:border-slate-100 dark:bg-slate-100 dark:text-slate-900"
-                    : "border-slate-400 text-slate-800 dark:border-slate-500 dark:text-slate-100"
+                    ? "border-slate-900 bg-slate-900 text-white shadow-sm dark:border-[#cda45e] dark:bg-[#cda45e] dark:text-[#1b150a]"
+                    : "border-slate-400 text-slate-800 dark:border-[#6b5a38] dark:text-[#e9e4da]"
               }`}
             >
               {btn.emoji && <span aria-hidden="true">{btn.emoji}</span>}
@@ -251,9 +251,9 @@ export function ChatPanel() {
   const bubble =
     "max-w-[85%] rounded-2xl px-4 py-2 text-[15px] leading-relaxed";
   const assistantBubble =
-    "self-start bg-white text-slate-900 dark:bg-slate-800 dark:text-slate-100";
+    "self-start bg-white text-slate-900 dark:bg-[#272217] dark:text-[#e9e4da]";
   const userBubble =
-    "self-end bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-900";
+    "self-end bg-slate-900 text-white dark:bg-[#cda45e] dark:text-[#1b150a]";
 
   return (
     <div className="flex h-full flex-col">
@@ -288,7 +288,7 @@ export function ChatPanel() {
                   key={s.label}
                   type="button"
                   onClick={() => void send(s.prompt)}
-                  className="rounded-full border border-slate-300 bg-white px-2.5 py-1 text-[13px] text-slate-800 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
+                  className="rounded-full border border-slate-300 bg-white px-2.5 py-1 text-[13px] text-slate-800 dark:border-[#4a3f2b] dark:bg-[#1a1814] dark:text-[#e9e4da]"
                 >
                   {s.label}
                 </button>
@@ -299,7 +299,7 @@ export function ChatPanel() {
         </div>
       </div>
       <form
-        className="border-t border-slate-200 bg-white px-4 py-3 dark:border-slate-800 dark:bg-slate-900"
+        className="border-t border-slate-200 bg-white px-4 py-3 dark:border-[#322b1f] dark:bg-[#1a1814]"
         onSubmit={(e) => {
           e.preventDefault();
           void send(input);
@@ -311,7 +311,7 @@ export function ChatPanel() {
               type="button"
               onClick={newChat}
               disabled={pending}
-              className="text-xs text-slate-500 underline disabled:opacity-40 dark:text-slate-400"
+              className="text-xs text-slate-500 underline disabled:opacity-40 dark:text-[#a79f92]"
             >
               {ui.newChat}
             </button>
@@ -323,12 +323,12 @@ export function ChatPanel() {
             onChange={(e) => setInput(e.target.value)}
             placeholder={ui.placeholder}
             maxLength={1000}
-            className="min-w-0 flex-1 rounded-full border border-slate-300 bg-transparent px-4 py-2 text-base text-slate-900 outline-none dark:border-slate-700 dark:text-slate-100"
+            className="min-w-0 flex-1 rounded-full border border-slate-300 bg-transparent px-4 py-2 text-base text-slate-900 outline-none dark:border-[#4a3f2b] dark:text-[#e9e4da]"
           />
           <button
             type="submit"
             disabled={pending || input.trim() === ""}
-            className="rounded-full bg-slate-900 px-5 py-2 text-sm font-medium text-white disabled:opacity-40 dark:bg-slate-100 dark:text-slate-900"
+            className="rounded-full bg-slate-900 px-5 py-2 text-sm font-medium text-white disabled:opacity-40 dark:bg-[#cda45e] dark:text-[#1b150a]"
           >
             {ui.send}
           </button>
